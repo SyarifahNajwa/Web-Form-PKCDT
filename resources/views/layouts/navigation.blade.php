@@ -15,9 +15,6 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('petugas.index')" :active="request()->routeIs('petugas.*')">
-                        {{ __('Data Petugas') }}
-                    </x-nav-link>
                     <x-nav-link :href="route('penomoran.index')" :active="request()->routeIs('penomoran.*')">
                     {{ __('Penomoran PIBK') }}
                     </x-nav-link>

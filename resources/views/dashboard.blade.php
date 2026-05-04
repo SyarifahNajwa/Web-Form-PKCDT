@@ -13,25 +13,32 @@
                     
                     <!-- Grid Menu Cepat -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Kotak Shortcut 1 -->
+                        <!-- Kotak Fitur PIBK -->
                         <div class="p-6 bg-blue-50 border border-blue-200 rounded-lg shadow-sm">
-                            <h4 class="font-bold text-blue-800 mb-2">Manajemen Petugas</h4>
-                            <p class="text-sm text-gray-600 mb-4">Kelola data petugas, NIP, pangkat, dan cetak surat tugas resmi.</p>
+                            <h4 class="font-bold text-blue-800 mb-2">Buat Surat PIBK</h4>
+                            <p class="text-sm text-gray-600 mb-4">Isi data dan cetak surat PIBK.</p>
                             <div class="flex space-x-3">
-                                <a href="{{ route('petugas.index') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700">
-                                    Lihat Semua Petugas
+                                <a href="{{ route('penomoran.index') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700">
+                                    Lihat Semua PIBK
                                 </a>
-                                <a href="{{ route('petugas.create') }}" class="inline-flex items-center px-4 py-2 bg-white border border-blue-600 rounded-md font-semibold text-xs text-blue-600 uppercase tracking-widest hover:bg-blue-50">
+                                <a href="{{ route('penomoran.create') }}" class="inline-flex items-center px-4 py-2 bg-white border border-blue-600 rounded-md font-semibold text-xs text-blue-600 uppercase tracking-widest hover:bg-blue-50">
                                     + Tambah Baru
                                 </a>
                             </div>
                         </div>
 
-                        <!-- Kotak Shortcut 2 (Bisa untuk fitur lain nanti) -->
-                        <div class="p-6 bg-gray-50 border border-gray-200 rounded-lg shadow-sm">
-                            <h4 class="font-bold text-gray-800 mb-2">Informasi Sistem</h4>
-                            <p class="text-sm text-gray-600">Sistem ini digunakan untuk mempermudah administrasi data pegawai di lingkungan kantor.</p>
-                            <span class="text-xs font-mono bg-gray-200 px-2 py-1 rounded">Versi 1.0 - PKCDT Mode</span>
+                        <!-- Kotak Fitur IP -->
+                        <div class="p-6 bg-blue-50 border border-blue-200 rounded-lg shadow-sm">
+                            <h4 class="font-bold text-blue-800 mb-2">Buat Surat IP</h4>
+                            <p class="text-sm text-gray-600 mb-4">Isi data dan cetak surat IP.</p>
+                            <div class="flex space-x-3">
+                                <a href="{{ route('penomoran.index') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700">
+                                    Lihat Semua IP
+                                </a>
+                                <a href="{{ route('penomoran.create') }}" class="inline-flex items-center px-4 py-2 bg-white border border-blue-600 rounded-md font-semibold text-xs text-blue-600 uppercase tracking-widest hover:bg-blue-50">
+                                    + Tambah Baru
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
