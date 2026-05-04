@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\DiisiBc;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,8 +10,7 @@ class Penomoran extends Model
 {
     use HasFactory;
 
-    // TAMBAHKAN BARIS INI:
-    protected $table = 'penomoran'; 
+    protected $table = 'penomoran';
 
     protected $fillable = [
         'penomoran',
@@ -22,4 +22,9 @@ class Penomoran extends Model
     protected $casts = [
         'tanggal_pibk' => 'date',
     ];
+
+    public function diisiBc()
+    {
+        return $this->hasOne(DiisiBc::class, 'penomoran_id');
+    }
 }

@@ -41,6 +41,56 @@
             <span class="detail-value">{{ $data->nama_pfpd }},{{ $data->nip_pfpd }}</span>
         </div>
         @endif
+        @if($data->diisiBc)
+        <div class="detail-row">
+            <span class="detail-label">Nomor BC11</span>
+            <span class="detail-value">{{ $data->diisiBc->nomor_bc11 }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Nomor POS</span>
+            <span class="detail-value">{{ $data->diisiBc->nomor_pos }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Invoice</span>
+            <span class="detail-value">{{ $data->diisiBc->invoice }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Tanggal Invoice</span>
+            <span class="detail-value">{{ optional($data->diisiBc->tanggal_invoice)->format('d/m/Y') }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Nomor BL/AWB</span>
+            <span class="detail-value">{{ $data->diisiBc->nomor_bl_awb }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Tanggal BL/AWB</span>
+            <span class="detail-value">{{ optional($data->diisiBc->tanggal_bl_awb)->format('d/m/Y') }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Negara Asal</span>
+            <span class="detail-value">{{ $data->diisiBc->negara_asal }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Valuta</span>
+            <span class="detail-value">{{ $data->diisiBc->valuta }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">FOB</span>
+            <span class="detail-value">{{ $data->diisiBc->fob }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Freight</span>
+            <span class="detail-value">{{ $data->diisiBc->freight }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Asuransi</span>
+            <span class="detail-value">{{ $data->diisiBc->asuransi }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Nilai CIF</span>
+            <span class="detail-value">{{ $data->diisiBc->nilai_cif }}</span>
+        </div>
+        @endif
         <div class="detail-row">
             <span class="detail-label">ID Data</span>
             <span class="detail-value">{{ $data->id }}</span>

@@ -12,7 +12,7 @@ class PenomoranController extends Controller
      */
     public function index()
     {
-        $allData = Penomoran::all();
+        $allData = Penomoran::with('diisiBc')->get();
         return view('penomoran.index', compact('allData'));
     }
 
@@ -31,22 +31,48 @@ class PenomoranController extends Controller
     {
         // 1. Validasi Input
         $request->validate([
-            'penomoran'    => 'required|string|unique:penomoran,penomoran',
-            'tanggal_pibk' => 'required|date',
-            'nama_pfpd'    => 'nullable|string|max:255',
-            'nip_pfpd'     => 'nullable|string|max:255',
+            'penomoran'      => 'required|string|unique:penomoran,penomoran',
+            'tanggal_pibk'   => 'required|date',
+            'nama_pfpd'      => 'nullable|string|max:255',
+            'nip_pfpd'       => 'nullable|string|max:255',
+            'nomor_bc11'     => 'nullable|string|max:255',
+            'nomor_pos'      => 'nullable|string|max:255',
+            'invoice'        => 'nullable|string|max:255',
+            'tanggal_invoice'=> 'nullable|date',
+            'nomor_bl_awb'   => 'nullable|string|max:255',
+            'tanggal_bl_awb' => 'nullable|date',
+            'negara_asal'    => 'nullable|string|max:255',
+            'valuta'         => 'nullable|string|max:5',
+            'fob'            => 'nullable|numeric',
+            'freight'        => 'nullable|numeric',
+            'asuransi'       => 'nullable|numeric',
+            'nilai_cif'      => 'nullable|numeric',
         ], [
-            // Pesan error kustom (opsional)
             'penomoran.unique' => 'Nomor PIBK ini sudah terdaftar di sistem.',
         ]);
 
         // 2. Simpan ke Database
-        Penomoran::create([
+        $penomoran = Penomoran::create([
             'penomoran'    => $request->penomoran,
             'tanggal_pibk' => $request->tanggal_pibk,
             'nama_pfpd'    => $request->nama_pfpd,
             'nip_pfpd'     => $request->nip_pfpd,
         ]);
+
+        $penomoran->diisiBc()->create($request->only([
+            'nomor_bc11',
+            'nomor_pos',
+            'invoice',
+            'tanggal_invoice',
+            'nomor_bl_awb',
+            'tanggal_bl_awb',
+            'negara_asal',
+            'valuta',
+            'fob',
+            'freight',
+            'asuransi',
+            'nilai_cif',
+        ]));
 
         // 3. Redirect kembali ke halaman daftar dengan pesan sukses
         return redirect()->route('penomoran.index')->with('success', 'Data penomoran berhasil ditambahkan!');
@@ -57,7 +83,7 @@ class PenomoranController extends Controller
      */
     public function print($id)
     {
-        $data = Penomoran::findOrFail($id);
+        $data = Penomoran::with('diisiBc')->findOrFail($id);
         return view('penomoran.print', compact('data'));
     }
 
@@ -66,7 +92,7 @@ class PenomoranController extends Controller
      */
     public function show($id)
     {
-        $data = Penomoran::findOrFail($id);
+        $data = Penomoran::with('diisiBc')->findOrFail($id);
         return view('penomoran.show', compact('data'));
     }
 
@@ -75,7 +101,7 @@ class PenomoranController extends Controller
      */
     public function edit($id)
     {
-        $data = Penomoran::findOrFail($id);
+        $data = Penomoran::with('diisiBc')->findOrFail($id);
         return view('penomoran.edit', compact('data'));
     }
 
@@ -86,10 +112,22 @@ class PenomoranController extends Controller
     {
         // 1. Validasi Input
         $request->validate([
-            'penomoran'    => 'required|string|unique:penomoran,penomoran,' . $id,
-            'tanggal_pibk' => 'required|date',
-            'nama_pfpd'    => 'nullable|string|max:255',
-            'nip_pfpd'     => 'nullable|string|max:255',
+            'penomoran'      => 'required|string|unique:penomoran,penomoran,' . $id,
+            'tanggal_pibk'   => 'required|date',
+            'nama_pfpd'      => 'nullable|string|max:255',
+            'nip_pfpd'       => 'nullable|string|max:255',
+            'nomor_bc11'     => 'nullable|string|max:255',
+            'nomor_pos'      => 'nullable|string|max:255',
+            'invoice'        => 'nullable|string|max:255',
+            'tanggal_invoice'=> 'nullable|date',
+            'nomor_bl_awb'   => 'nullable|string|max:255',
+            'tanggal_bl_awb' => 'nullable|date',
+            'negara_asal'    => 'nullable|string|max:255',
+            'valuta'         => 'nullable|string|max:5',
+            'fob'            => 'nullable|numeric',
+            'freight'        => 'nullable|numeric',
+            'asuransi'       => 'nullable|numeric',
+            'nilai_cif'      => 'nullable|numeric',
         ], [
             'penomoran.unique' => 'Nomor PIBK ini sudah terdaftar di sistem.',
         ]);
@@ -102,6 +140,24 @@ class PenomoranController extends Controller
             'nama_pfpd'    => $request->nama_pfpd,
             'nip_pfpd'     => $request->nip_pfpd,
         ]);
+
+        $data->diisiBc()->updateOrCreate(
+            ['penomoran_id' => $data->id],
+            $request->only([
+                'nomor_bc11',
+                'nomor_pos',
+                'invoice',
+                'tanggal_invoice',
+                'nomor_bl_awb',
+                'tanggal_bl_awb',
+                'negara_asal',
+                'valuta',
+                'fob',
+                'freight',
+                'asuransi',
+                'nilai_cif',
+            ])
+        );
 
         // 3. Redirect kembali ke halaman daftar dengan pesan sukses
         return redirect()->route('penomoran.index')->with('success', 'Data penomoran berhasil diperbarui!');
