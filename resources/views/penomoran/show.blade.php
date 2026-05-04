@@ -14,14 +14,9 @@
                 <div class="mb-4">
                     <strong>Tanggal PIBK:</strong> {{ $data->tanggal_pibk->format('d-m-Y') }}
                 </div>
-                @if($data->nama_pfpd)
+                @if($data->nama_pfpd && $data->nip_pfpd)
                 <div class="mb-4">
-                    <strong>Nama Pejabat Bea dan Cukai (PFPD):</strong> {{ $data->nama_pfpd }}
-                </div>
-                @endif
-                @if($data->nip_pfpd)
-                <div class="mb-4">
-                    <strong>NIP Pejabat Bea dan Cukai (PFPD):</strong> {{ $data->nip_pfpd }}
+                    <strong>PFPD:</strong> {{ $data->nama_pfpd }}, {{ $data->nip_pfpd }}
                 </div>
                 @endif
                 <div class="mt-4 flex flex-wrap gap-2">
