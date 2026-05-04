@@ -49,12 +49,12 @@ class PenomoranController extends Controller
     }
 
     /**
-     * Menampilkan halaman khusus untuk dicetak
+     * Menampilkan halaman cetak untuk satu data penomoran
      */
-    public function cetak()
+    public function print($id)
     {
-        $allData = Penomoran::all();
-        return view('penomoran.cetak', compact('allData'));
+        $data = Penomoran::findOrFail($id);
+        return view('penomoran.print', compact('data'));
     }
 
     /**

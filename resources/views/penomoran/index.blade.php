@@ -8,9 +8,6 @@
                 <a href="{{ route('penomoran.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-xs uppercase inline-block">
                     + Tambah Data
                 </a>
-                <a href="{{ route('penomoran.cetak') }}" target="_blank" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded text-xs uppercase inline-block">
-                    Cetak Laporan
-                </a>
             </div>
         </div>
     </x-slot>
@@ -18,48 +15,37 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                <!-- TABEL DATA ANDA DI SINI -->
-                <div class="overflow-x-auto">
-                    <table class="w-full table-auto border-collapse border border-gray-300 min-w-full">
-                        <thead>
-                            <tr class="bg-gray-100">
-                                <th class="border border-gray-300 px-4 py-2 text-left whitespace-nowrap">No</th>
-                                <th class="border border-gray-300 px-4 py-2 text-left whitespace-nowrap">Nomor Penomoran</th>
-                                <th class="border border-gray-300 px-4 py-2 text-left whitespace-nowrap">Tanggal PIBK</th>
-                                <th class="border border-gray-300 px-4 py-2 text-left whitespace-nowrap">Aksi</th>
-                            </tr>
-                        </thead>
-                    <tbody>
-                        @forelse($allData as $index => $item)
-                            <tr class="hover:bg-gray-50">
-                                <td class="border border-gray-300 px-4 py-2">{{ $index + 1 }}</td>
-                                <td class="border border-gray-300 px-4 py-2">{{ $item->penomoran }}</td>
-                                <td class="border border-gray-300 px-4 py-2">{{ $item->tanggal_pibk->format('d-m-Y') }}</td>
-                                <td class="border border-gray-300 px-4 py-2">
-                                    <div class="flex flex-wrap gap-1">
-                                        <a href="{{ route('penomoran.show', $item->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-xs inline-block">
-                                            Lihat
-                                        </a>
-                                        <a href="{{ route('penomoran.edit', $item->id) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded text-xs inline-block">
-                                            Edit
-                                        </a>
-                                        <form action="{{ route('penomoran.destroy', $item->id) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-xs inline-block">
-                                                Hapus
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="4" class="border border-gray-300 px-4 py-2 text-center">Tidak ada data penomoran.</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
+                <div class="grid gap-6">
+                    @forelse($allData as $index => $item)
+                        <div class="rounded-3xl border border-gray-200 bg-gray-50 p-6 shadow-sm hover:shadow-md transition">
+                            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                                <div>
+                                    <p class="text-xs uppercase tracking-[0.2em] text-gray-500">Item #{{ $index + 1 }}</p>
+                                    <h3 class="mt-2 text-xl font-semibold text-gray-900">{{ $item->penomoran }}</h3>
+                                    <p class="mt-1 text-sm text-gray-600">Tanggal PIBK: {{ $item->tanggal_pibk->format('d-m-Y') }}</p>
+                                </div>
+                                <div class="inline-flex items-center gap-2 text-xs text-gray-500">
+                                    <span class="rounded-full bg-white px-3 py-1 font-semibold text-gray-700 shadow-sm">ID: {{ $item->id }}</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+                                <a href="{{ route('penomoran.show', $item->id) }}" class="inline-flex justify-center rounded-xl bg-blue-500 px-3 py-2 text-center text-xs font-semibold uppercase text-white transition hover:bg-blue-600">Lihat</a>
+                                <a href="{{ route('penomoran.print', $item->id) }}" target="_blank" class="inline-flex justify-center rounded-xl bg-green-500 px-3 py-2 text-center text-xs font-semibold uppercase text-white transition hover:bg-green-600">Cetak</a>
+                                <a href="{{ route('penomoran.edit', $item->id) }}" class="inline-flex justify-center rounded-xl bg-yellow-500 px-3 py-2 text-center text-xs font-semibold uppercase text-white transition hover:bg-yellow-600">Edit</a>
+                                <form action="{{ route('penomoran.destroy', $item->id) }}" method="POST" class="inline-flex">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')" class="w-full rounded-xl bg-red-500 px-3 py-2 text-center text-xs font-semibold uppercase text-white transition hover:bg-red-600">Hapus</button>
+                                </form>
+                            </div>
+                        </div>
+                    @empty
+                        <div class="rounded-3xl border border-dashed border-gray-300 bg-white p-8 text-center text-gray-500">
+                            <p class="text-lg font-medium">Belum ada data penomoran.</p>
+                            <p class="mt-2 text-sm">Silakan tambahkan data penomoran baru menggunakan tombol Tambah Data.</p>
+                        </div>
+                    @endforelse
                 </div>
             </div>
         </div>

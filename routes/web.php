@@ -21,7 +21,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/penomoran', [PenomoranController::class, 'index'])->name('penomoran.index');
     Route::get('/penomoran/create', [PenomoranController::class, 'create'])->name('penomoran.create'); // Pastikan ini di atas jika ada route dengan {id}
     Route::post('/penomoran', [PenomoranController::class, 'store'])->name('penomoran.store');
-    Route::get('/penomoran/cetak', [PenomoranController::class, 'cetak'])->name('penomoran.cetak');
+    Route::get('/penomoran/{id}/cetak', [PenomoranController::class, 'print'])->name('penomoran.print');
     Route::get('/penomoran/{id}', [PenomoranController::class, 'show'])->name('penomoran.show');
     Route::get('/penomoran/{id}/edit', [PenomoranController::class, 'edit'])->name('penomoran.edit');
     Route::put('/penomoran/{id}', [PenomoranController::class, 'update'])->name('penomoran.update');
