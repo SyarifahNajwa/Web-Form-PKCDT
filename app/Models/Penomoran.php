@@ -15,6 +15,8 @@ class Penomoran extends Model
     protected $fillable = [
         'penomoran',
         'tanggal_pibk',
+        'nama_pfpd',
+        'nip_pfpd',
     ];
 
     protected $casts = [

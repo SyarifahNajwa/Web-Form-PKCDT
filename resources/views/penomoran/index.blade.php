@@ -23,6 +23,9 @@
                                     <p class="text-xs uppercase tracking-[0.2em] text-gray-500">Item #{{ $index + 1 }}</p>
                                     <h3 class="mt-2 text-xl font-semibold text-gray-900">{{ $item->penomoran }}</h3>
                                     <p class="mt-1 text-sm text-gray-600">Tanggal PIBK: {{ $item->tanggal_pibk->format('d-m-Y') }}</p>
+                                    @if($item->nama_pfpd)
+                                        <p class="mt-1 text-sm text-gray-600">PFPD: {{ $item->nama_pfpd }}</p>
+                                    @endif
                                 </div>
                                 <div class="inline-flex items-center gap-2 text-xs text-gray-500">
                                     <span class="rounded-full bg-white px-3 py-1 font-semibold text-gray-700 shadow-sm">ID: {{ $item->id }}</span>

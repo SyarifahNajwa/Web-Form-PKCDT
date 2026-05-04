@@ -27,6 +27,20 @@
                         <x-input-error :messages="$errors->get('tanggal_pibk')" class="mt-2" />
                     </div>
 
+                    <!-- Input untuk Nama PFPD -->
+                    <div class="mb-4">
+                        <x-input-label for="nama_pfpd" :value="__('Nama Pejabat Bea dan Cukai (PFPD)')" />
+                        <x-text-input id="nama_pfpd" class="block mt-1 w-full" type="text" name="nama_pfpd" :value="old('nama_pfpd', $data->nama_pfpd)" autocomplete="nama_pfpd" />
+                        <x-input-error :messages="$errors->get('nama_pfpd')" class="mt-2" />
+                    </div>
+
+                    <!-- Input untuk NIP PFPD -->
+                    <div class="mb-4">
+                        <x-input-label for="nip_pfpd" :value="__('NIP Pejabat Bea dan Cukai (PFPD)')" />
+                        <x-text-input id="nip_pfpd" class="block mt-1 w-full" type="text" name="nip_pfpd" :value="old('nip_pfpd', $data->nip_pfpd)" autocomplete="nip_pfpd" />
+                        <x-input-error :messages="$errors->get('nip_pfpd')" class="mt-2" />
+                    </div>
+
                     <div class="mt-4 flex gap-2">
                         <x-primary-button>Perbarui Data</x-primary-button>
                         <a href="{{ route('penomoran.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest hover:bg-gray-300 active:bg-gray-400 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">Batal</a>

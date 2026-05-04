@@ -21,7 +21,7 @@ class PenomoranController extends Controller
      */
     public function create()
     {
-        return view('penomoran.create'); 
+        return view('penomoran.create');
     }
 
     /**
@@ -33,6 +33,8 @@ class PenomoranController extends Controller
         $request->validate([
             'penomoran'    => 'required|string|unique:penomoran,penomoran',
             'tanggal_pibk' => 'required|date',
+            'nama_pfpd'    => 'nullable|string|max:255',
+            'nip_pfpd'     => 'nullable|string|max:255',
         ], [
             // Pesan error kustom (opsional)
             'penomoran.unique' => 'Nomor PIBK ini sudah terdaftar di sistem.',
@@ -42,6 +44,8 @@ class PenomoranController extends Controller
         Penomoran::create([
             'penomoran'    => $request->penomoran,
             'tanggal_pibk' => $request->tanggal_pibk,
+            'nama_pfpd'    => $request->nama_pfpd,
+            'nip_pfpd'     => $request->nip_pfpd,
         ]);
 
         // 3. Redirect kembali ke halaman daftar dengan pesan sukses
@@ -84,6 +88,8 @@ class PenomoranController extends Controller
         $request->validate([
             'penomoran'    => 'required|string|unique:penomoran,penomoran,' . $id,
             'tanggal_pibk' => 'required|date',
+            'nama_pfpd'    => 'nullable|string|max:255',
+            'nip_pfpd'     => 'nullable|string|max:255',
         ], [
             'penomoran.unique' => 'Nomor PIBK ini sudah terdaftar di sistem.',
         ]);
@@ -93,6 +99,8 @@ class PenomoranController extends Controller
         $data->update([
             'penomoran'    => $request->penomoran,
             'tanggal_pibk' => $request->tanggal_pibk,
+            'nama_pfpd'    => $request->nama_pfpd,
+            'nip_pfpd'     => $request->nip_pfpd,
         ]);
 
         // 3. Redirect kembali ke halaman daftar dengan pesan sukses

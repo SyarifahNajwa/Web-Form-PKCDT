@@ -35,6 +35,18 @@
             <span class="detail-label">Tanggal PIBK</span>
             <span class="detail-value">{{ $data->tanggal_pibk->format('d/m/Y') }}</span>
         </div>
+        @if($data->nama_pfpd)
+        <div class="detail-row">
+            <span class="detail-label">Nama PFPD</span>
+            <span class="detail-value">{{ $data->nama_pfpd }}</span>
+        </div>
+        @endif
+        @if($data->nip_pfpd)
+        <div class="detail-row">
+            <span class="detail-label">NIP PFPD</span>
+            <span class="detail-value">{{ $data->nip_pfpd }}</span>
+        </div>
+        @endif
         <div class="detail-row">
             <span class="detail-label">ID Data</span>
             <span class="detail-value">{{ $data->id }}</span>
