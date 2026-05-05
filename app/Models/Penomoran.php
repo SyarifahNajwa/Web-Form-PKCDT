@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\DataPemberitahuan;
 use App\Models\DiisiBc;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,8 +16,6 @@ class Penomoran extends Model
     protected $fillable = [
         'penomoran',
         'tanggal_pibk',
-        'nama_pfpd',
-        'nip_pfpd',
     ];
 
     protected $casts = [
@@ -26,5 +25,10 @@ class Penomoran extends Model
     public function diisiBc()
     {
         return $this->hasOne(DiisiBc::class, 'penomoran_id');
+    }
+
+    public function dataPemberitahuan()
+    {
+        return $this->hasOne(DataPemberitahuan::class, 'penomoran_id');
     }
 }

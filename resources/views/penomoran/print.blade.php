@@ -35,10 +35,62 @@
             <span class="detail-label">Tanggal PIBK</span>
             <span class="detail-value">{{ $data->tanggal_pibk->format('d/m/Y') }}</span>
         </div>
-        @if($data->nama_pfpd && $data->nip_pfpd)
+        @if($data->dataPemberitahuan)
         <div class="detail-row">
-            <span class="detail-label">Nama PFPD</span>
-            <span class="detail-value">{{ $data->nama_pfpd }},{{ $data->nip_pfpd }}</span>
+            <span class="detail-label">Nama Barang</span>
+            <span class="detail-value">{{ $data->dataPemberitahuan->nama_barang }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Alamat Pengiriman</span>
+            <span class="detail-value">{{ $data->dataPemberitahuan->alamat_pengiriman }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Identitas Penerima</span>
+            <span class="detail-value">{{ $data->dataPemberitahuan->identitas_penerima }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Nama Penerima</span>
+            <span class="detail-value">{{ $data->dataPemberitahuan->nama_penerima }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Alamat Penerima</span>
+            <span class="detail-value">{{ $data->dataPemberitahuan->alamat_penerima }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Identitas Pemberitahu</span>
+            <span class="detail-value">{{ $data->dataPemberitahuan->identitas_pemberitahu }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Nama Pemberitahu</span>
+            <span class="detail-value">{{ $data->dataPemberitahuan->nama_pemberitahu }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Alamat Pemberitahu</span>
+            <span class="detail-value">{{ $data->dataPemberitahuan->alamat_pemberitahu }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">No/Tgl Izin PJT</span>
+            <span class="detail-value">{{ $data->dataPemberitahuan->no_tgl_izin_pjt }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Cara Pengangkut</span>
+            <span class="detail-value">{{ $data->dataPemberitahuan->cara_pengangkut }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Nama Sarana Angkut</span>
+            <span class="detail-value">{{ $data->dataPemberitahuan->nama_sarana_angkut }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">No Flight</span>
+            <span class="detail-value">{{ $data->dataPemberitahuan->no_flight }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Pelabuhan Muat</span>
+            <span class="detail-value">{{ $data->dataPemberitahuan->pelabuhan_muat }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Pelabuhan Bongkar</span>
+            <span class="detail-value">{{ $data->dataPemberitahuan->pelabuhan_bongkar }}</span>
         </div>
         @endif
         @if($data->diisiBc)

@@ -12,6 +12,8 @@
                 <form action="{{ route('penomoran.store') }}" method="POST">
                     @csrf
 
+                    <h3 class="text-lg font-semibold mb-4">Penomoran dan Tanggal</h3>
+
                     <!-- Input untuk Penomoran -->
                     <div class="mb-4">
                         <x-input-label for="penomoran" :value="__('Nomor Penomoran')" />
@@ -26,19 +28,98 @@
                         <x-input-error :messages="$errors->get('tanggal_pibk')" class="mt-2" />
                     </div>
 
-                    <!-- Input untuk Nama PFPD -->
+                    <h3 class="text-lg font-semibold mb-4">Data Pemberitahuan</h3>
+
                     <div class="mb-4">
-                        <x-input-label for="nama_pfpd" :value="__('Nama Pejabat Bea dan Cukai (PFPD)')" />
-                        <x-text-input id="nama_pfpd" class="block mt-1 w-full" type="text" name="nama_pfpd" :value="old('nama_pfpd')" autocomplete="nama_pfpd" />
-                        <x-input-error :messages="$errors->get('nama_pfpd')" class="mt-2" />
+                        <x-input-label for="nama_barang" :value="__('Nama Barang')" />
+                        <textarea id="nama_barang" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="nama_barang">{{ old('nama_barang') }}</textarea>
+                        <x-input-error :messages="$errors->get('nama_barang')" class="mt-2" />
                     </div>
 
-                    <!-- Input untuk NIP PFPD -->
                     <div class="mb-4">
-                        <x-input-label for="nip_pfpd" :value="__('NIP Pejabat Bea dan Cukai (PFPD)')" />
-                        <x-text-input id="nip_pfpd" class="block mt-1 w-full" type="text" name="nip_pfpd" :value="old('nip_pfpd')" autocomplete="nip_pfpd" />
-                        <x-input-error :messages="$errors->get('nip_pfpd')" class="mt-2" />
+                        <x-input-label for="alamat_pengiriman" :value="__('Alamat Pengiriman')" />
+                        <textarea id="alamat_pengiriman" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="alamat_pengiriman">{{ old('alamat_pengiriman') }}</textarea>
+                        <x-input-error :messages="$errors->get('alamat_pengiriman')" class="mt-2" />
                     </div>
+
+                    <div class="mb-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <x-input-label for="identitas_penerima" :value="__('Identitas Penerima')" />
+                            <x-text-input id="identitas_penerima" class="block mt-1 w-full" type="text" name="identitas_penerima" :value="old('identitas_penerima')" autocomplete="identitas_penerima" />
+                            <x-input-error :messages="$errors->get('identitas_penerima')" class="mt-2" />
+                        </div>
+                        <div>
+                            <x-input-label for="nama_penerima" :value="__('Nama Penerima')" />
+                            <x-text-input id="nama_penerima" class="block mt-1 w-full" type="text" name="nama_penerima" :value="old('nama_penerima')" autocomplete="nama_penerima" />
+                            <x-input-error :messages="$errors->get('nama_penerima')" class="mt-2" />
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <x-input-label for="alamat_penerima" :value="__('Alamat Penerima')" />
+                        <textarea id="alamat_penerima" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="alamat_penerima">{{ old('alamat_penerima') }}</textarea>
+                        <x-input-error :messages="$errors->get('alamat_penerima')" class="mt-2" />
+                    </div>
+
+                    <div class="mb-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <x-input-label for="identitas_pemberitahu" :value="__('Identitas Pemberitahu')" />
+                            <x-text-input id="identitas_pemberitahu" class="block mt-1 w-full" type="text" name="identitas_pemberitahu" :value="old('identitas_pemberitahu')" autocomplete="identitas_pemberitahu" />
+                            <x-input-error :messages="$errors->get('identitas_pemberitahu')" class="mt-2" />
+                        </div>
+                        <div>
+                            <x-input-label for="nama_pemberitahu" :value="__('Nama Pemberitahu')" />
+                            <x-text-input id="nama_pemberitahu" class="block mt-1 w-full" type="text" name="nama_pemberitahu" :value="old('nama_pemberitahu')" autocomplete="nama_pemberitahu" />
+                            <x-input-error :messages="$errors->get('nama_pemberitahu')" class="mt-2" />
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <x-input-label for="alamat_pemberitahu" :value="__('Alamat Pemberitahu')" />
+                        <textarea id="alamat_pemberitahu" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="alamat_pemberitahu">{{ old('alamat_pemberitahu') }}</textarea>
+                        <x-input-error :messages="$errors->get('alamat_pemberitahu')" class="mt-2" />
+                    </div>
+
+                    <div class="mb-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <x-input-label for="no_tgl_izin_pjt" :value="__('No/Tgl Izin PJT')" />
+                            <x-text-input id="no_tgl_izin_pjt" class="block mt-1 w-full" type="text" name="no_tgl_izin_pjt" :value="old('no_tgl_izin_pjt')" autocomplete="no_tgl_izin_pjt" />
+                            <x-input-error :messages="$errors->get('no_tgl_izin_pjt')" class="mt-2" />
+                        </div>
+                        <div>
+                            <x-input-label for="cara_pengangkut" :value="__('Cara Pengangkut')" />
+                            <x-text-input id="cara_pengangkut" class="block mt-1 w-full" type="text" name="cara_pengangkut" :value="old('cara_pengangkut')" autocomplete="cara_pengangkut" />
+                            <x-input-error :messages="$errors->get('cara_pengangkut')" class="mt-2" />
+                        </div>
+                    </div>
+
+                    <div class="mb-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <x-input-label for="nama_sarana_angkut" :value="__('Nama Sarana Angkut')" />
+                            <x-text-input id="nama_sarana_angkut" class="block mt-1 w-full" type="text" name="nama_sarana_angkut" :value="old('nama_sarana_angkut')" autocomplete="nama_sarana_angkut" />
+                            <x-input-error :messages="$errors->get('nama_sarana_angkut')" class="mt-2" />
+                        </div>
+                        <div>
+                            <x-input-label for="no_flight" :value="__('No Flight')" />
+                            <x-text-input id="no_flight" class="block mt-1 w-full" type="text" name="no_flight" :value="old('no_flight')" autocomplete="no_flight" />
+                            <x-input-error :messages="$errors->get('no_flight')" class="mt-2" />
+                        </div>
+                    </div>
+
+                    <div class="mb-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <x-input-label for="pelabuhan_muat" :value="__('Pelabuhan Muat')" />
+                            <x-text-input id="pelabuhan_muat" class="block mt-1 w-full" type="text" name="pelabuhan_muat" :value="old('pelabuhan_muat')" autocomplete="pelabuhan_muat" />
+                            <x-input-error :messages="$errors->get('pelabuhan_muat')" class="mt-2" />
+                        </div>
+                        <div>
+                            <x-input-label for="pelabuhan_bongkar" :value="__('Pelabuhan Bongkar')" />
+                            <x-text-input id="pelabuhan_bongkar" class="block mt-1 w-full" type="text" name="pelabuhan_bongkar" :value="old('pelabuhan_bongkar')" autocomplete="pelabuhan_bongkar" />
+                            <x-input-error :messages="$errors->get('pelabuhan_bongkar')" class="mt-2" />
+                        </div>
+                    </div>
+
+                    <h3 class="text-lg font-semibold mb-4">Diisi Oleh Bea dan Cukai</h3>
 
                     <div class="mb-4">
                         <x-input-label for="nomor_bc11" :value="__('Nomor BC11')" />

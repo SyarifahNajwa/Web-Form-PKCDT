@@ -12,7 +12,7 @@ class PenomoranController extends Controller
      */
     public function index()
     {
-        $allData = Penomoran::with('diisiBc')->get();
+        $allData = Penomoran::with(['diisiBc', 'dataPemberitahuan'])->get();
         return view('penomoran.index', compact('allData'));
     }
 
@@ -33,8 +33,6 @@ class PenomoranController extends Controller
         $request->validate([
             'penomoran'      => 'required|string|unique:penomoran,penomoran',
             'tanggal_pibk'   => 'required|date',
-            'nama_pfpd'      => 'nullable|string|max:255',
-            'nip_pfpd'       => 'nullable|string|max:255',
             'nomor_bc11'     => 'nullable|string|max:255',
             'nomor_pos'      => 'nullable|string|max:255',
             'invoice'        => 'nullable|string|max:255',
@@ -47,6 +45,20 @@ class PenomoranController extends Controller
             'freight'        => 'nullable|numeric',
             'asuransi'       => 'nullable|numeric',
             'nilai_cif'      => 'nullable|numeric',
+            'nama_barang'          => 'nullable|string',
+            'alamat_pengiriman'    => 'nullable|string',
+            'identitas_penerima'   => 'nullable|string|max:255',
+            'nama_penerima'        => 'nullable|string|max:255',
+            'alamat_penerima'      => 'nullable|string',
+            'identitas_pemberitahu'=> 'nullable|string|max:255',
+            'nama_pemberitahu'     => 'nullable|string|max:255',
+            'alamat_pemberitahu'   => 'nullable|string',
+            'no_tgl_izin_pjt'      => 'nullable|string|max:255',
+            'cara_pengangkut'      => 'nullable|string|max:255',
+            'nama_sarana_angkut'   => 'nullable|string|max:255',
+            'no_flight'            => 'nullable|string|max:255',
+            'pelabuhan_muat'       => 'nullable|string|max:255',
+            'pelabuhan_bongkar'    => 'nullable|string|max:255',
         ], [
             'penomoran.unique' => 'Nomor PIBK ini sudah terdaftar di sistem.',
         ]);
@@ -55,9 +67,24 @@ class PenomoranController extends Controller
         $penomoran = Penomoran::create([
             'penomoran'    => $request->penomoran,
             'tanggal_pibk' => $request->tanggal_pibk,
-            'nama_pfpd'    => $request->nama_pfpd,
-            'nip_pfpd'     => $request->nip_pfpd,
         ]);
+
+        $penomoran->dataPemberitahuan()->create($request->only([
+            'nama_barang',
+            'alamat_pengiriman',
+            'identitas_penerima',
+            'nama_penerima',
+            'alamat_penerima',
+            'identitas_pemberitahu',
+            'nama_pemberitahu',
+            'alamat_pemberitahu',
+            'no_tgl_izin_pjt',
+            'cara_pengangkut',
+            'nama_sarana_angkut',
+            'no_flight',
+            'pelabuhan_muat',
+            'pelabuhan_bongkar',
+        ]));
 
         $penomoran->diisiBc()->create($request->only([
             'nomor_bc11',
@@ -83,7 +110,7 @@ class PenomoranController extends Controller
      */
     public function print($id)
     {
-        $data = Penomoran::with('diisiBc')->findOrFail($id);
+        $data = Penomoran::with(['diisiBc', 'dataPemberitahuan'])->findOrFail($id);
         return view('penomoran.print', compact('data'));
     }
 
@@ -92,7 +119,7 @@ class PenomoranController extends Controller
      */
     public function show($id)
     {
-        $data = Penomoran::with('diisiBc')->findOrFail($id);
+        $data = Penomoran::with(['diisiBc', 'dataPemberitahuan'])->findOrFail($id);
         return view('penomoran.show', compact('data'));
     }
 
@@ -101,7 +128,7 @@ class PenomoranController extends Controller
      */
     public function edit($id)
     {
-        $data = Penomoran::with('diisiBc')->findOrFail($id);
+        $data = Penomoran::with(['diisiBc', 'dataPemberitahuan'])->findOrFail($id);
         return view('penomoran.edit', compact('data'));
     }
 
@@ -114,8 +141,6 @@ class PenomoranController extends Controller
         $request->validate([
             'penomoran'      => 'required|string|unique:penomoran,penomoran,' . $id,
             'tanggal_pibk'   => 'required|date',
-            'nama_pfpd'      => 'nullable|string|max:255',
-            'nip_pfpd'       => 'nullable|string|max:255',
             'nomor_bc11'     => 'nullable|string|max:255',
             'nomor_pos'      => 'nullable|string|max:255',
             'invoice'        => 'nullable|string|max:255',
@@ -128,6 +153,20 @@ class PenomoranController extends Controller
             'freight'        => 'nullable|numeric',
             'asuransi'       => 'nullable|numeric',
             'nilai_cif'      => 'nullable|numeric',
+            'nama_barang'          => 'nullable|string',
+            'alamat_pengiriman'    => 'nullable|string',
+            'identitas_penerima'   => 'nullable|string|max:255',
+            'nama_penerima'        => 'nullable|string|max:255',
+            'alamat_penerima'      => 'nullable|string',
+            'identitas_pemberitahu'=> 'nullable|string|max:255',
+            'nama_pemberitahu'     => 'nullable|string|max:255',
+            'alamat_pemberitahu'   => 'nullable|string',
+            'no_tgl_izin_pjt'      => 'nullable|string|max:255',
+            'cara_pengangkut'      => 'nullable|string|max:255',
+            'nama_sarana_angkut'   => 'nullable|string|max:255',
+            'no_flight'            => 'nullable|string|max:255',
+            'pelabuhan_muat'       => 'nullable|string|max:255',
+            'pelabuhan_bongkar'    => 'nullable|string|max:255',
         ], [
             'penomoran.unique' => 'Nomor PIBK ini sudah terdaftar di sistem.',
         ]);
@@ -137,9 +176,27 @@ class PenomoranController extends Controller
         $data->update([
             'penomoran'    => $request->penomoran,
             'tanggal_pibk' => $request->tanggal_pibk,
-            'nama_pfpd'    => $request->nama_pfpd,
-            'nip_pfpd'     => $request->nip_pfpd,
         ]);
+
+        $data->dataPemberitahuan()->updateOrCreate(
+            ['penomoran_id' => $data->id],
+            $request->only([
+                'nama_barang',
+                'alamat_pengiriman',
+                'identitas_penerima',
+                'nama_penerima',
+                'alamat_penerima',
+                'identitas_pemberitahu',
+                'nama_pemberitahu',
+                'alamat_pemberitahu',
+                'no_tgl_izin_pjt',
+                'cara_pengangkut',
+                'nama_sarana_angkut',
+                'no_flight',
+                'pelabuhan_muat',
+                'pelabuhan_bongkar',
+            ])
+        );
 
         $data->diisiBc()->updateOrCreate(
             ['penomoran_id' => $data->id],

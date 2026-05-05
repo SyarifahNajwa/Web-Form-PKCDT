@@ -14,9 +14,48 @@
                 <div class="mb-4">
                     <strong>Tanggal PIBK:</strong> {{ $data->tanggal_pibk->format('d-m-Y') }}
                 </div>
-                @if($data->nama_pfpd && $data->nip_pfpd)
+                @if($data->dataPemberitahuan)
                 <div class="mb-4">
-                    <strong>PFPD:</strong> {{ $data->nama_pfpd }}, {{ $data->nip_pfpd }}
+                    <strong>Nama Barang:</strong> {{ $data->dataPemberitahuan->nama_barang ?? '-' }}
+                </div>
+                <div class="mb-4">
+                    <strong>Alamat Pengiriman:</strong> {{ $data->dataPemberitahuan->alamat_pengiriman ?? '-' }}
+                </div>
+                <div class="mb-4">
+                    <strong>Identitas Penerima:</strong> {{ $data->dataPemberitahuan->identitas_penerima ?? '-' }}
+                </div>
+                <div class="mb-4">
+                    <strong>Nama Penerima:</strong> {{ $data->dataPemberitahuan->nama_penerima ?? '-' }}
+                </div>
+                <div class="mb-4">
+                    <strong>Alamat Penerima:</strong> {{ $data->dataPemberitahuan->alamat_penerima ?? '-' }}
+                </div>
+                <div class="mb-4">
+                    <strong>Identitas Pemberitahu:</strong> {{ $data->dataPemberitahuan->identitas_pemberitahu ?? '-' }}
+                </div>
+                <div class="mb-4">
+                    <strong>Nama Pemberitahu:</strong> {{ $data->dataPemberitahuan->nama_pemberitahu ?? '-' }}
+                </div>
+                <div class="mb-4">
+                    <strong>Alamat Pemberitahu:</strong> {{ $data->dataPemberitahuan->alamat_pemberitahu ?? '-' }}
+                </div>
+                <div class="mb-4">
+                    <strong>No/Tgl Izin PJT:</strong> {{ $data->dataPemberitahuan->no_tgl_izin_pjt ?? '-' }}
+                </div>
+                <div class="mb-4">
+                    <strong>Cara Pengangkut:</strong> {{ $data->dataPemberitahuan->cara_pengangkut ?? '-' }}
+                </div>
+                <div class="mb-4">
+                    <strong>Nama Sarana Angkut:</strong> {{ $data->dataPemberitahuan->nama_sarana_angkut ?? '-' }}
+                </div>
+                <div class="mb-4">
+                    <strong>No Flight:</strong> {{ $data->dataPemberitahuan->no_flight ?? '-' }}
+                </div>
+                <div class="mb-4">
+                    <strong>Pelabuhan Muat:</strong> {{ $data->dataPemberitahuan->pelabuhan_muat ?? '-' }}
+                </div>
+                <div class="mb-4">
+                    <strong>Pelabuhan Bongkar:</strong> {{ $data->dataPemberitahuan->pelabuhan_bongkar ?? '-' }}
                 </div>
                 @endif
                 @if($data->diisiBc)
