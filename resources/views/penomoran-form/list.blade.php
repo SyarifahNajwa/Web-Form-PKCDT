@@ -1,0 +1,117 @@
+<x-app-layout>
+    <x-slot name="header">
+        <div class="flex items-center justify-between">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Daftar PIBK') }}
+            </h2>
+            <a href="{{ route('penomoran-form.page1') }}"
+                class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-md transition">
+                + Buat Baru
+            </a>
+        </div>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+
+                    @if($pnomorans->count())
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nomor Penomoran</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal PIBK</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pengirim</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Penerima</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dibuat</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-100">
+                                    @foreach($pnomorans as $index => $pnomoran)
+                                        <tr class="hover:bg-gray-50 transition">
+                                            <td class="px-4 py-3 text-sm text-gray-600">
+                                                {{ ($pnomorans->currentPage() - 1) * $pnomorans->perPage() + $index + 1 }}
+                                            </td>
+                                            <td class="px-4 py-3 text-sm font-semibold text-gray-800">
+                                                {{ $pnomoran->penomoran }}
+                                            </td>
+                                            <td class="px-4 py-3 text-sm text-gray-600">
+                                                {{ $pnomoran->tanggal_pibk->format('d-m-Y') }}
+                                            </td>
+                                            <td class="px-4 py-3 text-sm text-gray-600">
+                                                {{ $pnomoran->pengirim->nama_pengirim ?? '-' }}
+                                            </td>
+                                            <td class="px-4 py-3 text-sm text-gray-600">
+                                                {{ $pnomoran->penerima->nama_penerima ?? '-' }}
+                                            </td>
+                                            <td class="px-4 py-3 text-sm text-gray-600">
+                                                {{ $pnomoran->created_at->format('d-m-Y H:i') }}
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <div class="flex items-center gap-2">
+                                                    <a href="{{ route('penomoran-form.page1', $pnomoran->id) }}"
+                                                        title="Edit"
+                                                        class="inline-flex items-center px-2.5 py-1.5 bg-yellow-400 hover:bg-yellow-500 text-white text-xs font-medium rounded transition">
+                                                        ✎ Edit
+                                                    </a>
+                                                    <a href="{{ route('penomoran-form.show', $pnomoran->id) }}"
+                                                        title="Lihat"
+                                                        class="inline-flex items-center px-2.5 py-1.5 bg-sky-500 hover:bg-sky-600 text-white text-xs font-medium rounded transition">
+                                                        ◉ Lihat
+                                                    </a>
+                                                    <a href="{{ route('penomoran-form.print', $pnomoran->id) }}"
+                                                        target="_blank"
+                                                        title="Cetak"
+                                                        class="inline-flex items-center px-2.5 py-1.5 bg-gray-500 hover:bg-gray-600 text-white text-xs font-medium rounded transition">
+                                                        ⎙ Cetak
+                                                    </a>
+                                                    <button type="button"
+                                                        onclick="hapusData({{ $pnomoran->id }})"
+                                                        title="Hapus"
+                                                        class="inline-flex items-center px-2.5 py-1.5 bg-red-500 hover:bg-red-600 text-white text-xs font-medium rounded transition">
+                                                        ✕ Hapus
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="mt-6 flex justify-center">
+                            {{ $pnomorans->links() }}
+                        </div>
+                    @else
+                        <div class="text-center py-12">
+                            <p class="text-gray-500 text-sm mb-2">Belum ada data PIBK.</p>
+                            <a href="{{ route('penomoran-form.page1') }}"
+                                class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-md transition">
+                                + Buat yang baru sekarang
+                            </a>
+                        </div>
+                    @endif
+
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
+
+<form id="deleteForm" method="POST" style="display: none;">
+    @csrf
+    @method('DELETE')
+</form>
+
+<script>
+function hapusData(id) {
+    if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
+        document.getElementById('deleteForm').action = '{{ route("penomoran-form.destroy", ":id") }}'.replace(':id', id);
+        document.getElementById('deleteForm').submit();
+    }
+}
+</script>

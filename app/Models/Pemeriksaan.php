@@ -33,8 +33,8 @@ class Pemeriksaan extends Model
 
     protected $casts = [
         'tanggal' => 'date',
-        'jam_mulai_periksa' => 'time',
-        'jam_selesai_periksa' => 'time',
+        'jam_mulai_periksa' => 'datetime:H:i',
+        'jam_selesai_periksa' => 'datetime:H:i',
     ];
 
     public function penomoran()
