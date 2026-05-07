@@ -463,18 +463,27 @@ class PenomoranFormController extends Controller
     // Delete
     public function destroy($id)
     {
-        $penomoran = Penomoran::findOrFail($id);
-        $penomoran->delete();
-        
-        return redirect()->route('penomoran-form.list')->with('success', 'Data berhasil dihapus');
+        try {
+            $penomoran = Penomoran::findOrFail($id);
+            $penomoran->delete();
+            
+            return redirect()->route('penomoran-form.list')->with('success', 'Data berhasil dihapus');
+        } catch (\Exception $e) {
+            return redirect()->route('penomoran-form.list')->with('error', 'Gagal menghapus data: ' . $e->getMessage());
+        }
     }
 
     // Kembali ke halaman sebelumnya
-    public function back($page, $id)
+    public function back($id, $page)
     {
         $page = (int)$page;
         if ($page > 1) {
-            return redirect()->route('penomoran-form.page' . ($page - 1), $id);
+            $prevPage = $page - 1;
+            if ($prevPage == 1) {
+                return redirect()->route('penomoran-form.edit', $id);
+            } else {
+                return redirect()->route('penomoran-form.page' . $prevPage, $id);
+            }
         }
         return redirect()->route('penomoran-form.list');
     }

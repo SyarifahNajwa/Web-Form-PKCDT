@@ -23,10 +23,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/', [PenomoranFormController::class, 'list'])->name('list');
         
         // Create Page 1
-        Route::get('/create', [PenomoranFormController::class, 'page1'])->name('page1');
+        Route::get('/create', [PenomoranFormController::class, 'page1'])->name('create');
         
         // Pages
-        Route::get('/{id}/page1', [PenomoranFormController::class, 'page1'])->name('page1');
+        Route::get('/{id}/page1', [PenomoranFormController::class, 'page1'])->name('edit');
         Route::get('/{id}/page2', [PenomoranFormController::class, 'page2'])->name('page2');
         Route::get('/{id}/page3', [PenomoranFormController::class, 'page3'])->name('page3');
         Route::get('/{id}/page4', [PenomoranFormController::class, 'page4'])->name('page4');

@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Daftar PIBK') }}
             </h2>
-            <a href="{{ route('penomoran-form.page1') }}"
+            <a href="{{ route('penomoran-form.create') }}"
                 class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-md transition">
                 + Buat Baru
             </a>
@@ -15,6 +15,18 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
+
+                    @if(session('success'))
+                        <div class="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    @if(session('error'))
+                        <div class="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+                            {{ session('error') }}
+                        </div>
+                    @endif
 
                     @if($pnomorans->count())
                         <div class="overflow-x-auto">
@@ -53,7 +65,7 @@
                                             </td>
                                             <td class="px-4 py-3">
                                                 <div class="flex items-center gap-2">
-                                                    <a href="{{ route('penomoran-form.page1', $pnomoran->id) }}"
+                                                    <a href="{{ route('penomoran-form.edit', $pnomoran->id) }}"
                                                         title="Edit"
                                                         class="inline-flex items-center px-2.5 py-1.5 bg-yellow-400 hover:bg-yellow-500 text-white text-xs font-medium rounded transition">
                                                         ✎ Edit
@@ -89,7 +101,7 @@
                     @else
                         <div class="text-center py-12">
                             <p class="text-gray-500 text-sm mb-2">Belum ada data PIBK.</p>
-                            <a href="{{ route('penomoran-form.page1') }}"
+                            <a href="{{ route('penomoran-form.create') }}"
                                 class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-md transition">
                                 + Buat yang baru sekarang
                             </a>

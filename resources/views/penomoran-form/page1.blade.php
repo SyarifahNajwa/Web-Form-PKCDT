@@ -22,7 +22,7 @@
                 <div class="p-6 text-gray-900">
                     <form method="POST" action="{{ route('penomoran-form.savePage1') }}">
                         @csrf
-                        <input type="hidden" name="id" value="{{ $id ?? '' }}">
+                        <input type="hidden" name="id" value="{{ old('id', $id ?? '') }}">
 
                         <div class="mb-6">
                             <x-input-label for="penomoran" :value="__('Nomor Penomoran')" />
@@ -41,7 +41,11 @@
                         </div>
 
                         <div class="flex items-center justify-between mt-6">
-                            <a href="{{ route('penomoran-form.list') }}" class="text-gray-600 hover:text-gray-800">← Kembali</a>
+                            @if($id)
+                                <a href="{{ route('penomoran-form.back', [$id, 1]) }}" class="text-gray-600 hover:text-gray-800">← Kembali</a>
+                            @else
+                                <a href="{{ route('penomoran-form.list') }}" class="text-gray-600 hover:text-gray-800">← Kembali</a>
+                            @endif
                             <x-primary-button>
                                 {{ __('Lanjut ke Halaman 2') }} →
                             </x-primary-button>

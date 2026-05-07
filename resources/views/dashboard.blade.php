@@ -16,6 +16,7 @@
                         <!-- Kotak Fitur PIBK -->
                         <div class="p-6 bg-blue-50 border border-blue-200 rounded-lg shadow-sm">
                             <h4 class="font-bold text-blue-800 mb-2">Buat Surat PIBK</h4>
+                            <a href="{{ route('penomoran-form.create') }}" class="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Buat Surat PIBK</a>
                             <p class="text-sm text-gray-600 mb-4">Isi data dan cetak surat PIBK.</p>
                         </div>
 
