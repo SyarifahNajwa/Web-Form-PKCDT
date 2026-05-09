@@ -52,7 +52,7 @@
                                                 {{ $pnomoran->penomoran }}
                                             </td>
                                             <td class="px-4 py-3 text-sm text-gray-600">
-                                                {{ $pnomoran->tanggal_pibk->format('d-m-Y') }}
+                                                {{ $pnomoran->tanggal_pibk ? $pnomoran->tanggal_pibk->format('d-m-Y') : '-' }}
                                             </td>
                                             <td class="px-4 py-3 text-sm text-gray-600">
                                                 {{ $pnomoran->pengirim->nama_pengirim ?? '-' }}

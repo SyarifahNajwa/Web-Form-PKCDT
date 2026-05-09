@@ -106,7 +106,7 @@
         <div class="header">
             <h3>PEMBERITAHUAN IMPOR BARANG (PIB)</h3>
             <p>Nomor Penomoran: {{ $penomoran->penomoran }}</p>
-            <p>Tanggal: {{ $penomoran->tanggal_pibk->format('d-m-Y') }}</p>
+            <p>Tanggal: {{ $penomoran->tanggal_pibk ? $penomoran->tanggal_pibk->format('d-m-Y') : '-' }}</p>
         </div>
 
         <!-- HALAMAN 1: DATA PENGIRIM & PENERIMA -->

@@ -75,7 +75,7 @@
 
                         <div class="mb-4">
                             <x-input-label for="tanggal_pibk" :value="__('Tanggal PIBK')" />
-                            <x-text-input id="tanggal_pibk" class="block mt-1 w-full" type="date" name="tanggal_pibk" :value="old('tanggal_pibk', $data->tanggal_pibk->format('Y-m-d'))" required />
+                            <x-text-input id="tanggal_pibk" class="block mt-1 w-full" type="date" name="tanggal_pibk" :value="old('tanggal_pibk', $data->tanggal_pibk?->format('Y-m-d') ?? '')" required />
                             <x-input-error :messages="$errors->get('tanggal_pibk')" class="mt-2" />
                         </div>
                     </div>

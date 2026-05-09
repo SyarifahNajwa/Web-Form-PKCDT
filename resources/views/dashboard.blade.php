@@ -48,7 +48,7 @@
                                         <tr class="hover:bg-gray-50 transition">
                                             <td class="px-4 py-3 text-sm text-gray-600">{{ $index + 1 }}</td>
                                             <td class="px-4 py-3 text-sm font-semibold text-gray-800">{{ $penomoran->penomoran }}</td>
-                                            <td class="px-4 py-3 text-sm text-gray-600">{{ $penomoran->tanggal_pibk->format('d-m-Y') }}</td>
+                                            <td class="px-4 py-3 text-sm text-gray-600">{{ $penomoran->tanggal_pibk ? $penomoran->tanggal_pibk->format('d-m-Y') : '-' }}</td>
                                             <td class="px-4 py-3 text-sm text-gray-600">
                                                 <div class="flex flex-wrap gap-2">
                                                     <a href="{{ route('penomoran-form.edit', $penomoran->id) }}" class="inline-flex items-center px-3 py-1.5 bg-yellow-400 hover:bg-yellow-500 text-white text-xs font-medium rounded transition">✎ Edit</a>
