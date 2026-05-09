@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\PenomoranFormController;
+use App\Models\Penomoran;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,7 +15,25 @@ Route::middleware(['auth', 'verified'])->group(function () {
     
     // Dashboard
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        $penomorans = Penomoran::with([
+            'pengirim',
+            'penerima',
+            'pemberitahu',
+            'suratIzin',
+            'pengangkutan',
+            'pib',
+            'uraianBarangs',
+            'pfpd',
+            'pemeriksa',
+            'jaminan',
+            'pemeriksaan',
+        ])->orderByDesc('created_at')->get();
+
+        $totalPenomorans = $penomorans->count();
+        $completedPenomorans = $penomorans->where('progress_percentage', 100)->count();
+        $averageProgress = $totalPenomorans ? round($penomorans->avg('progress_percentage')) : 0;
+
+        return view('dashboard', compact('penomorans', 'totalPenomorans', 'completedPenomorans', 'averageProgress'));
     })->name('dashboard');
 
     // Penomoran Form - Multi Step

@@ -20,6 +20,68 @@ class Penomoran extends Model
         'tanggal_pibk' => 'date',
     ];
 
+    // Atribut progress untuk dashboard
+    public function getCompletedStepsAttribute()
+    {
+        $steps = 1;
+
+        if ($this->pengirim && $this->penerima) {
+            $steps++;
+        }
+
+        if ($this->pemberitahu && $this->suratIzin) {
+            $steps++;
+        }
+
+        if ($this->pengangkutan) {
+            $steps++;
+        }
+
+        if ($this->pib) {
+            $steps++;
+        }
+
+        if ($this->uraianBarangs && $this->uraianBarangs->count() > 0) {
+            $steps++;
+        }
+
+        if ($this->pemeriksaan) {
+            $steps++;
+        }
+
+        if ($this->pfpd && $this->pemeriksa && $this->jaminan) {
+            $steps++;
+        }
+
+        if ($steps === 8 && $this->pfpd && $this->pemeriksa && $this->jaminan) {
+            $steps = 9;
+        }
+
+        return min(max($steps, 1), 9);
+    }
+
+    public function getProgressPercentageAttribute()
+    {
+        return (int) round(($this->completed_steps / 9) * 100);
+    }
+
+    public function getProgressLabelAttribute()
+    {
+        if ($this->progress_percentage === 100) {
+            return 'Selesai';
+        }
+
+        if ($this->progress_percentage >= 80) {
+            return 'Hampir Selesai';
+        }
+
+        if ($this->progress_percentage >= 50) {
+            return 'Sedang Berjalan';
+        }
+
+        return 'Baru Dibuat';
+    }
+
     // Relationships
     public function pengirim()
     {
