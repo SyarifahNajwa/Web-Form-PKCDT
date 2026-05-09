@@ -357,7 +357,7 @@ class PenomoranFormController extends Controller
             'jam_selesai_periksa' => 'required|date_format:H:i',
             'lokasi_pemeriksaan' => 'required|string',
             'kondisi_segel' => 'required|string',
-            'jumlah_satuan_barang' => 'required|numeric',
+            'jumlah_satuan_barang' => 'required|integer|min:0',
             'jenis_kemasan' => 'required|string',
             'ukuran_kemasan' => 'required|string',
             'spesifikasi' => 'nullable|string',
