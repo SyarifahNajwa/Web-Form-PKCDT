@@ -147,7 +147,7 @@ class PenomoranFormController extends Controller
     {
         $validated = $request->validate([
             'penomoran' => 'required|string|unique:penomoran,penomoran,' . $request->id,
-            'tanggal_pibk' => 'required|date',
+            'tanggal_pibk' => 'nullable|date',
         ]);
 
         if ($request->id) {
@@ -166,12 +166,12 @@ class PenomoranFormController extends Controller
         $penomoran = Penomoran::findOrFail($id);
 
         $validated = $request->validate([
-            'nama_pengirim' => 'required|string',
-            'alamat_pengirim' => 'required|string',
-            'jenis_identitas_penerima' => 'required|string',
-            'identitas_penerima' => 'required|string',
-            'nama_penerima' => 'required|string',
-            'alamat_penerima' => 'required|string',
+            'nama_pengirim' => 'nullable|string',
+            'alamat_pengirim' => 'nullable|string',
+            'jenis_identitas_penerima' => 'nullable|string',
+            'identitas_penerima' => 'nullable|string',
+            'nama_penerima' => 'nullable|string',
+            'alamat_penerima' => 'nullable|string',
         ]);
 
         $pengirim = $penomoran->pengirim ?? new Pengirim();
@@ -199,11 +199,11 @@ class PenomoranFormController extends Controller
         $penomoran = Penomoran::findOrFail($id);
 
         $validated = $request->validate([
-            'identitas_pemberitahu' => 'required|string',
-            'nama_pemberitahu' => 'required|string',
-            'alamat_pemberitahu' => 'required|string',
-            'nomor_surat_izin_pjt_ppjk' => 'required|string',
-            'tanggal_surat_izin_pjt_ppjk' => 'required|date',
+            'identitas_pemberitahu' => 'nullable|string',
+            'nama_pemberitahu' => 'nullable|string',
+            'alamat_pemberitahu' => 'nullable|string',
+            'nomor_surat_izin_pjt_ppjk' => 'nullable|string',
+            'tanggal_surat_izin_pjt_ppjk' => 'nullable|date',
         ]);
 
         $pemberitahu = $penomoran->pemberitahu ?? new Pemberitahu();
@@ -230,11 +230,11 @@ class PenomoranFormController extends Controller
         $penomoran = Penomoran::findOrFail($id);
 
         $validated = $request->validate([
-            'cara_pengangkutan' => 'required|in:udara,laut,darat',
-            'nama_sarkut' => 'required|string',
-            'no_flight' => 'required|string',
-            'pelabuhan_muat' => 'required|string',
-            'pelabuhan_bongkar' => 'required|string',
+            'cara_pengangkutan' => 'nullable|in:udara,laut,darat',
+            'nama_sarkut' => 'nullable|string',
+            'no_flight' => 'nullable|string',
+            'pelabuhan_muat' => 'nullable|string',
+            'pelabuhan_bongkar' => 'nullable|string',
         ]);
 
         $pengangkutan = $penomoran->pengangkutan ?? new Pengangkutan();
@@ -250,19 +250,19 @@ class PenomoranFormController extends Controller
         $penomoran = Penomoran::findOrFail($id);
 
         $validated = $request->validate([
-            'nomor_bc11' => 'required|string',
-            'tanggal_bc11' => 'required|date',
-            'nomor_pos' => 'required|string',
-            'invoice' => 'required|string',
-            'tanggal_invoice' => 'required|date',
-            'nomor_bl_awb' => 'required|string',
-            'tanggal_bl_awb' => 'required|date',
-            'negara_asal_barang' => 'required|string',
-            'valuta' => 'required|string|max:5',
-            'fob' => 'required|numeric',
-            'freight' => 'required|numeric',
-            'asuransi' => 'required|numeric',
-            'nilai_cif' => 'required|numeric',
+            'nomor_bc11' => 'nullable|string',
+            'tanggal_bc11' => 'nullable|date',
+            'nomor_pos' => 'nullable|string',
+            'invoice' => 'nullable|string',
+            'tanggal_invoice' => 'nullable|date',
+            'nomor_bl_awb' => 'nullable|string',
+            'tanggal_bl_awb' => 'nullable|date',
+            'negara_asal_barang' => 'nullable|string',
+            'valuta' => 'nullable|string|max:5',
+            'fob' => 'nullable|numeric',
+            'freight' => 'nullable|numeric',
+            'asuransi' => 'nullable|numeric',
+            'nilai_cif' => 'nullable|numeric',
         ]);
 
         $pib = $penomoran->pib ?? new Pib();
@@ -278,64 +278,66 @@ class PenomoranFormController extends Controller
         $penomoran = Penomoran::findOrFail($id);
 
         $validated = $request->validate([
-            'uraian_barang' => 'required|array',
-            'uraian_barang.*' => 'required|string',
-            'jumlah_kemasan' => 'required|array',
-            'jumlah_kemasan.*' => 'required|numeric',
-            'berat' => 'required|array',
-            'berat.*' => 'required|numeric',
-            'nilai_cif' => 'required|array',
-            'nilai_cif.*' => 'required|numeric',
-            'kota_pibk' => 'required|array',
-            'kota_pibk.*' => 'required|string',
-            'pemberitahu' => 'required|array',
-            'pemberitahu.*' => 'required|string',
-            'np' => 'required|array',
-            'np.*' => 'required|string',
-            'pos_tarif_hs' => 'required|array',
-            'pos_tarif_hs.*' => 'required|string',
-            'ndpbm' => 'required|array',
-            'ndpbm.*' => 'required|numeric',
-            'dalam_rupiah' => 'required|array',
-            'dalam_rupiah.*' => 'required|numeric',
-            'bm' => 'required|array',
-            'bm.*' => 'required|numeric',
-            'cukai' => 'required|array',
-            'cukai.*' => 'required|numeric',
-            'ppn' => 'required|array',
-            'ppn.*' => 'required|numeric',
-            'ppnbm' => 'required|array',
-            'ppnbm.*' => 'required|numeric',
-            'pph' => 'required|array',
-            'pph.*' => 'required|numeric',
-            'total' => 'required|array',
-            'total.*' => 'required|numeric',
+            'uraian_barang' => 'nullable|array',
+            'uraian_barang.*' => 'nullable|string',
+            'jumlah_kemasan' => 'nullable|array',
+            'jumlah_kemasan.*' => 'nullable|numeric',
+            'berat' => 'nullable|array',
+            'berat.*' => 'nullable|numeric',
+            'nilai_cif' => 'nullable|array',
+            'nilai_cif.*' => 'nullable|numeric',
+            'kota_pibk' => 'nullable|array',
+            'kota_pibk.*' => 'nullable|string',
+            'pemberitahu' => 'nullable|array',
+            'pemberitahu.*' => 'nullable|string',
+            'np' => 'nullable|array',
+            'np.*' => 'nullable|string',
+            'pos_tarif_hs' => 'nullable|array',
+            'pos_tarif_hs.*' => 'nullable|string',
+            'ndpbm' => 'nullable|array',
+            'ndpbm.*' => 'nullable|numeric',
+            'dalam_rupiah' => 'nullable|array',
+            'dalam_rupiah.*' => 'nullable|numeric',
+            'bm' => 'nullable|array',
+            'bm.*' => 'nullable|numeric',
+            'cukai' => 'nullable|array',
+            'cukai.*' => 'nullable|numeric',
+            'ppn' => 'nullable|array',
+            'ppn.*' => 'nullable|numeric',
+            'ppnbm' => 'nullable|array',
+            'ppnbm.*' => 'nullable|numeric',
+            'pph' => 'nullable|array',
+            'pph.*' => 'nullable|numeric',
+            'total' => 'nullable|array',
+            'total.*' => 'nullable|numeric',
         ]);
 
         // Hapus uraian barang lama
         UraianBarang::where('penomoran_id', $id)->delete();
 
         // Simpan uraian barang baru
-        for ($i = 0; $i < count($validated['uraian_barang']); $i++) {
-            UraianBarang::create([
-                'penomoran_id' => $id,
-                'uraian_barang' => $validated['uraian_barang'][$i],
-                'jumlah_kemasan' => $validated['jumlah_kemasan'][$i],
-                'berat' => $validated['berat'][$i],
-                'nilai_cif' => $validated['nilai_cif'][$i],
-                'kota_pibk' => $validated['kota_pibk'][$i],
-                'pemberitahu' => $validated['pemberitahu'][$i],
-                'np' => $validated['np'][$i],
-                'pos_tarif_hs' => $validated['pos_tarif_hs'][$i],
-                'ndpbm' => $validated['ndpbm'][$i],
-                'dalam_rupiah' => $validated['dalam_rupiah'][$i],
-                'bm' => $validated['bm'][$i],
-                'cukai' => $validated['cukai'][$i],
-                'ppn' => $validated['ppn'][$i],
-                'ppnbm' => $validated['ppnbm'][$i],
-                'pph' => $validated['pph'][$i],
-                'total' => $validated['total'][$i],
-            ]);
+        if ($validated['uraian_barang']) {
+            for ($i = 0; $i < count($validated['uraian_barang']); $i++) {
+                UraianBarang::create([
+                    'penomoran_id' => $id,
+                    'uraian_barang' => $validated['uraian_barang'][$i],
+                    'jumlah_kemasan' => $validated['jumlah_kemasan'][$i],
+                    'berat' => $validated['berat'][$i],
+                    'nilai_cif' => $validated['nilai_cif'][$i],
+                    'kota_pibk' => $validated['kota_pibk'][$i],
+                    'pemberitahu' => $validated['pemberitahu'][$i],
+                    'np' => $validated['np'][$i],
+                    'pos_tarif_hs' => $validated['pos_tarif_hs'][$i],
+                    'ndpbm' => $validated['ndpbm'][$i],
+                    'dalam_rupiah' => $validated['dalam_rupiah'][$i],
+                    'bm' => $validated['bm'][$i],
+                    'cukai' => $validated['cukai'][$i],
+                    'ppn' => $validated['ppn'][$i],
+                    'ppnbm' => $validated['ppnbm'][$i],
+                    'pph' => $validated['pph'][$i],
+                    'total' => $validated['total'][$i],
+                ]);
+            }
         }
 
         return redirect()->route('penomoran-form.page7', $id);
@@ -347,19 +349,19 @@ class PenomoranFormController extends Controller
         $penomoran = Penomoran::findOrFail($id);
 
         $validated = $request->validate([
-            'hari' => 'required|string',
-            'tanggal' => 'required|date',
-            'nama' => 'required|string',
-            'contoh' => 'required|string',
+            'hari' => 'nullable|string',
+            'tanggal' => 'nullable|date',
+            'nama' => 'nullable|string',
+            'contoh' => 'nullable|string',
             'foto' => 'nullable|string',
             'catatan' => 'nullable|string',
-            'jam_mulai_periksa' => 'required|date_format:H:i',
-            'jam_selesai_periksa' => 'required|date_format:H:i',
-            'lokasi_pemeriksaan' => 'required|string',
-            'kondisi_segel' => 'required|string',
-            'jumlah_satuan_barang' => 'required|integer|min:0',
-            'jenis_kemasan' => 'required|string',
-            'ukuran_kemasan' => 'required|string',
+            'jam_mulai_periksa' => 'nullable|date_format:H:i',
+            'jam_selesai_periksa' => 'nullable|date_format:H:i',
+            'lokasi_pemeriksaan' => 'nullable|string',
+            'kondisi_segel' => 'nullable|string',
+            'jumlah_satuan_barang' => 'nullable|integer|min:0',
+            'jenis_kemasan' => 'nullable|string',
+            'ukuran_kemasan' => 'nullable|string',
             'spesifikasi' => 'nullable|string',
             'keterangan' => 'nullable|string',
         ]);
@@ -377,13 +379,13 @@ class PenomoranFormController extends Controller
         $penomoran = Penomoran::findOrFail($id);
 
         $validated = $request->validate([
-            'nama_pfpd' => 'required|string',
-            'nip_pfpd' => 'required|string',
-            'nama_pemeriksa' => 'required|string',
-            'nip_pemeriksa' => 'required|string',
-            'pembayaran' => 'required|string',
-            'jaminan' => 'required|string',
-            'pejabat_penerima' => 'required|string',
+            'nama_pfpd' => 'nullable|string',
+            'nip_pfpd' => 'nullable|string',
+            'nama_pemeriksa' => 'nullable|string',
+            'nip_pemeriksa' => 'nullable|string',
+            'pembayaran' => 'nullable|string',
+            'jaminan' => 'nullable|string',
+            'pejabat_penerima' => 'nullable|string',
         ]);
 
         $pfpd = $penomoran->pfpd ?? new Pfpd();
@@ -419,7 +421,7 @@ class PenomoranFormController extends Controller
         // Update any changes from page9 (edit mode)
         $validated = $request->validate([
             'penomoran' => 'required|string|unique:penomoran,penomoran,' . $id,
-            'tanggal_pibk' => 'required|date',
+            'tanggal_pibk' => 'nullable|date',
         ]);
 
         $penomoran->update($validated);

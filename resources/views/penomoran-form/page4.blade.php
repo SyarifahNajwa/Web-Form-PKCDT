@@ -36,25 +36,25 @@
 
                         <div class="mb-4">
                             <x-input-label for="nama_sarkut" :value="__('Nama Sarana Angkut')" />
-                            <x-text-input id="nama_sarkut" name="nama_sarkut" type="text" class="mt-1 block w-full" value="{{ old('nama_sarkut', $pengangkutan->nama_sarkut ?? '') }}" required />
+                            <x-text-input id="nama_sarkut" name="nama_sarkut" type="text" class="mt-1 block w-full" value="{{ old('nama_sarkut', $pengangkutan->nama_sarkut ?? '') }}" />
                             @error('nama_sarkut')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                         </div>
 
                         <div class="mb-4">
                             <x-input-label for="no_flight" :value="__('No. Voy/Flight')" />
-                            <x-text-input id="no_flight" name="no_flight" type="text" class="mt-1 block w-full" value="{{ old('no_flight', $pengangkutan->no_flight ?? '') }}" required />
+                            <x-text-input id="no_flight" name="no_flight" type="text" class="mt-1 block w-full" value="{{ old('no_flight', $pengangkutan->no_flight ?? '') }}" />
                             @error('no_flight')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                         </div>
 
                         <div class="mb-4">
                             <x-input-label for="pelabuhan_muat" :value="__('Pelabuhan Muat')" />
-                            <x-text-input id="pelabuhan_muat" name="pelabuhan_muat" type="text" class="mt-1 block w-full" value="{{ old('pelabuhan_muat', $pengangkutan->pelabuhan_muat ?? '') }}" required />
+                            <x-text-input id="pelabuhan_muat" name="pelabuhan_muat" type="text" class="mt-1 block w-full" value="{{ old('pelabuhan_muat', $pengangkutan->pelabuhan_muat ?? '') }}" />
                             @error('pelabuhan_muat')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                         </div>
 
                         <div class="mb-6">
                             <x-input-label for="pelabuhan_bongkar" :value="__('Pelabuhan Bongkar')" />
-                            <x-text-input id="pelabuhan_bongkar" name="pelabuhan_bongkar" type="text" class="mt-1 block w-full" value="{{ old('pelabuhan_bongkar', $pengangkutan->pelabuhan_bongkar ?? '') }}" required />
+                            <x-text-input id="pelabuhan_bongkar" name="pelabuhan_bongkar" type="text" class="mt-1 block w-full" value="{{ old('pelabuhan_bongkar', $pengangkutan->pelabuhan_bongkar ?? '') }}" />
                             @error('pelabuhan_bongkar')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                         </div>
 

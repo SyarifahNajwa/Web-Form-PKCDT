@@ -27,19 +27,19 @@
 
                         <div class="mb-4">
                             <x-input-label for="identitas_pemberitahu" :value="__('Identitas Pemberitahu')" />
-                            <x-text-input id="identitas_pemberitahu" name="identitas_pemberitahu" type="text" class="mt-1 block w-full" value="{{ old('identitas_pemberitahu', $pemberitahu->identitas_pemberitahu ?? '') }}" required />
+                            <x-text-input id="identitas_pemberitahu" name="identitas_pemberitahu" type="text" class="mt-1 block w-full" value="{{ old('identitas_pemberitahu', $pemberitahu->identitas_pemberitahu ?? '') }}" />
                             @error('identitas_pemberitahu')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                         </div>
 
                         <div class="mb-4">
                             <x-input-label for="nama_pemberitahu" :value="__('Nama Pemberitahu')" />
-                            <x-text-input id="nama_pemberitahu" name="nama_pemberitahu" type="text" class="mt-1 block w-full" value="{{ old('nama_pemberitahu', $pemberitahu->nama_pemberitahu ?? '') }}" required />
+                            <x-text-input id="nama_pemberitahu" name="nama_pemberitahu" type="text" class="mt-1 block w-full" value="{{ old('nama_pemberitahu', $pemberitahu->nama_pemberitahu ?? '') }}" />
                             @error('nama_pemberitahu')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                         </div>
 
                         <div class="mb-6">
                             <x-input-label for="alamat_pemberitahu" :value="__('Alamat Pemberitahu')" />
-                            <textarea id="alamat_pemberitahu" name="alamat_pemberitahu" rows="3" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>{{ old('alamat_pemberitahu', $pemberitahu->alamat_pemberitahu ?? '') }}</textarea>
+                            <textarea id="alamat_pemberitahu" name="alamat_pemberitahu" rows="3" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" >{{ old('alamat_pemberitahu', $pemberitahu->alamat_pemberitahu ?? '') }}</textarea>
                             @error('alamat_pemberitahu')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                         </div>
 
@@ -49,13 +49,13 @@
 
                         <div class="mb-4">
                             <x-input-label for="nomor_surat_izin_pjt_ppjk" :value="__('Nomor Surat Izin PJT/PPJK')" />
-                            <x-text-input id="nomor_surat_izin_pjt_ppjk" name="nomor_surat_izin_pjt_ppjk" type="text" class="mt-1 block w-full" value="{{ old('nomor_surat_izin_pjt_ppjk', $suratIzin->nomor_surat_izin_pjt_ppjk ?? '') }}" required />
+                            <x-text-input id="nomor_surat_izin_pjt_ppjk" name="nomor_surat_izin_pjt_ppjk" type="text" class="mt-1 block w-full" value="{{ old('nomor_surat_izin_pjt_ppjk', $suratIzin->nomor_surat_izin_pjt_ppjk ?? '') }}" />
                             @error('nomor_surat_izin_pjt_ppjk')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                         </div>
 
                         <div class="mb-6">
                             <x-input-label for="tanggal_surat_izin_pjt_ppjk" :value="__('Tanggal Surat Izin PJT/PPJK')" />
-                            <x-text-input id="tanggal_surat_izin_pjt_ppjk" name="tanggal_surat_izin_pjt_ppjk" type="date" class="mt-1 block w-full" value="{{ old('tanggal_surat_izin_pjt_ppjk', $suratIzin->tanggal_surat_izin_pjt_ppjk?->format('Y-m-d') ?? '') }}" required />
+                            <x-text-input id="tanggal_surat_izin_pjt_ppjk" name="tanggal_surat_izin_pjt_ppjk" type="date" class="mt-1 block w-full" value="{{ old('tanggal_surat_izin_pjt_ppjk', $suratIzin->tanggal_surat_izin_pjt_ppjk?->format('Y-m-d') ?? '') }}" />
                             @error('tanggal_surat_izin_pjt_ppjk')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                         </div>
 

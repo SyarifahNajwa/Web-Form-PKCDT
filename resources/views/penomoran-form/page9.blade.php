@@ -42,8 +42,8 @@
                             </div>
                             <div>
                                 <p class="text-xs text-gray-500 mb-1">Tanggal PIBK</p>
-                                <input type="text" class="block w-full border-gray-300 rounded-md shadow-sm bg-gray-50 text-sm" value="{{ $penomoran->tanggal_pibk->format('d-m-Y') }}" readonly>
-                                <input type="hidden" name="tanggal_pibk" value="{{ $penomoran->tanggal_pibk->format('Y-m-d') }}">
+                                <input type="text" class="block w-full border-gray-300 rounded-md shadow-sm bg-gray-50 text-sm" value="{{ $penomoran->tanggal_pibk ? $penomoran->tanggal_pibk->format('d-m-Y') : '-' }}" readonly>
+                                <input type="hidden" name="tanggal_pibk" value="{{ $penomoran->tanggal_pibk ? $penomoran->tanggal_pibk->format('Y-m-d') : '' }}">
                             </div>
                         </div>
                     </div>

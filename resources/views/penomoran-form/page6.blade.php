@@ -47,19 +47,19 @@
                                         <x-input-label :value="__('Uraian Barang')" />
                                         <textarea name="uraian_barang[]" rows="2"
                                             class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
-                                            required>{{ $barang->uraian_barang }}</textarea>
+                                            >{{ $barang->uraian_barang }}</textarea>
                                     </div>
 
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                                         <div>
                                             <x-input-label :value="__('Jumlah Kemasan')" />
                                             <x-text-input name="jumlah_kemasan[]" type="number" class="mt-1 block w-full"
-                                                value="{{ $barang->jumlah_kemasan }}" required />
+                                                value="{{ $barang->jumlah_kemasan }}" />
                                         </div>
                                         <div>
                                             <x-input-label :value="__('Berat')" />
                                             <x-text-input name="berat[]" type="number" step="0.01" class="mt-1 block w-full"
-                                                value="{{ $barang->berat }}" required />
+                                                value="{{ $barang->berat }}" />
                                         </div>
                                     </div>
 
@@ -67,12 +67,12 @@
                                         <div>
                                             <x-input-label :value="__('Nilai CIF')" />
                                             <x-text-input name="nilai_cif[]" type="number" step="0.01" class="mt-1 block w-full"
-                                                value="{{ $barang->nilai_cif }}" required />
+                                                value="{{ $barang->nilai_cif }}" />
                                         </div>
                                         <div>
                                             <x-input-label :value="__('Kota PIBK')" />
                                             <x-text-input name="kota_pibk[]" type="text" class="mt-1 block w-full"
-                                                value="{{ $barang->kota_pibk }}" required />
+                                                value="{{ $barang->kota_pibk }}" />
                                         </div>
                                     </div>
 
@@ -80,12 +80,12 @@
                                         <div>
                                             <x-input-label :value="__('Pemberitahu')" />
                                             <x-text-input name="pemberitahu[]" type="text" class="mt-1 block w-full"
-                                                value="{{ $barang->pemberitahu }}" required />
+                                                value="{{ $barang->pemberitahu }}" />
                                         </div>
                                         <div>
                                             <x-input-label :value="__('NP')" />
                                             <x-text-input name="np[]" type="text" class="mt-1 block w-full"
-                                                value="{{ $barang->np }}" required />
+                                                value="{{ $barang->np }}" />
                                         </div>
                                     </div>
 
@@ -93,12 +93,12 @@
                                         <div>
                                             <x-input-label :value="__('Pos Tarif/HS')" />
                                             <x-text-input name="pos_tarif_hs[]" type="text" class="mt-1 block w-full"
-                                                value="{{ $barang->pos_tarif_hs }}" required />
+                                                value="{{ $barang->pos_tarif_hs }}" />
                                         </div>
                                         <div>
                                             <x-input-label :value="__('NDPBM')" />
                                             <x-text-input name="ndpbm[]" type="number" step="0.01" class="mt-1 block w-full"
-                                                value="{{ $barang->ndpbm }}" required />
+                                                value="{{ $barang->ndpbm }}" />
                                         </div>
                                     </div>
 
@@ -106,12 +106,12 @@
                                         <div>
                                             <x-input-label :value="__('Dalam Rupiah')" />
                                             <x-text-input name="dalam_rupiah[]" type="number" step="0.01" class="mt-1 block w-full"
-                                                value="{{ $barang->dalam_rupiah }}" required />
+                                                value="{{ $barang->dalam_rupiah }}" />
                                         </div>
                                         <div>
                                             <x-input-label :value="__('BM')" />
                                             <x-text-input name="bm[]" type="number" step="0.01" class="mt-1 block w-full"
-                                                value="{{ $barang->bm }}" required />
+                                                value="{{ $barang->bm }}" />
                                         </div>
                                     </div>
 
@@ -119,12 +119,12 @@
                                         <div>
                                             <x-input-label :value="__('Cukai')" />
                                             <x-text-input name="cukai[]" type="number" step="0.01" class="mt-1 block w-full"
-                                                value="{{ $barang->cukai }}" required />
+                                                value="{{ $barang->cukai }}" />
                                         </div>
                                         <div>
                                             <x-input-label :value="__('PPN')" />
                                             <x-text-input name="ppn[]" type="number" step="0.01" class="mt-1 block w-full"
-                                                value="{{ $barang->ppn }}" required />
+                                                value="{{ $barang->ppn }}" />
                                         </div>
                                     </div>
 
@@ -132,19 +132,19 @@
                                         <div>
                                             <x-input-label :value="__('PPNBM')" />
                                             <x-text-input name="ppnbm[]" type="number" step="0.01" class="mt-1 block w-full"
-                                                value="{{ $barang->ppnbm }}" required />
+                                                value="{{ $barang->ppnbm }}" />
                                         </div>
                                         <div>
                                             <x-input-label :value="__('PPH')" />
                                             <x-text-input name="pph[]" type="number" step="0.01" class="mt-1 block w-full"
-                                                value="{{ $barang->pph }}" required />
+                                                value="{{ $barang->pph }}" />
                                         </div>
                                     </div>
 
                                     <div>
                                         <x-input-label :value="__('Total')" />
                                         <x-text-input name="total[]" type="number" step="0.01" class="mt-1 block w-full"
-                                            value="{{ $barang->total }}" required />
+                                            value="{{ $barang->total }}" />
                                     </div>
                                 </div>
                             @empty
@@ -167,83 +167,83 @@
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                                         <div>
                                             <x-input-label :value="__('Jumlah Kemasan')" />
-                                            <x-text-input name="jumlah_kemasan[]" type="number" class="mt-1 block w-full" required />
+                                            <x-text-input name="jumlah_kemasan[]" type="number" class="mt-1 block w-full" />
                                         </div>
                                         <div>
                                             <x-input-label :value="__('Berat')" />
-                                            <x-text-input name="berat[]" type="number" step="0.01" class="mt-1 block w-full" required />
+                                            <x-text-input name="berat[]" type="number" step="0.01" class="mt-1 block w-full" />
                                         </div>
                                     </div>
 
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                                         <div>
                                             <x-input-label :value="__('Nilai CIF')" />
-                                            <x-text-input name="nilai_cif[]" type="number" step="0.01" class="mt-1 block w-full" required />
+                                            <x-text-input name="nilai_cif[]" type="number" step="0.01" class="mt-1 block w-full" />
                                         </div>
                                         <div>
                                             <x-input-label :value="__('Kota PIBK')" />
-                                            <x-text-input name="kota_pibk[]" type="text" class="mt-1 block w-full" required />
+                                            <x-text-input name="kota_pibk[]" type="text" class="mt-1 block w-full" />
                                         </div>
                                     </div>
 
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                                         <div>
                                             <x-input-label :value="__('Pemberitahu')" />
-                                            <x-text-input name="pemberitahu[]" type="text" class="mt-1 block w-full" required />
+                                            <x-text-input name="pemberitahu[]" type="text" class="mt-1 block w-full" />
                                         </div>
                                         <div>
                                             <x-input-label :value="__('NP')" />
-                                            <x-text-input name="np[]" type="text" class="mt-1 block w-full" required />
+                                            <x-text-input name="np[]" type="text" class="mt-1 block w-full" />
                                         </div>
                                     </div>
 
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                                         <div>
                                             <x-input-label :value="__('Pos Tarif/HS')" />
-                                            <x-text-input name="pos_tarif_hs[]" type="text" class="mt-1 block w-full" required />
+                                            <x-text-input name="pos_tarif_hs[]" type="text" class="mt-1 block w-full" />
                                         </div>
                                         <div>
                                             <x-input-label :value="__('NDPBM')" />
-                                            <x-text-input name="ndpbm[]" type="number" step="0.01" class="mt-1 block w-full" required />
+                                            <x-text-input name="ndpbm[]" type="number" step="0.01" class="mt-1 block w-full" />
                                         </div>
                                     </div>
 
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                                         <div>
                                             <x-input-label :value="__('Dalam Rupiah')" />
-                                            <x-text-input name="dalam_rupiah[]" type="number" step="0.01" class="mt-1 block w-full" required />
+                                            <x-text-input name="dalam_rupiah[]" type="number" step="0.01" class="mt-1 block w-full" />
                                         </div>
                                         <div>
                                             <x-input-label :value="__('BM')" />
-                                            <x-text-input name="bm[]" type="number" step="0.01" class="mt-1 block w-full" required />
+                                            <x-text-input name="bm[]" type="number" step="0.01" class="mt-1 block w-full" />
                                         </div>
                                     </div>
 
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                                         <div>
                                             <x-input-label :value="__('Cukai')" />
-                                            <x-text-input name="cukai[]" type="number" step="0.01" class="mt-1 block w-full" required />
+                                            <x-text-input name="cukai[]" type="number" step="0.01" class="mt-1 block w-full" />
                                         </div>
                                         <div>
                                             <x-input-label :value="__('PPN')" />
-                                            <x-text-input name="ppn[]" type="number" step="0.01" class="mt-1 block w-full" required />
+                                            <x-text-input name="ppn[]" type="number" step="0.01" class="mt-1 block w-full" />
                                         </div>
                                     </div>
 
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                                         <div>
                                             <x-input-label :value="__('PPNBM')" />
-                                            <x-text-input name="ppnbm[]" type="number" step="0.01" class="mt-1 block w-full" required />
+                                            <x-text-input name="ppnbm[]" type="number" step="0.01" class="mt-1 block w-full" />
                                         </div>
                                         <div>
                                             <x-input-label :value="__('PPH')" />
-                                            <x-text-input name="pph[]" type="number" step="0.01" class="mt-1 block w-full" required />
+                                            <x-text-input name="pph[]" type="number" step="0.01" class="mt-1 block w-full" />
                                         </div>
                                     </div>
 
                                     <div>
                                         <x-input-label :value="__('Total')" />
-                                        <x-text-input name="total[]" type="number" step="0.01" class="mt-1 block w-full" required />
+                                        <x-text-input name="total[]" type="number" step="0.01" class="mt-1 block w-full" />
                                     </div>
                                 </div>
                             @endforelse

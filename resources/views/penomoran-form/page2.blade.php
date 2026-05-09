@@ -27,13 +27,13 @@
 
                         <div class="mb-4">
                             <x-input-label for="nama_pengirim" :value="__('Nama Pengirim')" />
-                            <x-text-input id="nama_pengirim" name="nama_pengirim" type="text" class="mt-1 block w-full" value="{{ old('nama_pengirim', $pengirim->nama_pengirim ?? '') }}" required />
+                            <x-text-input id="nama_pengirim" name="nama_pengirim" type="text" class="mt-1 block w-full" value="{{ old('nama_pengirim', $pengirim->nama_pengirim ?? '') }}" />
                             @error('nama_pengirim')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                         </div>
 
                         <div class="mb-6">
                             <x-input-label for="alamat_pengirim" :value="__('Alamat Pengirim')" />
-                            <textarea id="alamat_pengirim" name="alamat_pengirim" rows="3" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>{{ old('alamat_pengirim', $pengirim->alamat_pengirim ?? '') }}</textarea>
+                            <textarea id="alamat_pengirim" name="alamat_pengirim" rows="3" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">{{ old('alamat_pengirim', $pengirim->alamat_pengirim ?? '') }}</textarea>
                             @error('alamat_pengirim')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                         </div>
 
@@ -43,25 +43,25 @@
 
                         <div class="mb-4">
                             <x-input-label for="jenis_identitas_penerima" :value="__('Jenis Identitas Penerima')" />
-                            <x-text-input id="jenis_identitas_penerima" name="jenis_identitas_penerima" type="text" class="mt-1 block w-full" value="{{ old('jenis_identitas_penerima', $penerima->jenis_identitas_penerima ?? '') }}" placeholder="KTP, Passport" required />
+                            <x-text-input id="jenis_identitas_penerima" name="jenis_identitas_penerima" type="text" class="mt-1 block w-full" value="{{ old('jenis_identitas_penerima', $penerima->jenis_identitas_penerima ?? '') }}" placeholder="KTP, Passport" />
                             @error('jenis_identitas_penerima')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                         </div>
 
                         <div class="mb-4">
                             <x-input-label for="identitas_penerima" :value="__('Nomor Identitas Penerima')" />
-                            <x-text-input id="identitas_penerima" name="identitas_penerima" type="text" class="mt-1 block w-full" value="{{ old('identitas_penerima', $penerima->identitas_penerima ?? '') }}" required />
+                            <x-text-input id="identitas_penerima" name="identitas_penerima" type="text" class="mt-1 block w-full" value="{{ old('identitas_penerima', $penerima->identitas_penerima ?? '') }}" />
                             @error('identitas_penerima')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                         </div>
 
                         <div class="mb-4">
                             <x-input-label for="nama_penerima" :value="__('Nama Penerima')" />
-                            <x-text-input id="nama_penerima" name="nama_penerima" type="text" class="mt-1 block w-full" value="{{ old('nama_penerima', $penerima->nama_penerima ?? '') }}" required />
+                            <x-text-input id="nama_penerima" name="nama_penerima" type="text" class="mt-1 block w-full" value="{{ old('nama_penerima', $penerima->nama_penerima ?? '') }}" />
                             @error('nama_penerima')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                         </div>
 
                         <div class="mb-6">
                             <x-input-label for="alamat_penerima" :value="__('Alamat Penerima')" />
-                            <textarea id="alamat_penerima" name="alamat_penerima" rows="3" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>{{ old('alamat_penerima', $penerima->alamat_penerima ?? '') }}</textarea>
+                            <textarea id="alamat_penerima" name="alamat_penerima" rows="3" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">{{ old('alamat_penerima', $penerima->alamat_penerima ?? '') }}</textarea>
                             @error('alamat_penerima')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                         </div>
 

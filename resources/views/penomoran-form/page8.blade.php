@@ -30,12 +30,12 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                             <div>
                                 <x-input-label for="nama_pfpd" :value="__('Nama PFPD')" />
-                                <x-text-input id="nama_pfpd" name="nama_pfpd" type="text" class="mt-1 block w-full" value="{{ old('nama_pfpd', $pfpd->nama_pfpd ?? '') }}" required />
+                                <x-text-input id="nama_pfpd" name="nama_pfpd" type="text" class="mt-1 block w-full" value="{{ old('nama_pfpd', $pfpd->nama_pfpd ?? '') }}" />
                                 @error('nama_pfpd')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                             </div>
                             <div>
                                 <x-input-label for="nip_pfpd" :value="__('NIP PFPD')" />
-                                <x-text-input id="nip_pfpd" name="nip_pfpd" type="text" class="mt-1 block w-full" value="{{ old('nip_pfpd', $pfpd->nip_pfpd ?? '') }}" required />
+                                <x-text-input id="nip_pfpd" name="nip_pfpd" type="text" class="mt-1 block w-full" value="{{ old('nip_pfpd', $pfpd->nip_pfpd ?? '') }}" />
                                 @error('nip_pfpd')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                             </div>
                         </div>
@@ -47,12 +47,12 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                             <div>
                                 <x-input-label for="nama_pemeriksa" :value="__('Nama Pemeriksa')" />
-                                <x-text-input id="nama_pemeriksa" name="nama_pemeriksa" type="text" class="mt-1 block w-full" value="{{ old('nama_pemeriksa', $pemeriksa->nama_pemeriksa ?? '') }}" required />
+                                <x-text-input id="nama_pemeriksa" name="nama_pemeriksa" type="text" class="mt-1 block w-full" value="{{ old('nama_pemeriksa', $pemeriksa->nama_pemeriksa ?? '') }}" />
                                 @error('nama_pemeriksa')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                             </div>
                             <div>
                                 <x-input-label for="nip_pemeriksa" :value="__('NIP Pemeriksa')" />
-                                <x-text-input id="nip_pemeriksa" name="nip_pemeriksa" type="text" class="mt-1 block w-full" value="{{ old('nip_pemeriksa', $pemeriksa->nip_pemeriksa ?? '') }}" required />
+                                <x-text-input id="nip_pemeriksa" name="nip_pemeriksa" type="text" class="mt-1 block w-full" value="{{ old('nip_pemeriksa', $pemeriksa->nip_pemeriksa ?? '') }}" />
                                 @error('nip_pemeriksa')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                             </div>
                         </div>
@@ -63,19 +63,19 @@
 
                         <div class="mb-4">
                             <x-input-label for="pembayaran" :value="__('Pembayaran')" />
-                            <x-text-input id="pembayaran" name="pembayaran" type="text" class="mt-1 block w-full" value="{{ old('pembayaran', $jaminan->pembayaran ?? '') }}" required />
+                            <x-text-input id="pembayaran" name="pembayaran" type="text" class="mt-1 block w-full" value="{{ old('pembayaran', $jaminan->pembayaran ?? '') }}" />
                             @error('pembayaran')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                         </div>
 
                         <div class="mb-4">
                             <x-input-label for="jaminan" :value="__('Jaminan')" />
-                            <textarea id="jaminan" name="jaminan" rows="3" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>{{ old('jaminan', $jaminan->jaminan ?? '') }}</textarea>
+                            <textarea id="jaminan" name="jaminan" rows="3" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" >{{ old('jaminan', $jaminan->jaminan ?? '') }}</textarea>
                             @error('jaminan')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                         </div>
 
                         <div class="mb-6">
                             <x-input-label for="pejabat_penerima" :value="__('Pejabat Penerima')" />
-                            <x-text-input id="pejabat_penerima" name="pejabat_penerima" type="text" class="mt-1 block w-full" value="{{ old('pejabat_penerima', $jaminan->pejabat_penerima ?? '') }}" required />
+                            <x-text-input id="pejabat_penerima" name="pejabat_penerima" type="text" class="mt-1 block w-full" value="{{ old('pejabat_penerima', $jaminan->pejabat_penerima ?? '') }}" />
                             @error('pejabat_penerima')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                         </div>
 
