@@ -25,6 +25,7 @@ class Pemeriksaan extends Model
         'lokasi_pemeriksaan',
         'kondisi_segel',
         'jumlah_satuan_barang',
+        'satuan_barang',
         'jenis_kemasan',
         'ukuran_kemasan',
         'spesifikasi',

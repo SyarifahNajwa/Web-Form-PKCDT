@@ -181,7 +181,7 @@
                             <p class="text-sm text-gray-700"><span class="font-medium">Jam Selesai:</span> {{ $penomoran->pemeriksaan?->jam_selesai_periksa?->format('H:i') ?? '-' }} WIB</p>
                             <p class="text-sm text-gray-700"><span class="font-medium">Lokasi:</span> {{ $penomoran->pemeriksaan?->lokasi_pemeriksaan ?? '-' }}</p>
                             <p class="text-sm text-gray-700"><span class="font-medium">Kondisi Segel:</span> {{ $penomoran->pemeriksaan?->kondisi_segel ?? '-' }}</p>
-                            <p class="text-sm text-gray-700"><span class="font-medium">Jumlah Satuan:</span> {{ $penomoran->pemeriksaan?->jumlah_satuan_barang ?? '-' }}</p>
+                            <p class="text-sm text-gray-700"><span class="font-medium">Jumlah Satuan:</span> {{ $penomoran->pemeriksaan?->jumlah_satuan_barang ?? '-' }} {{ $penomoran->pemeriksaan?->satuan_barang ?? '-' }}</p>                            
                         </div>
                     </div>
                 </div>

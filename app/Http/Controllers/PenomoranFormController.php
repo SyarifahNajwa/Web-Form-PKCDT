@@ -367,6 +367,7 @@ class PenomoranFormController extends Controller
             'lokasi_pemeriksaan' => 'nullable|string',
             'kondisi_segel' => 'nullable|string',
             'jumlah_satuan_barang' => 'nullable|integer|min:0',
+            'satuan_barang' => 'nullable|string|max:50',
             'jenis_kemasan' => 'nullable|string',
             'ukuran_kemasan' => 'nullable|string',
             'spesifikasi' => 'nullable|string',

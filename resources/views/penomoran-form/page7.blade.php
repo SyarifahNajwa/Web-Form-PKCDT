@@ -89,7 +89,7 @@
 
                         <h3 class="text-lg font-semibold text-gray-800 mb-4 pb-2 border-b">Detail Barang</h3>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                             <div>
                                 <x-input-label for="kondisi_segel" :value="__('Kondisi Segel')" />
                                 <x-text-input id="kondisi_segel" name="kondisi_segel" type="text" class="mt-1 block w-full" value="{{ old('kondisi_segel', $pemeriksaan->kondisi_segel ?? '') }}" />
@@ -99,6 +99,11 @@
                                 <x-input-label for="jumlah_satuan_barang" :value="__('Jumlah Satuan Barang')" />
                                 <x-text-input id="jumlah_satuan_barang" name="jumlah_satuan_barang" type="number" min="0" class="mt-1 block w-full" value="{{ old('jumlah_satuan_barang', $pemeriksaan->jumlah_satuan_barang ?? '') }}" />
                                 @error('jumlah_satuan_barang')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                            </div>
+                            <div>
+                                <x-input-label for="satuan_barang" :value="__('Satuan Barang')" />
+                                <x-text-input id="satuan_barang" name="satuan_barang" type="text" class="mt-1 block w-full" value="{{ old('satuan_barang', $pemeriksaan->satuan_barang ?? '') }}" />
+                                @error('satuan_barang')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                             </div>
                         </div>
 

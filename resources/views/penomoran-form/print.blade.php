@@ -351,6 +351,10 @@
                     <div class="info-value">{{ $penomoran->pemeriksaan->jumlah_satuan_barang ?? '-' }}</div>
                 </div>
                 <div class="info-box">
+                    <div class="info-label">Satuan Barang</div>
+                    <div class="info-value">{{ $penomoran->pemeriksaan->satuan_barang ?? '-' }}</div>
+                </div>
+                <div class="info-box">
                     <div class="info-label">Jenis Kemasan</div>
                     <div class="info-value">{{ $penomoran->pemeriksaan->jenis_kemasan ?? '-' }}</div>
                 </div>
