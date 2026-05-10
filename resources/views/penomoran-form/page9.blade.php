@@ -130,7 +130,7 @@
                                 <p class="text-sm text-gray-700"><span class="font-medium">Negara Asal:</span> {{ $penomoran->pib?->negara_asal_barang ?? '-' }}</p>
                                 <p class="text-sm text-gray-700"><span class="font-medium">Valuta:</span> {{ $penomoran->pib?->valuta ?? '-' }}</p>
                                 <p class="text-sm text-gray-700"><span class="font-medium">FOB:</span> {{ number_format($penomoran->pib?->fob ?? 0, 2) }}</p>
-                                <p class="text-sm text-gray-700"><span class="font-medium">Freight:</span> {{ number_format($penomoran->pib?->freight ?? 0, 2) }}</p>
+                                <p class="text-sm text-gray-700"><span class="font-medium">Freight:</span> {{ $penomoran->pib?->freight_currency ?? '-' }} {{ number_format($penomoran->pib?->freight ?? 0, 2) }}</p>                                
                                 <p class="text-sm text-gray-700"><span class="font-medium">Asuransi:</span> {{ number_format($penomoran->pib?->asuransi ?? 0, 2) }}</p>
                                 <p class="text-sm text-gray-700"><span class="font-medium">Nilai CIF:</span> {{ number_format($penomoran->pib?->nilai_cif ?? 0, 2) }}</p>
                             </div>
@@ -151,8 +151,8 @@
                                 <p class="text-xs font-semibold text-gray-500 uppercase mb-2">Barang {{ $idx + 1 }}</p>
                                 <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
                                     <p class="text-sm text-gray-700"><span class="font-medium">Uraian:</span> {{ $barang->uraian_barang }}</p>
-                                    <p class="text-sm text-gray-700"><span class="font-medium">Jumlah Kemasan:</span> {{ $barang->jumlah_kemasan }}</p>
-                                    <p class="text-sm text-gray-700"><span class="font-medium">Berat:</span> {{ $barang->berat }}</p>
+                                    <p class="text-sm text-gray-700"><span class="font-medium">Jumlah Kemasan:</span> {{ $barang->jumlah_kemasan }} {{ $barang->satuan_kemasan ? '(' . $barang->satuan_kemasan . ')' : '' }}</p>
+                                    <p class="text-sm text-gray-700"><span class="font-medium">Berat:</span> {{ $barang->berat }} {{ $barang->satuan ? '(' . $barang->satuan . ')' : '' }}</p>
                                     <p class="text-sm text-gray-700"><span class="font-medium">Nilai CIF:</span> {{ number_format($barang->nilai_cif, 2) }}</p>
                                     <p class="text-sm text-gray-700"><span class="font-medium">Total Pajak:</span> {{ number_format($barang->total, 2) }}</p>
                                 </div>
@@ -177,8 +177,8 @@
                             <p class="text-sm text-gray-700"><span class="font-medium">Nama:</span> {{ $penomoran->pemeriksaan?->nama ?? '-' }}</p>
                             <p class="text-sm text-gray-700"><span class="font-medium">Contoh:</span> {{ $penomoran->pemeriksaan?->contoh ?? '-' }}</p>
                             <p class="text-sm text-gray-700"><span class="font-medium">Foto:</span> {{ $penomoran->pemeriksaan?->foto ?? '-' }}</p>
-                            <p class="text-sm text-gray-700"><span class="font-medium">Jam Mulai:</span> {{ $penomoran->pemeriksaan?->jam_mulai_periksa?->format('H:i') ?? '-' }}</p>
-                            <p class="text-sm text-gray-700"><span class="font-medium">Jam Selesai:</span> {{ $penomoran->pemeriksaan?->jam_selesai_periksa?->format('H:i') ?? '-' }}</p>
+                            <p class="text-sm text-gray-700"><span class="font-medium">Jam Mulai:</span> {{ $penomoran->pemeriksaan?->jam_mulai_periksa?->format('H:i') ?? '-' }} WIB</p>
+                            <p class="text-sm text-gray-700"><span class="font-medium">Jam Selesai:</span> {{ $penomoran->pemeriksaan?->jam_selesai_periksa?->format('H:i') ?? '-' }} WIB</p>
                             <p class="text-sm text-gray-700"><span class="font-medium">Lokasi:</span> {{ $penomoran->pemeriksaan?->lokasi_pemeriksaan ?? '-' }}</p>
                             <p class="text-sm text-gray-700"><span class="font-medium">Kondisi Segel:</span> {{ $penomoran->pemeriksaan?->kondisi_segel ?? '-' }}</p>
                             <p class="text-sm text-gray-700"><span class="font-medium">Jumlah Satuan:</span> {{ $penomoran->pemeriksaan?->jumlah_satuan_barang ?? '-' }}</p>

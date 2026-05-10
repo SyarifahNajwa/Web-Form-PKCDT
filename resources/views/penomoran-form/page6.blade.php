@@ -42,16 +42,26 @@
                                             >{{ $barang->uraian_barang }}</textarea>
                                     </div>
 
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
                                         <div>
                                             <x-input-label :value="__('Jumlah Kemasan')" />
                                             <x-text-input name="jumlah_kemasan[]" type="number" class="mt-1 block w-full"
                                                 value="{{ $barang->jumlah_kemasan }}" />
                                         </div>
                                         <div>
+                                            <x-input-label :value="__('Satuan Kemasan')" />
+                                            <x-text-input name="satuan_kemasan[]" type="text" class="mt-1 block w-full"
+                                                placeholder="pcs, box, etc" value="{{ $barang->satuan_kemasan }}" />
+                                        </div>
+                                        <div>
                                             <x-input-label :value="__('Berat')" />
                                             <x-text-input name="berat[]" type="number" step="0.01" class="mt-1 block w-full"
                                                 value="{{ $barang->berat }}" />
+                                        </div>
+                                        <div>
+                                            <x-input-label :value="__('Satuan Berat')" />
+                                            <x-text-input name="satuan[]" type="text" class="mt-1 block w-full"
+                                                placeholder="kg, ton, etc" value="{{ $barang->satuan }}" />
                                         </div>
                                     </div>
 
@@ -156,20 +166,26 @@
                                             required></textarea>
                                     </div>
 
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
                                         <div>
                                             <x-input-label :value="__('Jumlah Kemasan')" />
                                             <x-text-input name="jumlah_kemasan[]" type="number" class="mt-1 block w-full" />
                                         </div>
                                         <div>
+                                            <x-input-label :value="__('Satuan Kemasan')" />
+                                            <x-text-input name="satuan_kemasan[]" type="text" class="mt-1 block w-full"
+                                                placeholder="pcs, box, etc" />
+                                        </div>
+                                        <div>
                                             <x-input-label :value="__('Berat')" />
                                             <x-text-input name="berat[]" type="number" step="0.01" class="mt-1 block w-full" />
                                         </div>
-                                    </div>
-
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                                         <div>
-                                            <x-input-label :value="__('Nilai CIF')" />
+                                            <x-input-label :value="__('Satuan Berat')" />
+                                            <x-text-input name="satuan[]" type="text" class="mt-1 block w-full"
+                                                placeholder="kg, ton, etc" />
+                                        </div>
+                                    </div>
                                             <x-text-input name="nilai_cif[]" type="number" step="0.01" class="mt-1 block w-full" />
                                         </div>
                                         <div>

@@ -66,12 +66,12 @@
 
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                                     <div>
-                                        <x-input-label for="jam_mulai_periksa" :value="__('Jam Mulai Periksa')" />
+                                        <x-input-label for="jam_mulai_periksa" :value="__('Jam Mulai Periksa (WIB)')" />
                                         <x-text-input id="jam_mulai_periksa" name="jam_mulai_periksa" type="time" class="mt-1 block w-full" value="{{ old('jam_mulai_periksa', $pemeriksaan->jam_mulai_periksa?->format('H:i') ?? '') }}" />
                                         @error('jam_mulai_periksa')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                                     </div>
                                     <div>
-                                        <x-input-label for="jam_selesai_periksa" :value="__('Jam Selesai Periksa')" />
+                                        <x-input-label for="jam_selesai_periksa" :value="__('Jam Selesai Periksa (WIB)')" />
                                         <x-text-input id="jam_selesai_periksa" name="jam_selesai_periksa" type="time" class="mt-1 block w-full" value="{{ old('jam_selesai_periksa', $pemeriksaan->jam_selesai_periksa?->format('H:i') ?? '') }}" />
                                         @error('jam_selesai_periksa')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                                     </div>

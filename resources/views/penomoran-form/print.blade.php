@@ -259,6 +259,10 @@
                     <div class="info-value">{{ number_format($penomoran->pib->freight ?? 0, 2) }}</div>
                 </div>
                 <div class="info-box">
+                    <div class="info-label">Satuan Mata Uang Freight</div>
+                    <div class="info-value">{{ $penomoran->pib->freight_currency ?? '-' }}</div>
+                </div>
+                <div class="info-box">
                     <div class="info-label">Asuransi</div>
                     <div class="info-value">{{ number_format($penomoran->pib->asuransi ?? 0, 2) }}</div>
                 </div>
@@ -277,7 +281,9 @@
                     <th width="5%">No</th>
                     <th width="15%">Uraian</th>
                     <th width="8%">Jml Kemasan</th>
+                    <th width="7%">Satuan Kemasan</th>
                     <th width="8%">Berat</th>
+                    <th width="7%">Satuan</th>
                     <th width="10%">Nilai CIF</th>
                     <th width="8%">BM</th>
                     <th width="8%">PPN</th>
@@ -290,7 +296,9 @@
                         <td>{{ $idx + 1 }}</td>
                         <td>{{ $barang->uraian_barang }}</td>
                         <td style="text-align: center;">{{ $barang->jumlah_kemasan }}</td>
+                        <td style="text-align: center;">{{ $barang->satuan_kemasan ?? '-' }}</td>
                         <td style="text-align: right;">{{ number_format($barang->berat, 2) }}</td>
+                        <td style="text-align: center;">{{ $barang->satuan ?? '-' }}</td>
                         <td style="text-align: right;">{{ number_format($barang->nilai_cif, 2) }}</td>
                         <td style="text-align: right;">{{ number_format($barang->bm, 2) }}</td>
                         <td style="text-align: right;">{{ number_format($barang->ppn, 2) }}</td>
@@ -298,7 +306,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="8" style="text-align: center;">Tidak ada data</td>
+                        <td colspan="10" style="text-align: center;">Tidak ada data</td>
                     </tr>
                 @endforelse
             </tbody>

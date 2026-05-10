@@ -83,17 +83,23 @@
                                     </div>
                                 </div>
 
+                                <div class="mb-6">        
+                                    <x-input-label for="fob" :value="__('FOB')" />
+                                    <x-text-input id="fob" name="fob" type="number" step="0.01" class="mt-1 block w-full" value="{{ old('fob', $pib->fob ?? '') }}" />
+                                    @error('fob')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                                </div>
+
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                                     <div>
-                                        <x-input-label for="fob" :value="__('FOB')" />
-                                        <x-text-input id="fob" name="fob" type="number" step="0.01" class="mt-1 block w-full" value="{{ old('fob', $pib->fob ?? '') }}" />
-                                        @error('fob')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                                        <x-input-label for="freight_currency" :value="__('Mata Uang')" />
+                                        <x-text-input id="freight_currency" name="freight_currency" type="text" class="mt-1 block w-full" placeholder="USD, EUR, IDR" value="{{ old('freight_currency', $pib->freight_currency ?? '') }}" maxlength="5" />
+                                        @error('freight_currency')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                                     </div>
                                     <div>
                                         <x-input-label for="freight" :value="__('Freight')" />
                                         <x-text-input id="freight" name="freight" type="number" step="0.01" class="mt-1 block w-full" value="{{ old('freight', $pib->freight ?? '') }}" />
                                         @error('freight')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
-                                    </div>
+                                    </div>                                    
                                 </div>
 
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">

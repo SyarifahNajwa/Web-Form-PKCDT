@@ -25,6 +25,7 @@ class Pib extends Model
         'valuta',
         'fob',
         'freight',
+        'freight_currency',
         'asuransi',
         'nilai_cif',
     ];

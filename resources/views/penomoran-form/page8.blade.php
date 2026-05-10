@@ -17,10 +17,10 @@
                     <form method="POST" action="{{ route('penomoran-form.savePage8', $penomoran->id) }}">
                         @csrf
 
-                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 ">
+                        <div class="grid grid-cols-1 lg:grid-cols-1 gap-8 ">
                             <!-- Data PFPD (Pejabat Fungsional Pemeriksa Dinas) -->
                             <div>
-                                <h3 class="text-lg font-semibold text-gray-800 mb-4 pb-2 border-b min-h-[64px]">Data PFPD (Pejabat Fungsional Pemeriksa Dinas)</h3>
+                                <h3 class="text-lg font-semibold text-gray-800 mb-4 pb-2 border-b">Data PFPD</h3>
 
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                                     <div>
@@ -35,10 +35,12 @@
                                     </div>
                                 </div>
                             </div>
-
+                        </div>
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-1 gap-8 ">
                             <!-- Data Pemeriksa -->
                             <div>
-                                <h3 class="text-lg font-semibold text-gray-800 mb-4 pb-2 border-b min-h-[64px]">Data Pemeriksa</h3>
+                                <h3 class="text-lg font-semibold text-gray-800 mb-4 pb-2 border-b">Data Pemeriksa</h3>
 
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                                     <div>
