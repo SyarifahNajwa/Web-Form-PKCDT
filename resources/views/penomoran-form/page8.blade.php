@@ -17,35 +17,41 @@
                     <form method="POST" action="{{ route('penomoran-form.savePage8', $penomoran->id) }}">
                         @csrf
 
-                        <h3 class="text-lg font-semibold text-gray-800 mb-4 pb-2 border-b">Data PFPD (Pejabat Fungsional Pemeriksa Dinas)</h3>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 ">
+                            <!-- Data PFPD (Pejabat Fungsional Pemeriksa Dinas) -->
                             <div>
-                                <x-input-label for="nama_pfpd" :value="__('Nama PFPD')" />
-                                <x-text-input id="nama_pfpd" name="nama_pfpd" type="text" class="mt-1 block w-full" value="{{ old('nama_pfpd', $pfpd->nama_pfpd ?? '') }}" />
-                                @error('nama_pfpd')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                                <h3 class="text-lg font-semibold text-gray-800 mb-4 pb-2 border-b min-h-[64px]">Data PFPD (Pejabat Fungsional Pemeriksa Dinas)</h3>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                                    <div>
+                                        <x-input-label for="nama_pfpd" :value="__('Nama PFPD')" />
+                                        <x-text-input id="nama_pfpd" name="nama_pfpd" type="text" class="mt-1 block w-full" value="{{ old('nama_pfpd', $pfpd->nama_pfpd ?? '') }}" />
+                                        @error('nama_pfpd')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                                    </div>
+                                    <div>
+                                        <x-input-label for="nip_pfpd" :value="__('NIP PFPD')" />
+                                        <x-text-input id="nip_pfpd" name="nip_pfpd" type="text" class="mt-1 block w-full" value="{{ old('nip_pfpd', $pfpd->nip_pfpd ?? '') }}" />
+                                        @error('nip_pfpd')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <x-input-label for="nip_pfpd" :value="__('NIP PFPD')" />
-                                <x-text-input id="nip_pfpd" name="nip_pfpd" type="text" class="mt-1 block w-full" value="{{ old('nip_pfpd', $pfpd->nip_pfpd ?? '') }}" />
-                                @error('nip_pfpd')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
-                            </div>
-                        </div>
 
-                        <hr class="my-6">
-
-                        <h3 class="text-lg font-semibold text-gray-800 mb-4 pb-2 border-b">Data Pemeriksa</h3>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                            <!-- Data Pemeriksa -->
                             <div>
-                                <x-input-label for="nama_pemeriksa" :value="__('Nama Pemeriksa')" />
-                                <x-text-input id="nama_pemeriksa" name="nama_pemeriksa" type="text" class="mt-1 block w-full" value="{{ old('nama_pemeriksa', $pemeriksa->nama_pemeriksa ?? '') }}" />
-                                @error('nama_pemeriksa')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
-                            </div>
-                            <div>
-                                <x-input-label for="nip_pemeriksa" :value="__('NIP Pemeriksa')" />
-                                <x-text-input id="nip_pemeriksa" name="nip_pemeriksa" type="text" class="mt-1 block w-full" value="{{ old('nip_pemeriksa', $pemeriksa->nip_pemeriksa ?? '') }}" />
-                                @error('nip_pemeriksa')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                                <h3 class="text-lg font-semibold text-gray-800 mb-4 pb-2 border-b min-h-[64px]">Data Pemeriksa</h3>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                                    <div>
+                                        <x-input-label for="nama_pemeriksa" :value="__('Nama Pemeriksa')" />
+                                        <x-text-input id="nama_pemeriksa" name="nama_pemeriksa" type="text" class="mt-1 block w-full" value="{{ old('nama_pemeriksa', $pemeriksa->nama_pemeriksa ?? '') }}" />
+                                        @error('nama_pemeriksa')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                                    </div>
+                                    <div>
+                                        <x-input-label for="nip_pemeriksa" :value="__('NIP Pemeriksa')" />
+                                        <x-text-input id="nip_pemeriksa" name="nip_pemeriksa" type="text" class="mt-1 block w-full" value="{{ old('nip_pemeriksa', $pemeriksa->nip_pemeriksa ?? '') }}" />
+                                        @error('nip_pemeriksa')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

@@ -15,40 +15,46 @@
                     <form method="POST" action="{{ route('penomoran-form.savePage3', $penomoran->id) }}">
                         @csrf
 
-                        <h3 class="text-lg font-semibold text-gray-800 mb-4 pb-2 border-b">Data Pemberitahu</h3>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <!-- Data Pemberitahu -->
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-800 mb-4 pb-2 border-b">Data Pemberitahu</h3>
 
-                        <div class="mb-4">
-                            <x-input-label for="identitas_pemberitahu" :value="__('Identitas Pemberitahu')" />
-                            <x-text-input id="identitas_pemberitahu" name="identitas_pemberitahu" type="text" class="mt-1 block w-full" value="{{ old('identitas_pemberitahu', $pemberitahu->identitas_pemberitahu ?? '') }}" />
-                            @error('identitas_pemberitahu')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
-                        </div>
+                                <div class="mb-4">
+                                    <x-input-label for="identitas_pemberitahu" :value="__('Identitas Pemberitahu')" />
+                                    <x-text-input id="identitas_pemberitahu" name="identitas_pemberitahu" type="text" class="mt-1 block w-full" value="{{ old('identitas_pemberitahu', $pemberitahu->identitas_pemberitahu ?? '') }}" />
+                                    @error('identitas_pemberitahu')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                                </div>
 
-                        <div class="mb-4">
-                            <x-input-label for="nama_pemberitahu" :value="__('Nama Pemberitahu')" />
-                            <x-text-input id="nama_pemberitahu" name="nama_pemberitahu" type="text" class="mt-1 block w-full" value="{{ old('nama_pemberitahu', $pemberitahu->nama_pemberitahu ?? '') }}" />
-                            @error('nama_pemberitahu')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
-                        </div>
+                                <div class="mb-4">
+                                    <x-input-label for="nama_pemberitahu" :value="__('Nama Pemberitahu')" />
+                                    <x-text-input id="nama_pemberitahu" name="nama_pemberitahu" type="text" class="mt-1 block w-full" value="{{ old('nama_pemberitahu', $pemberitahu->nama_pemberitahu ?? '') }}" />
+                                    @error('nama_pemberitahu')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                                </div>
 
-                        <div class="mb-6">
-                            <x-input-label for="alamat_pemberitahu" :value="__('Alamat Pemberitahu')" />
-                            <textarea id="alamat_pemberitahu" name="alamat_pemberitahu" rows="3" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" >{{ old('alamat_pemberitahu', $pemberitahu->alamat_pemberitahu ?? '') }}</textarea>
-                            @error('alamat_pemberitahu')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
-                        </div>
+                                <div class="mb-6">
+                                    <x-input-label for="alamat_pemberitahu" :value="__('Alamat Pemberitahu')" />
+                                    <textarea id="alamat_pemberitahu" name="alamat_pemberitahu" rows="3" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" >{{ old('alamat_pemberitahu', $pemberitahu->alamat_pemberitahu ?? '') }}</textarea>
+                                    @error('alamat_pemberitahu')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                                </div>
+                            </div>
 
-                        <hr class="my-6">
+                            <!-- Surat Izin PJT/PPJK -->
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-800 mb-4 pb-2 border-b">Surat Izin PJT/PPJK</h3>
 
-                        <h3 class="text-lg font-semibold text-gray-800 mb-4 pb-2 border-b">Surat Izin PJT/PPJK</h3>
+                                <div class="mb-4">
+                                    <x-input-label for="nomor_surat_izin_pjt_ppjk" :value="__('Nomor Surat Izin PJT/PPJK')" />
+                                    <x-text-input id="nomor_surat_izin_pjt_ppjk" name="nomor_surat_izin_pjt_ppjk" type="text" class="mt-1 block w-full" value="{{ old('nomor_surat_izin_pjt_ppjk', $suratIzin->nomor_surat_izin_pjt_ppjk ?? '') }}" />
+                                    @error('nomor_surat_izin_pjt_ppjk')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                                </div>
 
-                        <div class="mb-4">
-                            <x-input-label for="nomor_surat_izin_pjt_ppjk" :value="__('Nomor Surat Izin PJT/PPJK')" />
-                            <x-text-input id="nomor_surat_izin_pjt_ppjk" name="nomor_surat_izin_pjt_ppjk" type="text" class="mt-1 block w-full" value="{{ old('nomor_surat_izin_pjt_ppjk', $suratIzin->nomor_surat_izin_pjt_ppjk ?? '') }}" />
-                            @error('nomor_surat_izin_pjt_ppjk')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
-                        </div>
-
-                        <div class="mb-6">
-                            <x-input-label for="tanggal_surat_izin_pjt_ppjk" :value="__('Tanggal Surat Izin PJT/PPJK')" />
-                            <x-text-input id="tanggal_surat_izin_pjt_ppjk" name="tanggal_surat_izin_pjt_ppjk" type="date" class="mt-1 block w-full" value="{{ old('tanggal_surat_izin_pjt_ppjk', $suratIzin->tanggal_surat_izin_pjt_ppjk?->format('Y-m-d') ?? '') }}" />
-                            @error('tanggal_surat_izin_pjt_ppjk')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                                <div class="mb-6">
+                                    <x-input-label for="tanggal_surat_izin_pjt_ppjk" :value="__('Tanggal Surat Izin PJT/PPJK')" />
+                                    <x-text-input id="tanggal_surat_izin_pjt_ppjk" name="tanggal_surat_izin_pjt_ppjk" type="date" class="mt-1 block w-full" value="{{ old('tanggal_surat_izin_pjt_ppjk', $suratIzin->tanggal_surat_izin_pjt_ppjk?->format('Y-m-d') ?? '') }}" />
+                                    @error('tanggal_surat_izin_pjt_ppjk')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                                </div>
+                            </div>
                         </div>
 
                         <div class="flex items-center justify-between mt-6">

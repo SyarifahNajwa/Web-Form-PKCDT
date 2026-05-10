@@ -15,68 +15,74 @@
                     <form method="POST" action="{{ route('penomoran-form.savePage7', $penomoran->id) }}">
                         @csrf
 
-                        <h3 class="text-lg font-semibold text-gray-800 mb-4 pb-2 border-b">Waktu & Identitas</h3>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <!-- Waktu & Identitas -->
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-800 mb-4 pb-2 border-b">Waktu & Identitas</h3>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                            <div>
-                                <x-input-label for="hari" :value="__('Hari')" />
-                                <x-text-input id="hari" name="hari" type="text" class="mt-1 block w-full" placeholder="Misal: Senin" value="{{ old('hari', $pemeriksaan->hari ?? '') }}" />
-                                @error('hari')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
-                            </div>
-                            <div>
-                                <x-input-label for="tanggal" :value="__('Tanggal')" />
-                                <x-text-input id="tanggal" name="tanggal" type="date" class="mt-1 block w-full" value="{{ old('tanggal', $pemeriksaan->tanggal?->format('Y-m-d') ?? '') }}" />
-                                @error('tanggal')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
-                            </div>
-                        </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                    <div>
+                                        <x-input-label for="hari" :value="__('Hari')" />
+                                        <x-text-input id="hari" name="hari" type="text" class="mt-1 block w-full" placeholder="Misal: Senin" value="{{ old('hari', $pemeriksaan->hari ?? '') }}" />
+                                        @error('hari')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                                    </div>
+                                    <div>
+                                        <x-input-label for="tanggal" :value="__('Tanggal')" />
+                                        <x-text-input id="tanggal" name="tanggal" type="date" class="mt-1 block w-full" value="{{ old('tanggal', $pemeriksaan->tanggal?->format('Y-m-d') ?? '') }}" />
+                                        @error('tanggal')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                                    </div>
+                                </div>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                            <div>
-                                <x-input-label for="nama" :value="__('Nama')" />
-                                <x-text-input id="nama" name="nama" type="text" class="mt-1 block w-full" value="{{ old('nama', $pemeriksaan->nama ?? '') }}" />
-                                @error('nama')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
-                            </div>
-                            <div>
-                                <x-input-label for="contoh" :value="__('Contoh')" />
-                                <x-text-input id="contoh" name="contoh" type="text" class="mt-1 block w-full" value="{{ old('contoh', $pemeriksaan->contoh ?? '') }}" />
-                                @error('contoh')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
-                            </div>
-                        </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                    <div>
+                                        <x-input-label for="nama" :value="__('Nama')" />
+                                        <x-text-input id="nama" name="nama" type="text" class="mt-1 block w-full" value="{{ old('nama', $pemeriksaan->nama ?? '') }}" />
+                                        @error('nama')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                                    </div>
+                                    <div>
+                                        <x-input-label for="contoh" :value="__('Contoh')" />
+                                        <x-text-input id="contoh" name="contoh" type="text" class="mt-1 block w-full" value="{{ old('contoh', $pemeriksaan->contoh ?? '') }}" />
+                                        @error('contoh')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                                    </div>
+                                </div>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                            <div>
-                                <x-input-label for="foto" :value="__('Foto')" />
-                                <x-text-input id="foto" name="foto" type="text" class="mt-1 block w-full" placeholder="Path atau deskripsi foto" value="{{ old('foto', $pemeriksaan->foto ?? '') }}" />
-                                @error('foto')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                    <div>
+                                        <x-input-label for="foto" :value="__('Foto')" />
+                                        <x-text-input id="foto" name="foto" type="text" class="mt-1 block w-full" placeholder="Path atau deskripsi foto" value="{{ old('foto', $pemeriksaan->foto ?? '') }}" />
+                                        @error('foto')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                                    </div>
+                                    <div>
+                                        <x-input-label for="catatan" :value="__('Catatan')" />
+                                        <x-text-input id="catatan" name="catatan" type="text" class="mt-1 block w-full" value="{{ old('catatan', $pemeriksaan->catatan ?? '') }}" />
+                                        @error('catatan')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                                    </div>
+                                </div>
                             </div>
+
+                            <!-- Waktu Pemeriksaan -->
                             <div>
-                                <x-input-label for="catatan" :value="__('Catatan')" />
-                                <x-text-input id="catatan" name="catatan" type="text" class="mt-1 block w-full" value="{{ old('catatan', $pemeriksaan->catatan ?? '') }}" />
-                                @error('catatan')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                                <h3 class="text-lg font-semibold text-gray-800 mb-4 pb-2 border-b">Waktu Pemeriksaan</h3>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                    <div>
+                                        <x-input-label for="jam_mulai_periksa" :value="__('Jam Mulai Periksa')" />
+                                        <x-text-input id="jam_mulai_periksa" name="jam_mulai_periksa" type="time" class="mt-1 block w-full" value="{{ old('jam_mulai_periksa', $pemeriksaan->jam_mulai_periksa?->format('H:i') ?? '') }}" />
+                                        @error('jam_mulai_periksa')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                                    </div>
+                                    <div>
+                                        <x-input-label for="jam_selesai_periksa" :value="__('Jam Selesai Periksa')" />
+                                        <x-text-input id="jam_selesai_periksa" name="jam_selesai_periksa" type="time" class="mt-1 block w-full" value="{{ old('jam_selesai_periksa', $pemeriksaan->jam_selesai_periksa?->format('H:i') ?? '') }}" />
+                                        @error('jam_selesai_periksa')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <x-input-label for="lokasi_pemeriksaan" :value="__('Lokasi Pemeriksaan')" />
+                                    <x-text-input id="lokasi_pemeriksaan" name="lokasi_pemeriksaan" type="text" class="mt-1 block w-full" value="{{ old('lokasi_pemeriksaan', $pemeriksaan->lokasi_pemeriksaan ?? '') }}" />
+                                    @error('lokasi_pemeriksaan')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                                </div>
                             </div>
-                        </div>
-
-                        <hr class="my-6">
-
-                        <h3 class="text-lg font-semibold text-gray-800 mb-4 pb-2 border-b">Waktu Pemeriksaan</h3>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                            <div>
-                                <x-input-label for="jam_mulai_periksa" :value="__('Jam Mulai Periksa')" />
-                                <x-text-input id="jam_mulai_periksa" name="jam_mulai_periksa" type="time" class="mt-1 block w-full" value="{{ old('jam_mulai_periksa', $pemeriksaan->jam_mulai_periksa?->format('H:i') ?? '') }}" />
-                                @error('jam_mulai_periksa')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
-                            </div>
-                            <div>
-                                <x-input-label for="jam_selesai_periksa" :value="__('Jam Selesai Periksa')" />
-                                <x-text-input id="jam_selesai_periksa" name="jam_selesai_periksa" type="time" class="mt-1 block w-full" value="{{ old('jam_selesai_periksa', $pemeriksaan->jam_selesai_periksa?->format('H:i') ?? '') }}" />
-                                @error('jam_selesai_periksa')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
-                            </div>
-                        </div>
-
-                        <div class="mb-4">
-                            <x-input-label for="lokasi_pemeriksaan" :value="__('Lokasi Pemeriksaan')" />
-                            <x-text-input id="lokasi_pemeriksaan" name="lokasi_pemeriksaan" type="text" class="mt-1 block w-full" value="{{ old('lokasi_pemeriksaan', $pemeriksaan->lokasi_pemeriksaan ?? '') }}" />
-                            @error('lokasi_pemeriksaan')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                         </div>
 
                         <hr class="my-6">
