@@ -39,7 +39,7 @@
 
                                 <div class="mb-4">
                                     <x-input-label for="jenis_identitas_penerima" :value="__('Jenis Identitas Penerima')" />
-                                    <x-text-input id="jenis_identitas_penerima" name="jenis_identitas_penerima" type="text" class="mt-1 block w-full" value="{{ old('jenis_identitas_penerima', $penerima->jenis_identitas_penerima ?? '') }}" placeholder="KTP, Passport" />
+                                    <x-text-input id="jenis_identitas_penerima" name="jenis_identitas_penerima" type="text" class="mt-1 block w-full" value="{{ old('jenis_identitas_penerima', $penerima->jenis_identitas_penerima ?? '') }}" />
                                     @error('jenis_identitas_penerima')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                                 </div>
 
