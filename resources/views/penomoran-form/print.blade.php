@@ -44,17 +44,60 @@
         table {
             width: 100%;
             border-collapse: collapse;
+            border-spacing: 0;
             margin-bottom: 10px;
         }
-        .table-border th,
-        .table-border td {
-            border: 1px solid #000;
-            padding: 5px;
+        .page-table td {
+            border: none;
+            padding: 0;
             vertical-align: top;
         }
-        .table-border th {
+        .section-table,
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        .section-table th,
+        .section-table td,
+        .header-table td {
+            border: 1px solid #000;
+            padding: 6px 7px;
+            vertical-align: top;
+        }
+        .section-table th {
             font-weight: bold;
             text-align: left;
+            background: #f7f7f7;
+        }
+        .header-title {
+            font-weight: bold;
+            text-align: center;
+            font-size: 13pt;
+            margin: 0;
+        }
+        .header-note {
+            font-size: 9pt;
+            line-height: 1.2;
+        }
+        .label-cell {
+            font-weight: bold;
+            width: 35%;
+        }
+        .value-cell {
+            min-height: 1.2em;
+        }
+        .signature-table td {
+            padding: 18px 8px;
+            text-align: center;
+            border: 1px solid #000;
+            min-height: 90px;
+        }
+        .signature-table td span {
+            display: inline-block;
+            margin-top: 50px;
+            border-top: 1px solid #000;
+            width: 100%;
         }
         .header-title {
             text-align: center;
@@ -101,75 +144,78 @@
         <button type="button" onclick="window.history.back();">Kembali</button>
     </div>
 
-    <div>
-        <div class="header-title">Pemberitahuan Impor Barang Khusus (PIBK)</div>
-        <p class="header-subtitle">A. Untuk 1. Barang Pindahan Penumpang 2. Barang Kiriman Melalui PJT 3. Barang Impor Sementara Dibawa</p>
-        <p class="header-subtitle">4. Barang Impor Tertentu 5. Barang Pribadi Penumpang 6. Lainnya</p>
-    </div>
-
-    <table class="table-border">
+    <table class="header-table">
         <tr>
-            <td style="width: 50%;">
-                <table style="width: 100%; border-collapse: collapse;">
+            <td colspan="2" class="header-title">Pemberitahuan Impor Barang Khusus (PIBK)</td>
+        </tr>
+        <tr>
+            <td class="header-note">A. Untuk 1. Barang Pindahan Penumpang 2. Barang Kiriman Melalui PJT 3. Barang Impor Sementara Dibawa</td>
+            <td class="header-note">4. Barang Impor Tertentu 5. Barang Pribadi Penumpang 6. Lainnya</td>
+        </tr>
+    </table>
+
+    <table class="page-table">
+        <tr>
+            <td style="width: 50%; padding-right: 4px;">
+                <table class="section-table">
                     <tr>
-                        <td class="field-label" colspan="2" style="width: 100%;">B. DATA PEMBERITAHUAN</td>
+                        <th colspan="2">B. DATA PEMBERITAHUAN</th>
                     </tr>
                     <tr>
-                        <td class="field-label" colspan="2" style="width: 100%;">
+                        <td class="field-label" colspan="2">
                             <span style="text-transform: uppercase; font-weight: bold;">1. Nama, Alamat Pengirim Barang</span>
                             <br>
-                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pengirim->nama_pengirim ?? '-' }} , {{ $penomoran->pengirim->alamat_pengirim ?? '-' }}</span>
-                        </td> 
+                            <span style="text-transform: uppercase; font-weight: normal;">{{ $penomoran->pengirim->nama_pengirim ?? '-' }}<br>{{ $penomoran->pengirim->alamat_pengirim ?? '-' }}</span>
+                            <br><br><br><br><br><br>
+                        </td>
                     </tr>
                     <tr>
-                        <td class="field-label" colspan="2" style="width: 100%;">
+                        <td class="field-label" colspan="2">
                             <span style="text-transform: uppercase; font-weight: bold;">2. Identitas Pengirim Barang</span>
                             <br>
-                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pengirim->jenis_identitas_pengirim ?? '-' }}</span>
+                            <span style="text-transform: uppercase; font-weight: normal;">{{ $penomoran->pengirim->jenis_identitas_pengirim ?? '-' }}</span>
                         </td>
                     </tr>
                     <tr>
-                        <td class="field-label" colspan="2" style="width: 100%;">
+                        <td class="field-label" colspan="2">
                             <span style="text-transform: uppercase; font-weight: bold;">3. Nama, Alamat Penerima Barang</span>
                             <br>
-                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->penerima->nama_penerima ?? '-' }} <br> {{ $penomoran->penerima->alamat_penerima ?? '-' }}</span>
+                            <span style="text-transform: uppercase; font-weight: normal;">{{ $penomoran->penerima->nama_penerima ?? '-' }}<br>{{ $penomoran->penerima->alamat_penerima ?? '-' }}</span>
                         </td>
                     </tr>
                     <tr>
-                        <td class="field-label" colspan="2"style="width: 100%;">
+                        <td class="field-label" colspan="2">
                             <span style="text-transform: uppercase; font-weight: bold;">4. Identitas Pemberitahu</span>
                             <br>
-                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pemberitahu->identitas_pemberitahu ?? '-' }}</span>
+                            <span style="text-transform: uppercase; font-weight: normal;">{{ $penomoran->pemberitahu->identitas_pemberitahu ?? '-' }}</span>
                         </td>
                     </tr>
                     <tr>
-                        <td class="field-label" colspan="2" style="width: 100%;">
+                        <td class="field-label" colspan="2">
                             <span style="text-transform: uppercase; font-weight: bold;">5. Nama, Alamat Pemberitahu</span>
                             <br>
-                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pemberitahu->nama_pemberitahu ?? '-' }} <br> {{ $penomoran->pemberitahu->alamat_pemberitahu ?? '-' }}</span>
+                            <span style="text-transform: uppercase; font-weight: normal;">{{ $penomoran->pemberitahu->nama_pemberitahu ?? '-' }}<br>{{ $penomoran->pemberitahu->alamat_pemberitahu ?? '-' }}</span>
                         </td>
                     </tr>
                     <tr>
-                        <td class="field-label" colspan="2" style="width: 100%;">
+                        <td class="field-label" colspan="2">
                             <span style="text-transform: uppercase; font-weight: bold;">6. No. & Tgl. Surat Izin PJT/PPJK</span>
                             <br>
-                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->suratIzin->nomor_surat_izin_pjt_ppjk ?? '-' }} / {{ $penomoran->suratIzin->tanggal_surat_izin_pjt_ppjk?->format('d-m-Y') ?? '-' }}</span>
+                            <span style="text-transform: uppercase; font-weight: normal;">{{ $penomoran->suratIzin->nomor_surat_izin_pjt_ppjk ?? '-' }} <br> {{ $penomoran->suratIzin->tanggal_surat_izin_pjt_ppjk?->format('d-m-Y') ?? '-' }}</span>
                         </td>
                     </tr>
                     <tr>
-                        <td class="field-label" colspan="2" style="width: 100%;">
+                        <td class="field-label" colspan="2">
                             <span style="text-transform: uppercase; font-weight: bold;">7. Cara Pengangkutan</span>
                             <br>
                             <span style="text-transform: none; font-weight: normal;">{{ ucfirst($penomoran->pengangkutan->cara_pengangkutan ?? '-') }}</span>
                         </td>
-                    </tr>
-                    <tr>
-                        <td class="field-label" colspan="2" style="width: 100%;">
+                    </tr>                    
+                        <td class="field-label" colspan="2">
                             <span style="text-transform: uppercase; font-weight: bold;">8. Nama Sarana Pengangkut & No. Voy/Flight</span>
                             <br>
-                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pengangkutan->nama_sarkut ?? '-' }} / {{ $penomoran->pengangkutan->no_flight ?? '-' }}</span>
-                        </td>
-                    </tr>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pengangkutan->nama_sarkut ?? '-' }} <br> {{ $penomoran->pengangkutan->no_flight ?? '-' }}</span>
+                        </td>                    
                     <tr>
                         <td class="field-label" style="width: 50%;">
                             <span style="text-transform: uppercase; font-weight: bold;">9. Pelabuhan Muat</span>
@@ -181,56 +227,138 @@
                             <br>
                             <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pengangkutan->pelabuhan_bongkar ?? '-' }}</span>
                         </td>
-                    </tr>
                 </table>
             </td>
-            <td style="width: 40%; vertical-align: top;">
-                <table style="width: 100%; border-collapse: collapse;">
+            <td style="width: 50%; padding-left: 4px; vertical-align: top;">
+                <table class="section-table">
                     <tr>
-                        <td class="field-label" colspan="2" style="width: 100%;">D. DIISI OLEH BEA DAN CUKAI</td>
-                    </tr>
-                    <tr>                        
-                        <td class="field-label" style="width: 30%;">No.</td>
-                        <td class="field-label">%WB</td>
+                        <th colspan="4">D. DIISI OLEH BEA DAN CUKAI</th>
                     </tr>
                     <tr>
-                        <td class="value-cell" colspan="3" style="height: 90px;">&nbsp;</td>
+                        <td class="label-cell" >Nopen</td>
+                        <td class="value-cell">{{ $penomoran->penomoran ?? '-' }}</td>
+                        <td class="label-cell" colspan="2" >/PIBK/RH/2026	
+</td>
                     </tr>
                     <tr>
-                        <td class="field-label">Tgl</td>
-                        <td class="value-cell">&nbsp;</td>
-                        <td class="value-cell">&nbsp;</td>
+                        <td class="label-cell">Tanggal Nopen</td>
+                        <td class="value-cell" colspan="3">{{ $penomoran->tanggal_penomoran ? $penomoran->tanggal_penomoran->format('d-m-Y') : '-' }}</td>
                     </tr>
                     <tr>
-                        <td class="field-label">Kantor Pabean</td>
-                        <td class="value-cell" colspan="2">&nbsp;</td>
+                        <td class="label-cell">Kantor Pabean</td>
+                        <td class="value-cell" colspan="3">130100</td>
                     </tr>
                     <tr>
-                        <td class="field-label">No. BC 1.1</td>
-                        <td class="value-cell" colspan="2">{{ $penomoran->pib->nomor_bc11 ?? '-' }}</td>
+                        <td class="label-cell">No. BC 1.1</td>
+                        <td class="value-cell">{{ $penomoran->pib->nomor_bc11 ?? '-' }}</td>
+                        <td class="label-cell">Tgl</td>
+                        <td class="value-cell" width="50%">{{ $penomoran->pib->tanggal_bc11?->format('d F Y') ?? '-' }}</td>
                     </tr>
                     <tr>
-                        <td class="field-label">Tgl</td>
-                        <td class="value-cell" colspan="2">{{ $penomoran->pib->tanggal_bc11?->format('d-m-Y') ?? '-' }}</td>
+                        <td class="field-label" style="width: 50%" colspan="3">
+                            <span style="text-transform: uppercase; font-weight: bold;">Pos </span>
+                            <br>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib->nomor_pos ?? '-' }}</span>
+                        </td>
+                        <td class="field-label" style="width: 50%;">
+                            <span style="text-transform: uppercase; font-weight: bold;">Sub Pos</span>
+                            <br>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib->nomor_subpos ?? '-' }}</span>
+                        </td>
                     </tr>
                     <tr>
-                        <td class="field-label">Pos</td>
-                        <td class="value-cell" colspan="2">{{ $penomoran->pib->nomor_pos ?? '-' }}</td>
+                        <td class="field-label" style="width: 50%" colspan="3">
+                            <span style="text-transform: uppercase; font-weight: bold;">11. Invoice </span>
+                            <br>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib->nomor_invoice ?? '-' }}</span>
+                        </td>
+                        <td class="field-label" style="width: 50%;">
+                            <span style="text-transform: uppercase; font-weight: bold;" colspan="3">Tgl</span>
+                            <br>
+                            <span style="text-transform: none; font-weight: normal;" colspan="3">{{ $penomoran->pib->tanggal_invoice?->format('d F Y') ?? '-' }}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="field-label" style="width: 50%" colspan="3">
+                            <span style="text-transform: uppercase; font-weight: bold;">12. BL/AWB: </span>
+                            <br>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib->nomor_bl_awb ?? '-' }}</span>
+                        </td>
+                        <td class="field-label" style="width: 50%;">
+                            <span style="text-transform: uppercase; font-weight: bold;" colspan="3">Tgl</span>
+                            <br>
+                            <span style="text-transform: none; font-weight: normal;" colspan="3">{{ $penomoran->pib->tanggal_bl_awb?->format('d F Y') ?? '-' }}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="field-label" style="width: 50%" colspan="4">
+                            <span style="text-transform: uppercase; font-weight: bold;">13. Negara Asal Barang: </span>
+                            <br>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib->negara_asal_barang ?? '-' }}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="field-label" style="width: 50%" colspan="4">
+                            <span style="text-transform: uppercase; font-weight: bold;">14. Valuta </span>
+                            <br>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib->valuta ?? '-' }}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="field-label" style="width: 50%" colspan="4">
+                            <span style="text-transform: uppercase; font-weight: bold;">15. FOB </span>
+                            <br>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib->fob ?? '-' }}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="field-label" style="width: 50%" colspan="4">
+                            <span style="text-transform: uppercase; font-weight: bold;">16. Freight </span>
+                            <br>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib->freight_currency ?? '-' }} {{ $penomoran->pib->freight ?? '-' }}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="field-label" style="width: 50%" colspan="4">
+                            <span style="text-transform: uppercase; font-weight: bold;">17. Asuransi </span>
+                            <br>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib->asuransi ?? '-' }}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="field-label" style="width: 50%" colspan="4">
+                            <span style="text-transform: uppercase; font-weight: bold;">18. Nilai CIF </span>
+                            <br>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib->nilai_cif ?? '-' }}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="field-label" style="width: 50%" colspan="3">
+                            <span style="text-transform: uppercase; font-weight: bold;">21. Jumlah & Jenis Satuan </span>
+                            <br>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->uraian_barang->jumlah_kemasan ?? '-' }} {{ $penomoran->uraian_barang->satuan_kemasan ?? '' }} / {{ $penomoran->uraian_barang->berat ?? '' }} {{ $penomoran->uraian_barang->satuan_kemasan ?? '' }} </span>
+                        </td>
+                        <td class="field-label" style="width: 50%;">
+                            <span style="text-transform: uppercase; font-weight: bold;" colspan="3">Tgl</span>
+                            <br>
+                            <span style="text-transform: none; font-weight: normal;" colspan="3">{{ $penomoran->pib->tanggal_bl_awb?->format('d F Y') ?? '-' }}</span>
+                        </td>
                     </tr>
                 </table>
             </td>
         </tr>
     </table>
 
+
     <div class="subsection-title">5. URAIAN BARANG</div>
-    <table class="table-border">
+    <table class="section-table">
         <thead>
             <tr>
                 <th style="width: 5%; text-align: center;">No</th>
-                <th style="width: 50%;">Uraian Barang</th>
+                <th style="width: 55%;">Uraian Barang</th>
                 <th style="width: 15%; text-align: center;">Jumlah & Jenis Satuan</th>
-                <th style="width: 15%; text-align: right;">Nilai CIF</th>
-                <th style="width: 15%; text-align: right;">Total</th>
+                <th style="width: 12%; text-align: right;">Nilai CIF</th>
+                <th style="width: 13%; text-align: right;">Total</th>
             </tr>
         </thead>
         <tbody>
@@ -251,41 +379,41 @@
     </table>
 
     <div class="subsection-title">E. HASIL PEMERIKSAAN / PENETAPAN PEJABAT BEA DAN CUKAI</div>
-    <table class="table-border">
+    <table class="section-table">
         <tr>
-            <td class="field-label" style="width: 20%;">Hari</td>
+            <td class="label-cell" style="width: 20%;">Hari</td>
             <td class="value-cell" style="width: 30%;">{{ $penomoran->pemeriksaan->hari ?? '-' }}</td>
-            <td class="field-label" style="width: 20%;">Jumlah & Jenis Satuan</td>
+            <td class="label-cell" style="width: 20%;">Jumlah & Jenis Satuan</td>
             <td class="value-cell" style="width: 30%;">{{ $penomoran->pemeriksaan->jumlah_satuan_barang ?? '-' }} {{ $penomoran->pemeriksaan->satuan_barang ?? '' }}</td>
         </tr>
         <tr>
-            <td class="field-label">Tanggal</td>
+            <td class="label-cell">Tanggal</td>
             <td class="value-cell">{{ $penomoran->pemeriksaan->tanggal?->format('d-m-Y') ?? '-' }}</td>
-            <td class="field-label">Nilai Pabean</td>
+            <td class="label-cell">Nilai Pabean</td>
             <td class="value-cell">{{ number_format($penomoran->pib->nilai_cif ?? 0, 2) }}</td>
         </tr>
         <tr>
-            <td class="field-label">Nama</td>
+            <td class="label-cell">Nama</td>
             <td class="value-cell">{{ $penomoran->pemeriksaan->nama ?? '-' }}</td>
-            <td class="field-label">Pos Tarif</td>
+            <td class="label-cell">Pos Tarif</td>
             <td class="value-cell">{{ $penomoran->uraianBarangs->first()?->pos_tarif_hs ?? '-' }}</td>
         </tr>
         <tr>
-            <td class="field-label">Jam Mulai</td>
+            <td class="label-cell">Jam Mulai</td>
             <td class="value-cell">{{ $penomoran->pemeriksaan->jam_mulai_periksa?->format('H:i') ?? '-' }}</td>
-            <td class="field-label">Tipe / BM, Cukai, PPN, PPMBM, PPh</td>
+            <td class="label-cell">Tipe / BM, Cukai, PPN, PPMBM, PPh</td>
             <td class="value-cell">{{ number_format($penomoran->uraianBarangs->first()?->bm ?? 0, 2) }}, {{ number_format($penomoran->uraianBarangs->first()?->cukai ?? 0, 2) }}, {{ number_format($penomoran->uraianBarangs->first()?->ppn ?? 0, 2) }}, {{ number_format($penomoran->uraianBarangs->first()?->ppnbm ?? 0, 2) }}, {{ number_format($penomoran->uraianBarangs->first()?->pph ?? 0, 2) }}</td>
         </tr>
         <tr>
-            <td class="field-label">Jam Selesai</td>
+            <td class="label-cell">Jam Selesai</td>
             <td class="value-cell">{{ $penomoran->pemeriksaan->jam_selesai_periksa?->format('H:i') ?? '-' }}</td>
-            <td class="field-label">Keterangan</td>
+            <td class="label-cell">Keterangan</td>
             <td class="value-cell">{{ $penomoran->pemeriksaan->kondisi_segel ?? '-' }}</td>
         </tr>
         <tr>
-            <td class="field-label">Lokasi</td>
+            <td class="label-cell">Lokasi</td>
             <td class="value-cell">{{ $penomoran->pemeriksaan->lokasi_pemeriksaan ?? '-' }}</td>
-            <td class="field-label">Jenis Kemasan</td>
+            <td class="label-cell">Jenis Kemasan</td>
             <td class="value-cell">{{ $penomoran->pemeriksaan->jenis_kemasan ?? '-' }}</td>
         </tr>
     </table>
