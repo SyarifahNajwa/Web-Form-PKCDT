@@ -107,55 +107,89 @@
         <p class="header-subtitle">4. Barang Impor Tertentu 5. Barang Pribadi Penumpang 6. Lainnya</p>
     </div>
 
-    <div class="subsection-title">B. DATA PEMBERITAHUAN</div>
     <table class="table-border">
         <tr>
-            <td style="width: 60%;">
+            <td style="width: 50%;">
                 <table style="width: 100%; border-collapse: collapse;">
                     <tr>
-                        <td class="field-label" style="width: 25%;">1. Nama, Alamat Pengirim Barang</td>
-                        <td class="value-cell" colspan="3">{{ $penomoran->pengirim->nama_pengirim ?? '-' }} / {{ $penomoran->pengirim->alamat_pengirim ?? '-' }}</td>
+                        <td class="field-label" colspan="2" style="width: 100%;">B. DATA PEMBERITAHUAN</td>
                     </tr>
                     <tr>
-                        <td class="field-label">2. Identitas Penerima Barang</td>
-                        <td class="value-cell" colspan="3">{{ $penomoran->penerima->jenis_identitas_penerima ?? '-' }} / {{ $penomoran->penerima->identitas_penerima ?? '-' }}</td>
+                        <td class="field-label" colspan="2" style="width: 100%;">
+                            <span style="text-transform: uppercase; font-weight: bold;">1. Nama, Alamat Pengirim Barang</span>
+                            <br>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pengirim->nama_pengirim ?? '-' }} , {{ $penomoran->pengirim->alamat_pengirim ?? '-' }}</span>
+                        </td> 
                     </tr>
                     <tr>
-                        <td class="field-label">3. Nama, Alamat Penerima Barang</td>
-                        <td class="value-cell" colspan="3">{{ $penomoran->penerima->nama_penerima ?? '-' }} / {{ $penomoran->penerima->alamat_penerima ?? '-' }}</td>
+                        <td class="field-label" colspan="2" style="width: 100%;">
+                            <span style="text-transform: uppercase; font-weight: bold;">2. Identitas Pengirim Barang</span>
+                            <br>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pengirim->jenis_identitas_pengirim ?? '-' }}</span>
+                        </td>
                     </tr>
                     <tr>
-                        <td class="field-label">4. Identitas Pemberitahu</td>
-                        <td class="value-cell" colspan="3">{{ $penomoran->pemberitahu->identitas_pemberitahu ?? '-' }}</td>
+                        <td class="field-label" colspan="2" style="width: 100%;">
+                            <span style="text-transform: uppercase; font-weight: bold;">3. Nama, Alamat Penerima Barang</span>
+                            <br>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->penerima->nama_penerima ?? '-' }} <br> {{ $penomoran->penerima->alamat_penerima ?? '-' }}</span>
+                        </td>
                     </tr>
                     <tr>
-                        <td class="field-label">5. Nama, Alamat Pemberitahu</td>
-                        <td class="value-cell" colspan="3">{{ $penomoran->pemberitahu->nama_pemberitahu ?? '-' }} / {{ $penomoran->pemberitahu->alamat_pemberitahu ?? '-' }}</td>
+                        <td class="field-label" colspan="2"style="width: 100%;">
+                            <span style="text-transform: uppercase; font-weight: bold;">4. Identitas Pemberitahu</span>
+                            <br>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pemberitahu->identitas_pemberitahu ?? '-' }}</span>
+                        </td>
                     </tr>
                     <tr>
-                        <td class="field-label">6. No. & Tgl. Surat Izin PJT/PPJK</td>
-                        <td class="value-cell" colspan="3">{{ $penomoran->suratIzin->nomor_surat_izin_pjt_ppjk ?? '-' }} / {{ $penomoran->suratIzin->tanggal_surat_izin_pjt_ppjk?->format('d-m-Y') ?? '-' }}</td>
+                        <td class="field-label" colspan="2" style="width: 100%;">
+                            <span style="text-transform: uppercase; font-weight: bold;">5. Nama, Alamat Pemberitahu</span>
+                            <br>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pemberitahu->nama_pemberitahu ?? '-' }} <br> {{ $penomoran->pemberitahu->alamat_pemberitahu ?? '-' }}</span>
+                        </td>
                     </tr>
                     <tr>
-                        <td class="field-label">7. Cara Pengangkutan</td>
-                        <td class="value-cell" colspan="3">{{ ucfirst($penomoran->pengangkutan->cara_pengangkutan ?? '-') }}</td>
+                        <td class="field-label" colspan="2" style="width: 100%;">
+                            <span style="text-transform: uppercase; font-weight: bold;">6. No. & Tgl. Surat Izin PJT/PPJK</span>
+                            <br>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->suratIzin->nomor_surat_izin_pjt_ppjk ?? '-' }} / {{ $penomoran->suratIzin->tanggal_surat_izin_pjt_ppjk?->format('d-m-Y') ?? '-' }}</span>
+                        </td>
                     </tr>
                     <tr>
-                        <td class="field-label">8. Nama Sarana Pengangkut & No. Voy/Flight</td>
-                        <td class="value-cell" colspan="3">{{ $penomoran->pengangkutan->nama_sarkut ?? '-' }} / {{ $penomoran->pengangkutan->no_flight ?? '-' }}</td>
+                        <td class="field-label" colspan="2" style="width: 100%;">
+                            <span style="text-transform: uppercase; font-weight: bold;">7. Cara Pengangkutan</span>
+                            <br>
+                            <span style="text-transform: none; font-weight: normal;">{{ ucfirst($penomoran->pengangkutan->cara_pengangkutan ?? '-') }}</span>
+                        </td>
                     </tr>
                     <tr>
-                        <td class="field-label">9. Pelabuhan Muat</td>
-                        <td class="value-cell">{{ $penomoran->pengangkutan->pelabuhan_muat ?? '-' }}</td>
-                        <td class="field-label">10. Pelabuhan Bongkar</td>
-                        <td class="value-cell">{{ $penomoran->pengangkutan->pelabuhan_bongkar ?? '-' }}</td>
+                        <td class="field-label" colspan="2" style="width: 100%;">
+                            <span style="text-transform: uppercase; font-weight: bold;">8. Nama Sarana Pengangkut & No. Voy/Flight</span>
+                            <br>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pengangkutan->nama_sarkut ?? '-' }} / {{ $penomoran->pengangkutan->no_flight ?? '-' }}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="field-label" style="width: 50%;">
+                            <span style="text-transform: uppercase; font-weight: bold;">9. Pelabuhan Muat</span>
+                            <br>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pengangkutan->pelabuhan_muat ?? '-' }}</span>
+                        </td>
+                        <td class="field-label" style="width: 50%;">
+                            <span style="text-transform: uppercase; font-weight: bold;">10. Pelabuhan Bongkar</span>
+                            <br>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pengangkutan->pelabuhan_bongkar ?? '-' }}</span>
+                        </td>
                     </tr>
                 </table>
             </td>
             <td style="width: 40%; vertical-align: top;">
                 <table style="width: 100%; border-collapse: collapse;">
                     <tr>
-                        <td class="field-label" style="width: 40%;">DI ISI OLEH BEA DAN CUKAI</td>
+                        <td class="field-label" colspan="2" style="width: 100%;">D. DIISI OLEH BEA DAN CUKAI</td>
+                    </tr>
+                    <tr>                        
                         <td class="field-label" style="width: 30%;">No.</td>
                         <td class="field-label">%WB</td>
                     </tr>
