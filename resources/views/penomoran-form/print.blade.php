@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -387,12 +387,11 @@
     <table class="section-table">
         <thead>
             <tr>
-                <th style="width: 4%; text-align: center;">23. No</th>
+                <th style="width: 4%; text-align: left;">23. No</th>
                 <th style="width: 36%; text-align: left;">24. Uraian barang secara lengkap meliputi jenis, jumlah, merek, tipe, ukuran dan spesifikasi lainnya</th>
-                <th style="width: 14%; text-align: center;">25. Jumlah & Jenis Satuan</th>
-                <th style="width: 14%; text-align: center;">26. Nilai Pabean</th>
-                <th style="width: 16%; text-align: center;">27. Pos Tarif / HS</th>
-                <th style="width: 16%; text-align: left;">- Tarif BM, Cukai, PPN, PPNBM, PPh</th>
+                <th style="width: 14%; text-align: left;">25. Jumlah & Jenis Satuan</th>
+                <th style="width: 14%; text-align: left;">26. Nilai Pabean</th>
+                <th style="width: 16%; text-align: left;">27. Pos Tarif / HS - Tarif BM, Cukai, PPN, PPNBM, PPh</th>
             </tr>
         </thead>
         <tbody>
@@ -400,55 +399,68 @@
                 <td style="text-align: center; vertical-align: top;">1</td>
                 <td style="vertical-align: top;">{{ $firstBarang->uraian_barang ?? '-' }}</td>
                 <td style="text-align: center; vertical-align: top;">{{ $jumlahSatuan ?: '-' }}</td>
-                <td style="text-align: right; vertical-align: top;">{{ $penomoran->pib?->nilai_cif !== null ? number_format($penomoran->pib->nilai_cif, 2) : '-' }}</td>
+                <td style="text-align: center; vertical-align: top;">{{ $penomoran->pib?->nilai_cif !== null ? number_format($penomoran->pib->nilai_cif, 2) : '-' }}</td>
                 <td style="text-align: center; vertical-align: top;">{{ $firstBarang->pos_tarif_hs ?? '-' }}</td>
-                <td style="vertical-align: top;">{{ $tarifText }}</td>
             </tr>
             <tr>
-                <td colspan="2" style="font-weight: bold;">28. NDPBM</td>
-                <td style="text-align: center;">{{ $firstBarang?->ndpbm !== null ? number_format($firstBarang->ndpbm, 2) : '-' }}</td>
-                <td colspan="3" style="padding: 0;">
-                    <table style="width: 100%; border-collapse: collapse; border: none;">
-                        <tr>
-                            <td style="width: 50%; border: none; font-weight: bold;">29. Dalam Rupiah</td>
-                            <td style="width: 50%; border: none; text-align: right;">{{ $firstBarang?->dalam_rupiah !== null ? number_format($firstBarang->dalam_rupiah, 2) : '-' }}</td>
-                        </tr>
-                        <tr>
-                            <td style="border: none; font-weight: bold;">30. BM</td>
-                            <td style="border: none; text-align: right;">{{ $firstBarang?->bm !== null ? number_format($firstBarang->bm, 2) : '-' }}</td>
-                        </tr>
-                        <tr>
-                            <td style="border: none; font-weight: bold;">31. Cukai</td>
-                            <td style="border: none; text-align: right;">{{ $firstBarang?->cukai !== null ? number_format($firstBarang->cukai, 2) : '-' }}</td>
-                        </tr>
-                        <tr>
-                            <td style="border: none; font-weight: bold;">32. PPN</td>
-                            <td style="border: none; text-align: right;">{{ $firstBarang?->ppn !== null ? number_format($firstBarang->ppn, 2) : '-' }}</td>
-                        </tr>
-                        <tr>
-                            <td style="border: none; font-weight: bold;">33. PPNBM</td>
-                            <td style="border: none; text-align: right;">{{ $firstBarang?->ppnbm !== null ? number_format($firstBarang->ppnbm, 2) : '-' }}</td>
-                        </tr>
-                        <tr>
-                            <td style="border: none; font-weight: bold;">34. PPh</td>
-                            <td style="border: none; text-align: right;">{{ $firstBarang?->pph !== null ? number_format($firstBarang->pph, 2) : '-' }}</td>
-                        </tr>
-                        <tr>
-                            <td style="border: none; font-weight: bold;">35. Total</td>
-                            <td style="border: none; text-align: right;">{{ $firstBarang?->total !== null ? number_format($firstBarang->total, 2) : '-' }}</td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" style="vertical-align: top; padding: 8px;">
-                    {{ $penomoran->pemeriksaan?->lokasi_pemeriksaan ?? '-' }}, {{ $penomoran->pemeriksaan?->tanggal?->format('d F Y') ?? '-' }}<br>
-                    Pejabat Bea dan Cukai
-                    <div style="margin-top: 20px;">{{ $penomoran->pemeriksa?->nama_pemeriksa ?? '' }}</div>
-                    <div>NIP: {{ $penomoran->pemeriksa?->nip_pemeriksa ?? '' }}</div>
-                </td>
-                <td colspan="4"></td>
-            </tr>
+            <td class="field-label" style="width: 50%; vertical-align: top;" colspan="3">
+                <table style="width: 100%; border-collapse: collapse; border: none; ">
+                    <tr style="border-bottom: 1px solid black;">
+                        <td style="border: none; padding: 2px;">
+                            <span style="text-transform: uppercase; font-weight: bold;">28. NDPBM: </span>
+                            <span style="text-transform: none; font-weight: normal;">
+                                {{ $firstBarang?->ndpbm !== null ? number_format($firstBarang->ndpbm, 2) : '-' }}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: none; padding: 2px; text-align: center;">
+                            {{ $penomoran->uraianBarangs->first()?->kota_pibk ?? '-' }},
+                            {{ $penomoran->pemeriksaan?->tanggal?->format('d F Y') ?? '-' }}
+                            <br>
+                            <span style="font-weight: normal;">Pejabat Bea dan Cukai</span>
+                            <br><br><br>
+                            <span style="font-weight: normal;">{{ $penomoran->pemeriksa?->nama_pemeriksa ?? '' }}</span>
+                            <br>
+                            <span style="font-weight: normal;">NIP {{ $penomoran->pemeriksa?->nip_pemeriksa ?? '' }}</span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+
+            <td colspan="2" style="padding: 0; vertical-align: top;">
+                <table style="width: 100%; border-collapse: collapse; border: none;">
+                    <tr>
+                        <td style="border: none; border-bottom: 1px solid black; font-weight: bold; padding: 2px;">29. Dalam Rupiah</td>
+                        <td style="border: none; border-bottom: 1px solid black; text-align: right; padding: 2px;">{{ $firstBarang?->dalam_rupiah !== null ? number_format($firstBarang->dalam_rupiah, 2) : '-' }}</td>
+                    </tr>
+                    <tr>
+                        <td style="border: none; border-bottom: 1px solid black; font-weight: bold; padding: 2px;">30. BM</td>
+                        <td style="border: none; border-bottom: 1px solid black; text-align: right; padding: 2px;">{{ $firstBarang?->bm !== null ? number_format($firstBarang->bm, 2) : '-' }}</td>
+                    </tr>
+                    <tr>
+                        <td style="border: none; border-bottom: 1px solid black; font-weight: bold; padding: 2px;">31. Cukai</td>
+                        <td style="border: none; border-bottom: 1px solid black; text-align: right; padding: 2px;">{{ $firstBarang?->cukai !== null ? number_format($firstBarang->cukai, 2) : '-' }}</td>
+                    </tr>
+                    <tr>
+                        <td style="border: none; border-bottom: 1px solid black; font-weight: bold; padding: 2px;">32. PPN</td>
+                        <td style="border: none; border-bottom: 1px solid black; text-align: right; padding: 2px;">{{ $firstBarang?->ppn !== null ? number_format($firstBarang->ppn, 2) : '-' }}</td>
+                    </tr>
+                    <tr>
+                        <td style="border: none; border-bottom: 1px solid black; font-weight: bold; padding: 2px;">33. PPnBM</td>
+                        <td style="border: none; border-bottom: 1px solid black; text-align: right; padding: 2px;">{{ $firstBarang?->ppnbm !== null ? number_format($firstBarang->ppnbm, 2) : '-' }}</td>
+                    </tr>
+                    <tr>
+                        <td style="border: none; border-bottom: 1px solid black; font-weight: bold; padding: 2px;">34. PPh</td>
+                        <td style="border: none; border-bottom: 1px solid black; text-align: right; padding: 2px;">{{ $firstBarang?->pph !== null ? number_format($firstBarang->pph, 2) : '-' }}</td>
+                    </tr>
+                    <tr>
+                        <td style="border: none; font-weight: bold; padding: 2px;">35. Total</td>
+                        <td style="border: none; text-align: right; padding: 2px;">{{ $firstBarang?->total !== null ? number_format($firstBarang->total, 2) : '-' }}</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
         </tbody>
     </table>
 
