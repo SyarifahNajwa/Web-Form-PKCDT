@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -244,86 +244,86 @@
                     </tr>
                     <tr>
                         <td class="label-cell">No. BC 1.1</td>
-                        <td class="value-cell">{{ $penomoran->pib->nomor_bc11 ?? '-' }}</td>
+                        <td class="value-cell">{{ $penomoran->pib?->nomor_bc11 ?? '-' }}</td>
                         <td class="label-cell">Tgl</td>
-                        <td class="value-cell" width="50%">{{ $penomoran->pib->tanggal_bc11?->format('d F Y') ?? '-' }}</td>
+                        <td class="value-cell" width="50%">{{ $penomoran->pib?->tanggal_bc11?->format('d F Y') ?? '-' }}</td>
                     </tr>
                     <tr>
                         <td class="field-label" style="width: 50%" colspan="3">
                             <span style="text-transform: uppercase; font-weight: bold;">Pos </span>
                             <br>
-                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib->nomor_pos ?? '-' }}</span>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib?->nomor_pos ?? '-' }}</span>
                         </td>
                         <td class="field-label" style="width: 50%;">
                             <span style="text-transform: uppercase; font-weight: bold;">Sub Pos</span>
                             <br>
-                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib->nomor_subpos ?? '-' }}</span>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib?->nomor_subpos ?? '-' }}</span>
                         </td>
                     </tr>
                     <tr>
                         <td class="field-label" style="width: 50%" colspan="3">
                             <span style="text-transform: uppercase; font-weight: bold;">11. Invoice </span>
                             <br>
-                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib->nomor_invoice ?? '-' }}</span>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib?->nomor_invoice ?? '-' }}</span>
                         </td>
                         <td class="field-label" style="width: 50%;">
                             <span style="text-transform: uppercase; font-weight: bold;" colspan="3">Tgl</span>
                             <br>
-                            <span style="text-transform: none; font-weight: normal;" colspan="3">{{ $penomoran->pib->tanggal_invoice?->format('d F Y') ?? '-' }}</span>
+                            <span style="text-transform: none; font-weight: normal;" colspan="3">{{ $penomoran->pib?->tanggal_invoice?->format('d F Y') ?? '-' }}</span>
                         </td>
                     </tr>
                     <tr>
                         <td class="field-label" style="width: 50%" colspan="3">
                             <span style="text-transform: uppercase; font-weight: bold;">12. BL/AWB: </span>
                             <br>
-                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib->nomor_bl_awb ?? '-' }}</span>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib?->nomor_bl_awb ?? '-' }}</span>
                         </td>
                         <td class="field-label" style="width: 50%;">
                             <span style="text-transform: uppercase; font-weight: bold;" colspan="3">Tgl</span>
                             <br>
-                            <span style="text-transform: none; font-weight: normal;" colspan="3">{{ $penomoran->pib->tanggal_bl_awb?->format('d F Y') ?? '-' }}</span>
+                            <span style="text-transform: none; font-weight: normal;" colspan="3">{{ $penomoran->pib?->tanggal_bl_awb?->format('d F Y') ?? '-' }}</span>
                         </td>
                     </tr>
                     <tr>
                         <td class="field-label" style="width: 50%" colspan="4">
                             <span style="text-transform: uppercase; font-weight: bold;">13. Negara Asal Barang: </span>
                             <br>
-                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib->negara_asal_barang ?? '-' }}</span>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib?->negara_asal_barang ?? '-' }}</span>
                         </td>
                     </tr>
                     <tr>
                         <td class="field-label" style="width: 50%" colspan="4">
                             <span style="text-transform: uppercase; font-weight: bold;">14. Valuta </span>
                             <br>
-                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib->valuta ?? '-' }}</span>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib?->valuta ?? '-' }}</span>
                         </td>
                     </tr>
                     <tr>
                         <td class="field-label" style="width: 50%" colspan="4">
                             <span style="text-transform: uppercase; font-weight: bold;">15. FOB </span>
                             <br>
-                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib->fob ?? '-' }}</span>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib?->fob ?? '-' }}</span>
                         </td>
                     </tr>
                     <tr>
                         <td class="field-label" style="width: 50%" colspan="4">
                             <span style="text-transform: uppercase; font-weight: bold;">16. Freight </span>
                             <br>
-                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib->freight_currency ?? '-' }} {{ $penomoran->pib->freight ?? '-' }}</span>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib?->freight_currency ?? '-' }} {{ $penomoran->pib?->freight ?? '-' }}</span>
                         </td>
                     </tr>
                     <tr>
                         <td class="field-label" style="width: 50%" colspan="4">
                             <span style="text-transform: uppercase; font-weight: bold;">17. Asuransi </span>
                             <br>
-                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib->asuransi ?? '-' }}</span>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib?->asuransi ?? '-' }}</span>
                         </td>
                     </tr>
                     <tr>
                         <td class="field-label" style="width: 50%" colspan="4">
                             <span style="text-transform: uppercase; font-weight: bold;">18. Nilai CIF </span>
                             <br>
-                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib->nilai_cif ?? '-' }}</span>
+                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib?->nilai_cif ?? '-' }}</span>
                         </td>
                     </tr>                    
                 </table>
@@ -358,64 +358,147 @@
     </table>
 
     <div class="subsection-title">E. HASIL PEMERIKSAAN / PENETAPAN PEJABAT BEA DAN CUKAI</div>
+    @php
+        $firstBarang = $penomoran->uraianBarangs->first();
+        $jumlahSatuan = $firstBarang ? trim(($firstBarang->jumlah_kemasan ?? '') . ' ' . ($firstBarang->satuan_kemasan ?? '') . ' / ' . (($firstBarang->berat ?? '') . ' ' . ($firstBarang->satuan ?? ''))) : '-';
+        $tarifText = '-';
+        if ($firstBarang) {
+            $tarifItems = [];
+            if ($firstBarang->bm !== null) {
+                $tarifItems[] = number_format($firstBarang->bm, 2);
+            }
+            if ($firstBarang->cukai !== null) {
+                $tarifItems[] = number_format($firstBarang->cukai, 2);
+            }
+            if ($firstBarang->ppn !== null) {
+                $tarifItems[] = number_format($firstBarang->ppn, 2);
+            }
+            if ($firstBarang->ppnbm !== null) {
+                $tarifItems[] = number_format($firstBarang->ppnbm, 2);
+            }
+            if ($firstBarang->pph !== null) {
+                $tarifItems[] = number_format($firstBarang->pph, 2);
+            }
+            if (count($tarifItems)) {
+                $tarifText = implode(', ', $tarifItems);
+            }
+        }
+    @endphp
     <table class="section-table">
-        <tr>
-            <td class="label-cell" style="width: 20%;">Hari</td>
-            <td class="value-cell" style="width: 30%;">{{ $penomoran->pemeriksaan->hari ?? '-' }}</td>
-            <td class="label-cell" style="width: 20%;">Jumlah & Jenis Satuan</td>
-            <td class="value-cell" style="width: 30%;">{{ $penomoran->pemeriksaan->jumlah_satuan_barang ?? '-' }} {{ $penomoran->pemeriksaan->satuan_barang ?? '' }}</td>
-        </tr>
-        <tr>
-            <td class="label-cell">Tanggal</td>
-            <td class="value-cell">{{ $penomoran->pemeriksaan->tanggal?->format('d-m-Y') ?? '-' }}</td>
-            <td class="label-cell">Nilai Pabean</td>
-            <td class="value-cell">{{ number_format($penomoran->pib->nilai_cif ?? 0, 2) }}</td>
-        </tr>
-        <tr>
-            <td class="label-cell">Nama</td>
-            <td class="value-cell">{{ $penomoran->pemeriksaan->nama ?? '-' }}</td>
-            <td class="label-cell">Pos Tarif</td>
-            <td class="value-cell">{{ $penomoran->uraianBarangs->first()?->pos_tarif_hs ?? '-' }}</td>
-        </tr>
-        <tr>
-            <td class="label-cell">Jam Mulai</td>
-            <td class="value-cell">{{ $penomoran->pemeriksaan->jam_mulai_periksa?->format('H:i') ?? '-' }}</td>
-            <td class="label-cell">Tipe / BM, Cukai, PPN, PPMBM, PPh</td>
-            <td class="value-cell">{{ number_format($penomoran->uraianBarangs->first()?->bm ?? 0, 2) }}, {{ number_format($penomoran->uraianBarangs->first()?->cukai ?? 0, 2) }}, {{ number_format($penomoran->uraianBarangs->first()?->ppn ?? 0, 2) }}, {{ number_format($penomoran->uraianBarangs->first()?->ppnbm ?? 0, 2) }}, {{ number_format($penomoran->uraianBarangs->first()?->pph ?? 0, 2) }}</td>
-        </tr>
-        <tr>
-            <td class="label-cell">Jam Selesai</td>
-            <td class="value-cell">{{ $penomoran->pemeriksaan->jam_selesai_periksa?->format('H:i') ?? '-' }}</td>
-            <td class="label-cell">Keterangan</td>
-            <td class="value-cell">{{ $penomoran->pemeriksaan->kondisi_segel ?? '-' }}</td>
-        </tr>
-        <tr>
-            <td class="label-cell">Lokasi</td>
-            <td class="value-cell">{{ $penomoran->pemeriksaan->lokasi_pemeriksaan ?? '-' }}</td>
-            <td class="label-cell">Jenis Kemasan</td>
-            <td class="value-cell">{{ $penomoran->pemeriksaan->jenis_kemasan ?? '-' }}</td>
-        </tr>
+        <thead>
+            <tr>
+                <th style="width: 4%; text-align: center;">23. No</th>
+                <th style="width: 36%; text-align: left;">24. Uraian barang secara lengkap meliputi jenis, jumlah, merek, tipe, ukuran dan spesifikasi lainnya</th>
+                <th style="width: 14%; text-align: center;">25. Jumlah & Jenis Satuan</th>
+                <th style="width: 14%; text-align: center;">26. Nilai Pabean</th>
+                <th style="width: 16%; text-align: center;">27. Pos Tarif / HS</th>
+                <th style="width: 16%; text-align: left;">- Tarif BM, Cukai, PPN, PPNBM, PPh</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="text-align: center; vertical-align: top;">1</td>
+                <td style="vertical-align: top;">{{ $firstBarang->uraian_barang ?? '-' }}</td>
+                <td style="text-align: center; vertical-align: top;">{{ $jumlahSatuan ?: '-' }}</td>
+                <td style="text-align: right; vertical-align: top;">{{ $penomoran->pib?->nilai_cif !== null ? number_format($penomoran->pib->nilai_cif, 2) : '-' }}</td>
+                <td style="text-align: center; vertical-align: top;">{{ $firstBarang->pos_tarif_hs ?? '-' }}</td>
+                <td style="vertical-align: top;">{{ $tarifText }}</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="font-weight: bold;">28. NDPBM</td>
+                <td style="text-align: center;">{{ $firstBarang?->ndpbm !== null ? number_format($firstBarang->ndpbm, 2) : '-' }}</td>
+                <td colspan="3" style="padding: 0;">
+                    <table style="width: 100%; border-collapse: collapse; border: none;">
+                        <tr>
+                            <td style="width: 50%; border: none; font-weight: bold;">29. Dalam Rupiah</td>
+                            <td style="width: 50%; border: none; text-align: right;">{{ $firstBarang?->dalam_rupiah !== null ? number_format($firstBarang->dalam_rupiah, 2) : '-' }}</td>
+                        </tr>
+                        <tr>
+                            <td style="border: none; font-weight: bold;">30. BM</td>
+                            <td style="border: none; text-align: right;">{{ $firstBarang?->bm !== null ? number_format($firstBarang->bm, 2) : '-' }}</td>
+                        </tr>
+                        <tr>
+                            <td style="border: none; font-weight: bold;">31. Cukai</td>
+                            <td style="border: none; text-align: right;">{{ $firstBarang?->cukai !== null ? number_format($firstBarang->cukai, 2) : '-' }}</td>
+                        </tr>
+                        <tr>
+                            <td style="border: none; font-weight: bold;">32. PPN</td>
+                            <td style="border: none; text-align: right;">{{ $firstBarang?->ppn !== null ? number_format($firstBarang->ppn, 2) : '-' }}</td>
+                        </tr>
+                        <tr>
+                            <td style="border: none; font-weight: bold;">33. PPNBM</td>
+                            <td style="border: none; text-align: right;">{{ $firstBarang?->ppnbm !== null ? number_format($firstBarang->ppnbm, 2) : '-' }}</td>
+                        </tr>
+                        <tr>
+                            <td style="border: none; font-weight: bold;">34. PPh</td>
+                            <td style="border: none; text-align: right;">{{ $firstBarang?->pph !== null ? number_format($firstBarang->pph, 2) : '-' }}</td>
+                        </tr>
+                        <tr>
+                            <td style="border: none; font-weight: bold;">35. Total</td>
+                            <td style="border: none; text-align: right;">{{ $firstBarang?->total !== null ? number_format($firstBarang->total, 2) : '-' }}</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="vertical-align: top; padding: 8px;">
+                    {{ $penomoran->pemeriksaan?->lokasi_pemeriksaan ?? '-' }}, {{ $penomoran->pemeriksaan?->tanggal?->format('d F Y') ?? '-' }}<br>
+                    Pejabat Bea dan Cukai
+                    <div style="margin-top: 20px;">{{ $penomoran->pemeriksa?->nama_pemeriksa ?? '' }}</div>
+                    <div>NIP: {{ $penomoran->pemeriksa?->nip_pemeriksa ?? '' }}</div>
+                </td>
+                <td colspan="4"></td>
+            </tr>
+        </tbody>
     </table>
 
     <div class="subsection-title">F. UNTUK PEJABAT BEA DAN CUKAI</div>
-    <table class="signature-table">
+    <table class="page-table">
         <tr>
-            <td>
-                <div><strong>PFPD</strong></div>
-                <div>{{ $penomoran->pfpd->nama_pfpd ?? '' }}</div>
-                <div>NIP: {{ $penomoran->pfpd->nip_pfpd ?? '' }}</div>
-                <span></span>
+            <td style="width: 60%; padding-right: 4px; vertical-align: top;">
+                <table class="section-table" style="width: 100%;">
+                    <tr>
+                        <th style="text-align: center;">PFPD</th>
+                        <th style="text-align: center;">Pemeriksa</th>
+                        <th style="text-align: center;">Pejabat Penerima</th>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center; min-height: 80px;">
+                            <div>{{ $penomoran->pfpd?->nama_pfpd ?? '' }}</div>
+                            <div>NIP: {{ $penomoran->pfpd?->nip_pfpd ?? '' }}</div>
+                        </td>
+                        <td style="text-align: center; min-height: 80px;">
+                            <div>{{ $penomoran->pemeriksa?->nama_pemeriksa ?? '' }}</div>
+                            <div>NIP: {{ $penomoran->pemeriksa?->nip_pemeriksa ?? '' }}</div>
+                        </td>
+                        <td style="text-align: center; min-height: 80px;">
+                            <div>{{ $penomoran->jaminan?->pejabat_penerima ?? '' }}</div>
+                        </td>
+                    </tr>
+                </table>
             </td>
-            <td>
-                <div><strong>Pemeriksa</strong></div>
-                <div>{{ $penomoran->pemeriksa->nama_pemeriksa ?? '' }}</div>
-                <div>NIP: {{ $penomoran->pemeriksa->nip_pemeriksa ?? '' }}</div>
-                <span></span>
-            </td>
-            <td>
-                <div><strong>Pejabat Penerima</strong></div>
-                <div>{{ $penomoran->jaminan->pejabat_penerima ?? '' }}</div>
-                <span></span>
+            <td style="width: 40%; padding-left: 4px; vertical-align: top;">
+                <table class="section-table" style="width: 100%;">
+                    <tr>
+                        <th colspan="2" style="text-align: left;">G. UNTUK PEMBAYARAN / JAMINAN</th>
+                    </tr>
+                    <tr>
+                        <td style="width: 35%;"><strong>a. Pembayaran</strong></td>
+                        <td>{{ $penomoran->jaminan?->pembayaran ?? '-' }}</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 35%;"><strong>b. Jaminan</strong></td>
+                        <td>{{ $penomoran->jaminan?->jaminan ?? '-' }}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">Nomor</td>
+                        <td>{{ '-' }}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">Tanggal</td>
+                        <td>{{ '-' }}</td>
+                    </tr>
+                </table>
             </td>
         </tr>
     </table>
@@ -423,3 +506,4 @@
     <div style="text-align: center; font-size: 9pt; margin-top: 8px;">Dokumen ini dicetak pada {{ now()->format('d-m-Y H:i:s') }}</div>
 </body>
 </html>
+
