@@ -144,15 +144,9 @@
         <button type="button" onclick="window.history.back();">Kembali</button>
     </div>
 
-    <table class="header-table">
-        <tr>
-            <td colspan="2" class="header-title">Pemberitahuan Impor Barang Khusus (PIBK)</td>
-        </tr>
-        <tr>
-            <td class="header-note">A. Untuk 1. Barang Pindahan Penumpang 2. Barang Kiriman Melalui PJT 3. Barang Impor Sementara Dibawa</td>
-            <td class="header-note">4. Barang Impor Tertentu 5. Barang Pribadi Penumpang 6. Lainnya</td>
-        </tr>
-    </table>
+    <h3 colspan="2" class="header-title">Pemberitahuan Impor Barang Khusus (PIBK)</h3>
+    <h4 class="header-note" style="text-align: center;">A. Untuk 1. Barang Pindahan Penumpang 2. Barang Kiriman Melalui PJT 3. Barang Impor Sementara Dibawa <br> 4. Barang Impor Tertentu 5. Barang Pribadi Penumpang 6. Lainnya</h4>
+    
 
     <table class="page-table">
         <tr>
@@ -166,7 +160,7 @@
                             <span style="text-transform: uppercase; font-weight: bold;">1. Nama, Alamat Pengirim Barang</span>
                             <br>
                             <span style="text-transform: uppercase; font-weight: normal;">{{ $penomoran->pengirim->nama_pengirim ?? '-' }}<br>{{ $penomoran->pengirim->alamat_pengirim ?? '-' }}</span>
-                            <br><br><br><br><br><br>
+                            <br><br><br>
                         </td>
                     </tr>
                     <tr>
@@ -229,7 +223,7 @@
                         </td>
                 </table>
             </td>
-            <td style="width: 50%; padding-left: 4px; vertical-align: top;">
+            <td style="width: 50%; padding-left: 0px; vertical-align: top;">
                 <table class="section-table">
                     <tr>
                         <th colspan="4">D. DIISI OLEH BEA DAN CUKAI</th>
@@ -331,34 +325,20 @@
                             <br>
                             <span style="text-transform: none; font-weight: normal;">{{ $penomoran->pib->nilai_cif ?? '-' }}</span>
                         </td>
-                    </tr>
-                    <tr>
-                        <td class="field-label" style="width: 50%" colspan="3">
-                            <span style="text-transform: uppercase; font-weight: bold;">21. Jumlah & Jenis Satuan </span>
-                            <br>
-                            <span style="text-transform: none; font-weight: normal;">{{ $penomoran->uraian_barang->jumlah_kemasan ?? '-' }} {{ $penomoran->uraian_barang->satuan_kemasan ?? '' }} / {{ $penomoran->uraian_barang->berat ?? '' }} {{ $penomoran->uraian_barang->satuan_kemasan ?? '' }} </span>
-                        </td>
-                        <td class="field-label" style="width: 50%;">
-                            <span style="text-transform: uppercase; font-weight: bold;" colspan="3">Tgl</span>
-                            <br>
-                            <span style="text-transform: none; font-weight: normal;" colspan="3">{{ $penomoran->pib->tanggal_bl_awb?->format('d F Y') ?? '-' }}</span>
-                        </td>
-                    </tr>
+                    </tr>                    
                 </table>
             </td>
         </tr>
     </table>
 
-
-    <div class="subsection-title">5. URAIAN BARANG</div>
+    
     <table class="section-table">
         <thead>
             <tr>
                 <th style="width: 5%; text-align: center;">No</th>
                 <th style="width: 55%;">Uraian Barang</th>
                 <th style="width: 15%; text-align: center;">Jumlah & Jenis Satuan</th>
-                <th style="width: 12%; text-align: right;">Nilai CIF</th>
-                <th style="width: 13%; text-align: right;">Total</th>
+                <th style="width: 12%; text-align: right;">Nilai CIF</th>                
             </tr>
         </thead>
         <tbody>
@@ -366,9 +346,8 @@
                 <tr>
                     <td style="text-align: center;">{{ $idx + 1 }}</td>
                     <td>{{ $barang->uraian_barang ?? '-' }}</td>
-                    <td style="text-align: center;">{{ $barang->jumlah_kemasan ?? '-' }} {{ $barang->satuan_kemasan ?? '' }}</td>
+                    <td style="text-align: center;">{{ $barang->jumlah_kemasan ?? '-' }} {{ $barang->satuan_kemasan ?? '' }} / {{ (int)($barang->berat ?? 0) }} {{ $barang->satuan ?? '' }}</td>
                     <td style="text-align: right;">{{ number_format($barang->nilai_cif ?? 0, 2) }}</td>
-                    <td style="text-align: right;">{{ number_format($barang->total ?? 0, 2) }}</td>
                 </tr>
             @empty
                 <tr>
