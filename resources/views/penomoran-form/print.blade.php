@@ -402,11 +402,11 @@
                 <td style="text-align: center; vertical-align: top;">{{ $penomoran->pib?->nilai_cif !== null ? number_format($penomoran->pib->nilai_cif, 2) : '-' }}</td>
                 <td style="text-align: center; vertical-align: top;">{{ $firstBarang->pos_tarif_hs ?? '-' }}</td>
             </tr>
-            <tr>
-            <td class="field-label" style="width: 50%; vertical-align: top;" colspan="3">
+        <tr>
+            <td class="field-label" style="style=padding: 0; width: 50%; vertical-align: top;" colspan="3">
                 <table style="width: 100%; border-collapse: collapse; border: none; ">
-                    <tr style="border-bottom: 1px solid black;">
-                        <td style="border: none; padding: 2px;">
+                    <tr>
+                        <td style="border: none; border-bottom: 1px solid black; padding: 2px;">
                             <span style="text-transform: uppercase; font-weight: bold;">28. NDPBM: </span>
                             <span style="text-transform: none; font-weight: normal;">
                                 {{ $firstBarang?->ndpbm !== null ? number_format($firstBarang->ndpbm, 2) : '-' }}
