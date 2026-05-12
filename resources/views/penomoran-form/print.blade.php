@@ -413,48 +413,39 @@
             <td colspan="5" class="section-header" style="width:45%;">G. UNTUK PEMBAYARAN / JAMINAN</td>
         </tr>
         <tr>
-            <td colspan="5" style="height:18px;">&nbsp;</td>
+            <td colspan="5" rowspan="7" style="vertical-align:bottom; text-align:center; padding-bottom: 10px;">
+                {{ $penomoran->pfpd?->nama_pfpd ?? '' }}<br>
+                NIP {{ $penomoran->pfpd?->nip_pfpd ?? '' }}
+            </td>
+            
             <td colspan="2">a.Pembayaran</td>
             <td colspan="3">1. Bank; &nbsp; 2. Pos; &nbsp; 3. Kantor Pabean.</td>
         </tr>
         <tr>
-            <td colspan="5">&nbsp;</td>
             <td colspan="2">b.Jaminan</td>
             <td colspan="3">1.Tunai &nbsp; 2.Bank Garansi &nbsp; 3.Customs Bond &nbsp; 4.Lainnya</td>
         </tr>
         <tr>
-            <td colspan="5">&nbsp;</td>
             <td colspan="2">&nbsp;</td>
             <td colspan="2" class="center label">Nomor</td>
             <td class="center label">Tanggal</td>
         </tr>
         <tr>
-            <td colspan="5">&nbsp;</td>
             <td colspan="2">Pembayaran</td>
-            {{-- [tabel: jaminan → pembayaran] --}}
             <td colspan="2" class="center">{{ $penomoran->jaminan?->pembayaran ?? '-' }}</td>
             <td class="center">-</td>
         </tr>
         <tr>
-            <td colspan="5">&nbsp;</td>
             <td colspan="2">Jaminan</td>
-            {{-- [tabel: jaminan → jaminan] --}}
             <td colspan="2" class="center">{{ $penomoran->jaminan?->jaminan ?? '-' }}</td>
             <td class="center">-</td>
         </tr>
         <tr>
-            <td colspan="5">&nbsp;</td>
             <td colspan="3" style="font-weight:bold; text-align:center;">Pejabat Penerima</td>
-            <td colspan="2"style="font-weight:bold; text-align:center;">Stempel Instansi</td>
+            <td colspan="2" style="font-weight:bold; text-align:center;">Stempel Instansi</td>
         </tr>
         <tr>
-            {{-- [tabel: pfpd → nama_pfpd, nip_pfpd] --}}
-            <td colspan="5" style="height:60px; text-align:center; vertical-align:bottom;">
-                {{ $penomoran->pfpd?->nama_pfpd ?? '' }}<br>
-                NIP {{ $penomoran->pfpd?->nip_pfpd ?? '' }}
-            </td>
-            {{-- [tabel: jaminan → pejabat_penerima] --}}
-            <td colspan="3" style="vertical-align:bottom; text-align:center;">ttd</td>
+            <td colspan="3" style="height:60px; vertical-align:bottom; text-align:center;">ttd</td>
             <td colspan="2" style="vertical-align:bottom; text-align:center;">ttd</td>
         </tr>
     </table>
