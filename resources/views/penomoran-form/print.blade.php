@@ -80,13 +80,14 @@
             <td colspan="5" class="section-header" style="width:45%;">D. DIISI OLEH BEA DAN CUKAI :</td>
         </tr>
 
-        {{-- 1. Nama Pengirim [tabel: pengirim → nama_pengirim, alamat_pengirim] --}}
-        {{-- Nopen [tabel: penomoran → penomoran, tanggal_pibk] --}}
+        {{-- 1. Nama Pengirim --}}
         <tr>
-            <td colspan="5" rowspan="4" style="vertical-align:top;">
-                <span class="label">1. Nama, Alamat Pengirim Barang :</span><br>
-                {{ $penomoran->pengirim?->nama_pengirim ?? '-' }}<br>
-                {{ $penomoran->pengirim?->alamat_pengirim ?? '' }}
+            <td colspan="5" rowspan="6" style="vertical-align:top; padding: 5px;">
+                <div style="font-weight:bold; margin-bottom: 4px;">1. Nama, Alamat Pengirim Barang :</div>
+                <div style="line-height: 1.4;">
+                    {{ $penomoran->pengirim?->nama_pengirim ?? '-' }}<br>
+                    {{ $penomoran->pengirim?->alamat_pengirim ?? '' }}
+                </div>
             </td>
             <td colspan="2" class="label" style="width:20%;">Nopen</td>
             <td colspan="3">
@@ -104,7 +105,6 @@
             <td colspan="3">130100</td>
         </tr>
         <tr>
-            {{-- [tabel: pib → nomor_bc11, tanggal_bc11] --}}
             <td class="label">No. BC 1.1</td>
             <td>{{ $penomoran->pib?->nomor_bc11 ?? '-' }}</td>
             <td class="label">Tgl</td>
@@ -112,56 +112,50 @@
                 {{ $penomoran->pib?->tanggal_bc11 ? \Carbon\Carbon::parse($penomoran->pib->tanggal_bc11)->translatedFormat('d F Y') : '-' }}
             </td>
         </tr>
-
-        {{-- Pos / Sub Pos [tabel: pib → nomor_pos] --}}
         <tr>
-            <td colspan="5"></td>
             <td colspan="2" class="label">Pos</td>
             <td colspan="3" class="label">Sub Pos</td>
         </tr>
         <tr>
-            <td colspan="5"></td>
             <td colspan="2">{{ $penomoran->pib?->nomor_pos ?? '-' }}</td>
             <td colspan="3">-</td>
         </tr>
 
-        {{-- 2. Identitas Penerima [tabel: penerima → jenis_identitas_penerima, identitas_penerima] --}}
-        {{-- 11. Invoice [tabel: pib → invoice, tanggal_invoice] --}}
+        {{-- 2. Identitas Penerima & 11. Invoice --}}
         <tr>
-            <td colspan="5" class="label">2. Identitas Penerima Barang</td>
+            <td colspan="5" rowspan="2" style="vertical-align:top; padding: 5px;">
+                <div class="label">2. Identitas Penerima Barang :</div>
+                <div style="margin-top: 4px;">{{ $penomoran->penerima?->identitas_penerima ?? '-' }}</div>
+            </td>
             <td colspan="2" class="label">11. Invoice :</td>
-            <td colspan="2" class="label">Tgl :</td>
-            <td></td>
+            <td colspan="3" class="label">Tgl :</td>
         </tr>
         <tr>
-            <td colspan="5">
-                {{ $penomoran->penerima?->identitas_penerima ?? '-' }}
-            </td>
             <td colspan="2">{{ $penomoran->pib?->invoice ?? '-' }}</td>
             <td colspan="3">
                 {{ $penomoran->pib?->tanggal_invoice ? \Carbon\Carbon::parse($penomoran->pib->tanggal_invoice)->translatedFormat('d F Y') : '-' }}
             </td>
         </tr>
 
-        {{-- 3. Nama Penerima [tabel: penerima → nama_penerima, alamat_penerima] --}}
-        {{-- 12. BL/AWB [tabel: pib → nomor_bl_awb, tanggal_bl_awb] --}}
+        {{-- 3. Nama Penerima & 12. BL/AWB --}}
         <tr>
-            <td colspan="5" class="label">3. Nama, Alamat Penerima Barang :</td>
+            <td colspan="5" rowspan="2" style="vertical-align:top; padding: 5px;">
+                <div class="label">3. Nama, Alamat Penerima Barang :</div>
+                <div style="margin-top: 4px; line-height: 1.4;">
+                    {{ $penomoran->penerima?->nama_penerima ?? '-' }}<br>
+                    {{ $penomoran->penerima?->alamat_penerima ?? '' }}
+                </div>
+            </td>
             <td colspan="2" class="label">12. BL/AWB :</td>
-            <td colspan="2" class="label">Tgl :</td>
-            <td></td>
+            <td colspan="3" class="label">Tgl :</td>
         </tr>
         <tr>
-            <td colspan="5">{{ $penomoran->penerima?->nama_penerima ?? '-' }}</td>
             <td colspan="2">{{ $penomoran->pib?->nomor_bl_awb ?? '-' }}</td>
             <td colspan="3">
                 {{ $penomoran->pib?->tanggal_bl_awb ? \Carbon\Carbon::parse($penomoran->pib->tanggal_bl_awb)->translatedFormat('d F Y') : '-' }}
             </td>
         </tr>
-        <tr>
-            <td colspan="5">{{ $penomoran->penerima?->alamat_penerima ?? '' }}</td>
-            <td colspan="5"></td>
-        </tr>
+        
 
         {{-- 4. Identitas Pemberitahu [tabel: pemberitahu → identitas_pemberitahu] --}}
         {{-- 13. Negara Asal [tabel: pib → negara_asal_barang] --}}
