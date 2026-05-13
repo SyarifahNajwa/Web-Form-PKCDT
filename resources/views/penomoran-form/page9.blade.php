@@ -223,7 +223,11 @@
                             class="text-gray-600 hover:text-gray-800">← Kembali</a>
                         <a href="{{ route('penomoran-form.print', $penomoran->id) }}" target="_blank"
                             class="inline-flex items-center px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium rounded-md transition">
-                            ⎙ Cetak
+                            ⎙ Cetak PIBK
+                        </a>
+                        <a href="{{ route('penomoran-form.printIp', $penomoran->id) }}" target="_blank"
+                            class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-md transition">
+                            ⎙ Cetak Surat IP
                         </a>
                     </div>
                     <x-primary-button class="bg-green-600 hover:bg-green-700 focus:bg-green-700 active:bg-green-900 focus:ring-green-500">
