@@ -225,15 +225,16 @@
             <td colspan="5" class="label">17. Asuransi</td>
         </tr>
         <tr>
-            <td colspan="5">{{ $penomoran->pengangkutan?->nama_sarkut ?? '-' }}</td>
-            <td colspan="5">
+            {{-- Bagian 8: Terdiri dari 2 baris teks --}}
+            <td colspan="5" style="border-bottom: 1px solid #000;">
+                {{ $penomoran->pengangkutan?->nama_sarkut ?? '-' }}<br>
+                {{ $penomoran->pengangkutan?->no_flight ?? '' }}
+            </td>
+            {{-- Bagian 17: Satu kotak bersih tanpa garis tengah, tapi tinggi selaras dengan kiri --}}
+            <td colspan="5" style="border-bottom: 1px solid #000; vertical-align: top;">
                 {{ $penomoran->pib?->valuta ?? '' }}
                 {{ $penomoran->pib?->asuransi !== null ? number_format($penomoran->pib->asuransi, 2) : '-' }}
             </td>
-        </tr>
-        <tr>
-            <td colspan="5">{{ $penomoran->pengangkutan?->no_flight ?? '' }}</td>
-            <td colspan="5"></td>
         </tr>
 
         {{-- 9 & 10. Pelabuhan [tabel: pengangkutan → pelabuhan_muat, pelabuhan_bongkar] --}}
