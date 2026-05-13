@@ -301,6 +301,8 @@
     <div style="margin-top: 20px; text-align: left;">
         {{ $penomoran->uraianBarang?->kota_pibk ?? 'Banda Aceh' }},
         {{ $penomoran->tanggal_pibk ? \Carbon\Carbon::parse($penomoran->tanggal_pibk)->translatedFormat('d F Y') : '-' }}
+        <div>Pejabat Pemeriksa Dokumen</div>
+            <br><br><br><br>
     </div>
 
     <table style="width:100%; margin-top: 10px;">
@@ -308,8 +310,6 @@
             {{-- Kiri: Pejabat Pemeriksa Dokumen (PFPD) --}}
             {{-- index 54 = col 55 = pfpd.nama_pfpd, index 55 = col 56 = pfpd.nip_pfpd --}}
             <td style="width:50%; text-align:left; vertical-align:top;">
-                <div>Pejabat Pemeriksa Dokumen</div>
-                <br><br><br><br>
                 <div style="font-weight:bold;">{{ $penomoran->pfpd?->nama_pfpd ?? '' }}</div>
                 <div>{{ $penomoran->pfpd?->nip_pfpd ?? '' }}</div>
             </td>
