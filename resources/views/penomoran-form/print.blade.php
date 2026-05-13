@@ -168,20 +168,22 @@
             <td colspan="5">{{ $penomoran->pib?->negara_asal_barang ?? '-' }}</td>
         </tr>
 
-        {{-- 5. Nama Pemberitahu [tabel: pemberitahu → nama_pemberitahu, alamat_pemberitahu] --}}
-        {{-- 14. Valuta [tabel: pib → valuta] --}}
-        <tr>
-            <td colspan="5" class="label">5. Nama, Alamat Pemberitahu :</td>
-            <td colspan="5" class="label">14. Valuta</td>
-        </tr>
-        <tr>
-            <td colspan="5">{{ $penomoran->pemberitahu?->nama_pemberitahu ?? '-' }}</td>
-            <td colspan="5">{{ $penomoran->pib?->valuta ?? '-' }}</td>
-        </tr>
-        <tr>
-            <td colspan="5">{{ $penomoran->pemberitahu?->alamat_pemberitahu ?? '' }}</td>
-            <td colspan="5"></td>
-        </tr>
+        {{-- 5. Nama Pemberitahu & 14. Valuta --}}
+<tr>
+    <td colspan="5" class="label" style="border-bottom: 1px solid #000;">5. Nama, Alamat Pemberitahu :</td>
+    <td colspan="5" class="label" style="border-bottom: 1px solid #000;">14. Valuta</td>
+</tr>
+<tr>
+    {{-- Baris isi untuk Nama & Alamat (Kiri) --}}
+    <td colspan="5" style="border-bottom: 1px solid #000; min-height: 35px;">
+        {{ $penomoran->pemberitahu?->nama_pemberitahu ?? '-' }}<br>
+        {{ $penomoran->pemberitahu?->alamat_pemberitahu ?? '' }}
+    </td>
+    {{-- Baris isi untuk Valuta (Kanan) --}}
+    <td colspan="5" style="border-bottom: 1px solid #000; vertical-align: top;">
+        {{ $penomoran->pib?->valuta ?? '-' }}
+    </td>
+</tr>
 
         {{-- 6. Surat Izin PJT [tabel: surat_izin → nomor_surat_izin_pjt_ppjk, tanggal_surat_izin_pjt_ppjk] --}}
         {{-- 15. FOB [tabel: pib → fob, valuta] --}}
