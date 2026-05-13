@@ -42,7 +42,7 @@
             border: 1.5px solid #000; padding: 4px; margin-bottom: -1px;
         }
         table.main { width: 100%; border-collapse: collapse; }
-        table.main td { border: 1px solid #000; padding: 2px 4px; vertical-align: top; font-size: 8.5pt; }
+        table.main td { border: 1px solid #000; padding: 1px 3px; vertical-align: top; font-size: 8.5pt; }
         table.inner { width: 100%; border-collapse: collapse; }
         table.inner td { border: none; padding: 1px 3px; vertical-align: top; font-size: 8.5pt; }
         .label  { font-weight: bold; }
