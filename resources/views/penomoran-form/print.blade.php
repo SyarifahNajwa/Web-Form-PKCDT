@@ -262,14 +262,16 @@
         </tr>
         <tr>
             <td class="center">1</td>
-            <td colspan="4">{{ $penomoran->uraianBarang?->uraian_barang ?? '-' }}</td>
-            <td colspan="3">
+            <td colspan="4" style="text-align: center;">
+                {{ $penomoran->uraianBarang?->uraian_barang ?? '-' }}
+            </td>
+            <td colspan="3" style="text-align: center;">
                 {{ $penomoran->uraianBarang?->jumlah_kemasan ?? '-' }}
-                {{ $penomoran->uraianBarang?->uraian_barang ?? '' }} /
-                {{ $penomoran->uraianBarang?->berat ?? '-' }}
+                {{ $penomoran->uraianBarang?->satuan_kemasan ?? '' }} /
+                {{ (int) $penomoran->uraianBarang?->berat ?? '-' }}
                 {{ $penomoran->uraianBarang?->satuan ?? '' }}
             </td>
-            <td colspan="2" class="right">
+            <td colspan="2" class="right" style="text-align: center;">
                 {{ $penomoran->uraianBarang?->nilai_cif !== null ? number_format($penomoran->uraianBarang->nilai_cif, 2) : '-' }}
             </td>
         </tr>
@@ -310,20 +312,20 @@
         <tr>
             <td class="center">1</td>
             {{-- [tabel: pemeriksaan → spesifikasi] fallback ke uraian_barang → uraian_barang --}}
-            <td colspan="4">{{ $penomoran_id->uraian_barang?->uraian_barang ?? '-' }}</td>
+            <td colspan="4" style="text-align: center;">{{ $penomoran->uraianBarang?->uraian_barang ?? '-' }}</td>
             {{-- [tabel: pemeriksaan → jumlah_satuan_barang, satuan_barang] --}}
-            <td colspan="2">
-                {{ $penomoran->pemeriksaan?->jumlah_satuan_barang ?? $penomoran->uraianBarang?->jumlah_kemasan ?? '-' }}
-                {{ $penomoran->pemeriksaan?->satuan_barang ?? $penomoran->uraianBarang?->satuan_kemasan ?? '' }} /
-                {{ $penomoran->uraianBarang?->berat ?? '-' }}
+            <td colspan="2" style="text-align: center;">
+                {{ $penomoran->uraianBarang?->jumlah_kemasan ?? '-' }}
+                {{ $penomoran->uraianBarang?->satuan_kemasan ?? '' }} /
+                {{ (int) $penomoran->uraianBarang?->berat ?? '-' }}
                 {{ $penomoran->uraianBarang?->satuan ?? '' }}
             </td>
-            {{-- [tabel: uraian_barang → ndpbm] --}}
-            <td colspan="2" class="right">
-                {{ $penomoran->uraianBarang?->ndpbm !== null ? number_format($penomoran->uraianBarang->ndpbm, 2) : '-' }}
+            {{-- [tabel: uraian_barang → np] --}}
+            <td colspan="2" class="right" style="text-align: center;">
+                {{ $penomoran->uraianBarang?->np ?? '-' }} 
             </td>
             {{-- [tabel: uraian_barang → pos_tarif_hs] --}}
-            <td>{{ $penomoran->uraianBarang?->pos_tarif_hs ?? '-' }}</td>
+            <td style="text-align: center;">{{ $penomoran->uraianBarang?->pos_tarif_hs ?? '-' }}</td>
         </tr>
 
         {{-- 28 NDPBM + TTD Pemeriksa  ||  29–35 Pajak --}}

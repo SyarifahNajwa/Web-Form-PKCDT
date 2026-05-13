@@ -110,7 +110,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                             <div>
                                 <x-input-label for="jenis_kemasan" :value="__('Jenis Kemasan')" />
-                                <x-text-input id="jenis_kemasan" name="jenis_kemasan" type="text" class="mt-1 block w-full" value="{{ old('jenis_kemasan', $pemeriksaan->jenis_kemasan ?? '') }}" />
+                                <x-text-input id="jenis_kemasan" name="jenis_kemasan" type="text" class="mt-1 block w-full" value="{{ old('jenis_kemasan', $pemeriksaan->jenis_kemasan ?? '') }}" placeholder="Misal: BOX"/>
                                 @error('jenis_kemasan')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                             </div>
                             <div>

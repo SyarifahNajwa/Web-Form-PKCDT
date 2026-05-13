@@ -118,6 +118,11 @@ class Penomoran extends Model
         return $this->hasMany(UraianBarang::class);
     }
 
+    public function uraianBarang()
+    {
+        return $this->hasOne(UraianBarang::class);
+    }
+
     public function pfpd()
     {
         return $this->hasOne(Pfpd::class);
