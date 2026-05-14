@@ -1,16 +1,45 @@
 {{--
-    CETAK SPPB - Surat Pemberitahuan Pengeluaran Barang
+    CETAK SPPB - SURAT PERSETUJUAN PENGELUARAN BARANG
+    ══════════════════════════════════════════════════════════════
     VARIABEL YANG DIBUTUHKAN DI CONTROLLER:
-      $penomoran → model Penomoran dengan relasi:
-        - pengirim()
-        - penerima()
-        - pemberitahu()
-        - pib()
-        - uraianBarangs()
-        - pemeriksaan()
-        - pemeriksa()
-        - pfpd()
-        - jaminan()
+      $penomoran → model Penomoran dengan relasi berikut:
+
+    Relasi di model Penomoran:
+      - penerima()     → hasOne(Penerima::class,    'penomoran_id')
+      - pengangkutan() → hasOne(Pengangkutan::class, 'penomoran_id')
+      - pib()          → hasOne(Pib::class,          'penomoran_id')
+      - uraianBarang() → hasOne(UraianBarang::class, 'penomoran_id')
+      - pemeriksaan()  → hasOne(Pemeriksaan::class,  'penomoran_id')
+      - pemeriksa()    → hasOne(Pemeriksa::class,    'penomoran_id')
+      - pfpd()         → hasOne(Pfpd::class,         'penomoran_id')
+
+    Contoh controller:
+      $penomoran = Penomoran::with([
+          'penerima', 'pengangkutan', 'pib',
+          'uraianBarang', 'pemeriksaan', 'pemeriksa', 'pfpd'
+      ])->findOrFail($id);
+      return view('cetak_sppb', compact('penomoran'));
+
+    MAPPING VLOOKUP EXCEL → TABEL.KOLOM DATABASE:
+      index  1  → penomoran.penomoran           (Penomoran)
+      index  2  → penomoran.penomoran           (Default No PIBK - suffix)
+      index  4  → penomoran.penomoran           (Default No SPPB - suffix)
+      index  6  → penomoran.tanggal_pibk        (Tanggal PIBK)
+      index 10  → penerima.identitas_penerima   (Identitas Penerima)
+      index 11  → penerima.nama_penerima        (Nama Penerima)
+      index 12  → penerima.alamat_penerima      (Alamat Penerima)
+      index 20  → pengangkutan.no_flight        (No Voy/Flight)
+      index 23  → pib.nomor_bc11                (Nomor BC 1.1)
+      index 24  → pib.tanggal_bc11              (Tanggal BC 1.1)
+      index 30  → pib.negara_asal_barang        (Negara Asal Barang)
+      index 36  → uraian_barang.uraian_barang   (Uraian Barang)
+      index 37  → uraian_barang.jumlah_kemasan  (Jumlah Kemasan)
+      index 40  → uraian_barang.kota_pibk       (Kota PIBK)
+      index 54  → pfpd.nama_pfpd               (Nama PFPD)
+      index 55  → pfpd.nip_pfpd                (NIP PFPD)
+      index 56  → pemeriksa.nama_pemeriksa     (Nama Pemeriksa)
+      index 57  → pemeriksa.nip_pemeriksa      (NIP Pemeriksa)
+      index 64  → pemeriksaan.catatan          (Catatan)
 --}}
 <!DOCTYPE html>
 <html lang="id">
@@ -19,102 +48,384 @@
     <title>SPPB - {{ $penomoran->penomoran ?? '' }}</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; font-size: 9pt; color: #000; background: #fff; }
-        .page { width: 210mm; min-height: 297mm; margin: 0 auto; padding: 12mm; }
-        @media print { body { margin: 0; } .page { width: 100%; padding: 8mm; } }
-        .title { text-align: center; font-size: 12pt; font-weight: bold; margin-bottom: 8px; }
-        .subtitle { text-align: center; font-size: 10pt; margin-bottom: 14px; }
-        .section-title { font-weight: bold; font-size: 10pt; margin: 10px 0 4px 0; }
-        .box { border: 1px solid #000; padding: 8px; margin-bottom: 10px; }
-        .box p { line-height: 1.4; font-size: 9pt; }
-        .label { font-weight: bold; }
-        table { width: 100%; border-collapse: collapse; margin-top: 6px; }
-        table th, table td { border: 1px solid #000; padding: 4px 6px; vertical-align: top; font-size: 9pt; }
-        table th { background: #f0f0f0; }
-        .signature-row { display: flex; justify-content: space-between; margin-top: 26px; }
-        .signature-block { width: 48%; text-align: center; }
-        .signature-block p { margin-bottom: 4px; font-size: 9pt; }
-        .signature-line { margin-top: 40px; border-top: 1px solid #000; display: inline-block; padding-top: 4px; }
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 10pt;
+            background: #fff;
+            color: #000;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            padding: 15mm 20mm;
+        }
+
+        @media print {
+            body { margin: 0; }
+            .page { width: 100%; padding: 10mm 15mm; margin: 0; }
+        }
+
+        /* ── Kop Surat ── */
+        .kop {
+            text-align: center;
+            margin-bottom: 6px;
+            line-height: 1.6;
+        }
+        .kop .bold { font-weight: bold; }
+
+        .divider-thick {
+            border: none;
+            border-top: 3px solid #000;
+            margin: 5px 0 10px 0;
+        }
+
+        /* ── Judul ── */
+        .judul {
+            text-align: center;
+            font-weight: bold;
+            font-size: 13pt;
+            text-decoration: underline;
+            margin: 10px 0 2px 0;
+        }
+
+        .sub-judul {
+            text-align: center;
+            font-size: 10pt;
+            margin-bottom: 16px;
+        }
+
+        /* ── Field rows ── */
+        .field-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 0;
+        }
+
+        .field-table td {
+            padding: 2px 0;
+            vertical-align: top;
+            font-size: 10pt;
+        }
+
+        /* Lebar kolom label, titik dua, nilai */
+        .col-label { width: 38%; }
+        .col-titik  { width: 3%; text-align: left; }
+        .col-value  { width: 59%; }
+
+        /* ── Section title ── */
+        .section-title {
+            font-weight: bold;
+            font-size: 10pt;
+            margin: 10px 0 3px 0;
+            text-decoration: underline;
+        }
+
+        /* ── Tanda tangan dua kolom ── */
+        .ttd-wrapper {
+            margin-top: 24px;
+            width: 100%;
+            display: table;
+        }
+
+        .ttd-col {
+            display: table-cell;
+            width: 50%;
+            vertical-align: top;
+            text-align: center;
+        }
+
+        .ttd-col .ttd-kota {
+            font-size: 10pt;
+            margin-bottom: 4px;
+        }
+
+        .ttd-col .ttd-jabatan {
+            font-size: 10pt;
+            margin-bottom: 60px; /* ruang tanda tangan */
+        }
+
+        .ttd-col .ttd-nama {
+            font-weight: bold;
+            font-size: 10pt;
+        }
+
+        .ttd-col .ttd-nip {
+            font-size: 10pt;
+        }
+
+        /* ── Bagian tanda tangan kanan pakai tabel inline ── */
+        .ttd-right-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .ttd-right-table td {
+            padding: 2px 0;
+            font-size: 10pt;
+            vertical-align: top;
+        }
+
+        .ttd-right-table .col-l { width: 38%; }
+        .ttd-right-table .col-t { width: 4%; text-align: left; }
+        .ttd-right-table .col-v { width: 58%; }
     </style>
 </head>
 <body>
 <div class="page">
-    <div class="title">SURAT PEMBERITAHUAN PENGELUARAN BARANG (SPPB)</div>
-    <div class="subtitle">Nomor: {{ $penomoran->penomoran ?? '-' }} /SPPB/{{ $penomoran->tanggal_pibk ? \Carbon\Carbon::parse($penomoran->tanggal_pibk)->format('Y') : date('Y') }}</div>
 
-    <div class="section-title">1. Identitas Pengirim</div>
-    <div class="box">
-        <p><span class="label">Nama:</span> {{ $penomoran->pengirim?->nama_pengirim ?? '-' }}</p>
-        <p><span class="label">Alamat:</span> {{ $penomoran->pengirim?->alamat_pengirim ?? '-' }}</p>
+    {{-- ══════════════════════════════════════════
+         KOP SURAT
+    ══════════════════════════════════════════ --}}
+    <div class="kop">
+        <p>KEMENTERIAN KEUANGAN REPUBLIK INDONESIA</p>
+        <p class="bold">DIREKTORAT JENDERAL BEA DAN CUKAI</p>
+        <p>KANTOR WILAYAH DJBC ACEH</p>
+        <p>KANTOR PENGAWASAN DAN PELAYANAN BEA DAN CUKAI TIPE MADYA PABEAN C BANDA ACEH</p>
     </div>
+    <hr class="divider-thick">
 
-    <div class="section-title">2. Identitas Penerima</div>
-    <div class="box">
-        <p><span class="label">Jenis Identitas:</span> {{ $penomoran->penerima?->jenis_identitas_penerima ?? '-' }}</p>
-        <p><span class="label">Identitas:</span> {{ $penomoran->penerima?->identitas_penerima ?? '-' }}</p>
-        <p><span class="label">Nama:</span> {{ $penomoran->penerima?->nama_penerima ?? '-' }}</p>
-        <p><span class="label">Alamat:</span> {{ $penomoran->penerima?->alamat_penerima ?? '-' }}</p>
-    </div>
+    {{-- ══════════════════════════════════════════
+         JUDUL
+    ══════════════════════════════════════════ --}}
+    <div class="judul">SURAT PERSETUJUAN PENGELUARAN BARANG (SPPB)</div>
+    <div class="sub-judul">BARANG IMPOR BAWAAN PENUMPANG/AWAK SARANA PENGANGKUT</div>
 
-    <div class="section-title">3. Data Pemberitahuan & PIB</div>
-    <div class="box">
-        <p><span class="label">Nomor BC 1.1:</span> {{ $penomoran->pib?->nomor_bc11 ?? '-' }}</p>
-        <p><span class="label">Tanggal BC 1.1:</span> {{ $penomoran->pib?->tanggal_bc11 ? \Carbon\Carbon::parse($penomoran->pib->tanggal_bc11)->translatedFormat('d F Y') : '-' }}</p>
-        <p><span class="label">Nomor Pos:</span> {{ $penomoran->pib?->nomor_pos ?? '-' }}</p>
-        <p><span class="label">Invoice:</span> {{ $penomoran->pib?->invoice ?? '-' }}</p>
-        <p><span class="label">Negara Asal:</span> {{ $penomoran->pib?->negara_asal_barang ?? '-' }}</p>
-        <p><span class="label">Valuta:</span> {{ $penomoran->pib?->valuta ?? '-' }}</p>
-    </div>
-
-    <div class="section-title">4. Uraian Barang</div>
-    <table>
-        <thead>
-            <tr>
-                <th style="width:5%;">No</th>
-                <th style="width:45%;">Uraian Barang</th>
-                <th style="width:15%;">Jumlah</th>
-                <th style="width:15%;">Satuan</th>
-                <th style="width:20%;">Nilai CIF</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse($penomoran->uraianBarangs as $idx => $barang)
-                <tr>
-                    <td class="center">{{ $idx + 1 }}</td>
-                    <td>{{ $barang->uraian_barang ?? '-' }}</td>
-                    <td class="center">{{ $barang->jumlah_kemasan ?? '-' }}</td>
-                    <td class="center">{{ $barang->satuan ?? ($barang->satuan_kemasan ?? '-') }}</td>
-                    <td class="right">{{ $barang->nilai_cif !== null ? number_format($barang->nilai_cif, 2) : '-' }}</td>
-                </tr>
-            @empty
-                <tr>
-                    <td colspan="5" class="center">Tidak ada data uraian barang</td>
-                </tr>
-            @endforelse
-        </tbody>
+    {{-- ══════════════════════════════════════════
+         NOMOR & DOKUMEN
+         A9  : Nomor SPPB  → index 1 (penomoran.penomoran)
+                             + index 4 (Default No SPPB, suffix)
+         A10 : Tanggal     → index 6 (penomoran.tanggal_pibk)
+         A11 : Dokumen     → statis 'PIBK'
+         A12 : Nomor PIBK  → index 1 (penomoran.penomoran)
+                             + index 2 (Default No PIBK, suffix)
+    ══════════════════════════════════════════ --}}
+    <table class="field-table">
+        <tr>
+            <td class="col-label">Nomor</td>
+            <td class="col-titik">:</td>
+            <td class="col-value">
+                {{-- index 1 & 4 → penomoran.penomoran + suffix SPPB --}}
+                {{ $penomoran->penomoran ?? '-' }}/SPPB/RH/{{ $penomoran->tanggal_pibk ? \Carbon\Carbon::parse($penomoran->tanggal_pibk)->format('Y') : date('Y') }}
+            </td>
+        </tr>
+        <tr>
+            <td class="col-label">Tanggal</td>
+            <td class="col-titik">:</td>
+            <td class="col-value">
+                {{-- index 6 → penomoran.tanggal_pibk --}}
+                {{ $penomoran->tanggal_pibk ? \Carbon\Carbon::parse($penomoran->tanggal_pibk)->translatedFormat('d F Y') : '-' }}
+            </td>
+        </tr>
+        <tr>
+            <td class="col-label">Dokumen</td>
+            <td class="col-titik">:</td>
+            <td class="col-value">PIBK</td>
+        </tr>
+        <tr>
+            <td class="col-label">Nomor</td>
+            <td class="col-titik">:</td>
+            <td class="col-value">
+                {{-- index 1 & 2 → penomoran.penomoran + suffix PIBK --}}
+                {{ $penomoran->penomoran ?? '-' }}/PIBK/RH/{{ $penomoran->tanggal_pibk ? \Carbon\Carbon::parse($penomoran->tanggal_pibk)->format('Y') : date('Y') }}
+            </td>
+        </tr>
     </table>
 
-    <div class="section-title">5. Pemeriksaan</div>
-    <div class="box">
-        <p><span class="label">Tanggal Pemeriksaan:</span> {{ $penomoran->pemeriksaan?->tanggal ? \Carbon\Carbon::parse($penomoran->pemeriksaan->tanggal)->translatedFormat('d F Y') : '-' }}</p>
-        <p><span class="label">Lokasi:</span> {{ $penomoran->pemeriksaan?->lokasi_pemeriksaan ?? '-' }}</p>
-        <p><span class="label">Kondisi Segel:</span> {{ $penomoran->pemeriksaan?->kondisi_segel ?? '-' }}</p>
-        <p><span class="label">Contoh:</span> {{ $penomoran->pemeriksaan?->contoh ?? '-' }}</p>
-        <p><span class="label">Foto:</span> {{ $penomoran->pemeriksaan?->foto ?? '-' }}</p>
+    {{-- ══════════════════════════════════════════
+         PEMILIK BARANG
+         A14: Nama      → index 11 → penerima.nama_penerima
+         A15: Identitas → index 10 → penerima.identitas_penerima
+         A16: NPWP      → statis '-'
+         A17: Alamat    → index 12 → penerima.alamat_penerima
+    ══════════════════════════════════════════ --}}
+    <div class="section-title">Pemilik Barang</div>
+    <table class="field-table">
+        <tr>
+            <td class="col-label">Nama</td>
+            <td class="col-titik">:</td>
+            <td class="col-value">{{ $penomoran->penerima?->nama_penerima ?? '-' }}</td>
+        </tr>
+        <tr>
+            <td class="col-label">Identitas</td>
+            <td class="col-titik">:</td>
+            <td class="col-value">{{ $penomoran->penerima?->identitas_penerima ?? '-' }}</td>
+        </tr>
+        <tr>
+            <td class="col-label">NPWP</td>
+            <td class="col-titik">:</td>
+            <td class="col-value">-</td>
+        </tr>
+        <tr>
+            <td class="col-label">Alamat</td>
+            <td class="col-titik">:</td>
+            <td class="col-value">{{ $penomoran->penerima?->alamat_penerima ?? '-' }}</td>
+        </tr>
+    </table>
+
+    {{-- ══════════════════════════════════════════
+         PPJK/KUASA (statis '-' di Excel)
+    ══════════════════════════════════════════ --}}
+    <div class="section-title">PPJK/Kuasa</div>
+    <table class="field-table">
+        <tr>
+            <td class="col-label">Nama</td>
+            <td class="col-titik">:</td>
+            <td class="col-value">-</td>
+        </tr>
+        <tr>
+            <td class="col-label">NPWP</td>
+            <td class="col-titik">:</td>
+            <td class="col-value">-</td>
+        </tr>
+        <tr>
+            <td class="col-label">Alamat</td>
+            <td class="col-titik">:</td>
+            <td class="col-value">-</td>
+        </tr>
+    </table>
+
+    {{-- ══════════════════════════════════════════
+         DETAIL BARANG
+         A23: Lokasi Barang  → statis
+         A24: No. Voy/Flight → index 20 → pengangkutan.no_flight
+         A25: Negara Asal    → index 30 → pib.negara_asal_barang
+         A26: No. BC 1.1     → index 23 → pib.nomor_bc11
+         A27: Tgl BC 1.1     → index 24 → pib.tanggal_bc11
+         A28: Jumlah         → index 37 → uraian_barang.jumlah_kemasan + satuan_kemasan
+         A29: Uraian Barang  → index 36 → uraian_barang.uraian_barang
+         A30: Catatan        → index 64 → pemeriksaan.catatan
+    ══════════════════════════════════════════ --}}
+    <table class="field-table" style="margin-top: 10px;">
+        <tr>
+            <td class="col-label">Lokasi Barang</td>
+            <td class="col-titik">:</td>
+            <td class="col-value">Kargo Bandara Sultan Iskandar Muda</td>
+        </tr>
+        <tr>
+            <td class="col-label">No. Voy/Flight</td>
+            <td class="col-titik">:</td>
+            <td class="col-value">
+                {{-- index 20 → pengangkutan.no_flight --}}
+                {{ $penomoran->pengangkutan?->no_flight ?? '-' }}
+            </td>
+        </tr>
+        <tr>
+            <td class="col-label">Negara Asal</td>
+            <td class="col-titik">:</td>
+            <td class="col-value">
+                {{-- index 30 → pib.negara_asal_barang --}}
+                {{ $penomoran->pib?->negara_asal_barang ?? '-' }}
+            </td>
+        </tr>
+        <tr>
+            <td class="col-label">No. BC 1.1</td>
+            <td class="col-titik">:</td>
+            <td class="col-value">
+                {{-- index 23 → pib.nomor_bc11 --}}
+                {{ $penomoran->pib?->nomor_bc11 ?? '-' }}
+            </td>
+        </tr>
+        <tr>
+            <td class="col-label">Tgl BC 1.1.</td>
+            <td class="col-titik">:</td>
+            <td class="col-value">
+                {{-- index 24 → pib.tanggal_bc11 --}}
+                {{ $penomoran->pib?->tanggal_bc11 ? \Carbon\Carbon::parse($penomoran->pib->tanggal_bc11)->translatedFormat('d F Y') : '-' }}
+            </td>
+        </tr>
+        <tr>
+            <td class="col-label">Jumlah</td>
+            <td class="col-titik">:</td>
+            <td class="col-value">
+                {{-- index 37 → uraian_barang.jumlah_kemasan + satuan_kemasan --}}
+                {{ $penomoran->uraianBarang?->jumlah_kemasan ?? '-' }}
+                {{ $penomoran->uraianBarang?->satuan_kemasan ?? '' }}
+            </td>
+        </tr>
+        <tr>
+            <td class="col-label">Uraian Barang</td>
+            <td class="col-titik">:</td>
+            <td class="col-value">
+                {{-- index 36 → uraian_barang.uraian_barang --}}
+                {{ $penomoran->uraianBarang?->uraian_barang ?? '-' }}
+            </td>
+        </tr>
+        <tr>
+            <td class="col-label">Catatan</td>
+            <td class="col-titik">:</td>
+            <td class="col-value">
+                {{-- index 64 → pemeriksaan.catatan --}}
+                {{ $penomoran->pemeriksaan?->catatan ?? '-' }}
+            </td>
+        </tr>
+    </table>
+
+    {{-- ══════════════════════════════════════════
+         TANDA TANGAN (2 kolom)
+         Kiri  (A35): Pejabat Pemeriksa Barang
+                      → index 56 (pemeriksa.nama_pemeriksa)
+                      → index 57 (pemeriksa.nip_pemeriksa)
+         Kanan (H35): Pejabat Pemeriksa Dokumen
+                      → index 54 (pfpd.nama_pfpd)
+                      → index 55 (pfpd.nip_pfpd)
+
+         Baris kota & tanggal (A34 & H34):
+                      → index 40 (uraian_barang.kota_pibk)
+                      → index  6 (penomoran.tanggal_pibk)
+    ══════════════════════════════════════════ --}}
+    <div class="ttd-wrapper">
+
+        {{-- Kolom kiri: Pejabat Pemeriksa Barang --}}
+        <div class="ttd-col">
+            <div class="ttd-kota">
+                {{-- index 40 → uraian_barang.kota_pibk, index 6 → penomoran.tanggal_pibk --}}
+                {{ $penomoran->uraianBarang?->kota_pibk ?? 'Banda Aceh' }},
+                {{ $penomoran->tanggal_pibk ? \Carbon\Carbon::parse($penomoran->tanggal_pibk)->translatedFormat('d F Y') : '-' }}
+            </div>
+            <div class="ttd-jabatan">Pejabat Pemeriksa Barang</div>
+            {{-- index 56 → pemeriksa.nama_pemeriksa --}}
+            <div class="ttd-nama">{{ $penomoran->pemeriksa?->nama_pemeriksa ?? '' }}</div>
+            {{-- index 57 → pemeriksa.nip_pemeriksa --}}
+            <div class="ttd-nip">NIP {{ $penomoran->pemeriksa?->nip_pemeriksa ?? '' }}</div>
+        </div>
+
+        {{-- Kolom kanan: Pejabat Pemeriksa Dokumen --}}
+        <div class="ttd-col">
+            <div class="ttd-kota">
+                {{-- index 40 → uraian_barang.kota_pibk, index 6 → penomoran.tanggal_pibk --}}
+                {{ $penomoran->uraianBarang?->kota_pibk ?? 'Banda Aceh' }},
+                {{ $penomoran->tanggal_pibk ? \Carbon\Carbon::parse($penomoran->tanggal_pibk)->translatedFormat('d F Y') : '-' }}
+            </div>
+            <div class="ttd-jabatan">Pejabat Pemeriksa Dokumen</div>
+
+            {{-- Tanda tangan + Nama + NIP dalam format field --}}
+            <table class="ttd-right-table">
+                <tr>
+                    <td class="col-l">Tanda tangan</td>
+                    <td class="col-t">:</td>
+                    <td class="col-v"></td>
+                </tr>
+                <tr>
+                    <td class="col-l">Nama</td>
+                    <td class="col-t">:</td>
+                    {{-- index 54 → pfpd.nama_pfpd --}}
+                    <td class="col-v">{{ $penomoran->pfpd?->nama_pfpd ?? '-' }}</td>
+                </tr>
+                <tr>
+                    <td class="col-l">NIP</td>
+                    <td class="col-t">:</td>
+                    {{-- index 55 → pfpd.nip_pfpd --}}
+                    <td class="col-v">{{ $penomoran->pfpd?->nip_pfpd ?? '-' }}</td>
+                </tr>
+            </table>
+        </div>
+
     </div>
 
-    <div class="signature-row">
-        <div class="signature-block">
-            <p>Pejabat PFPD</p>
-            <div class="signature-line">{{ $penomoran->pfpd?->nama_pfpd ?? '________________' }}</div>
-            <p>NIP {{ $penomoran->pfpd?->nip_pfpd ?? '________________' }}</p>
-        </div>
-        <div class="signature-block">
-            <p>Pemeriksa</p>
-            <div class="signature-line">{{ $penomoran->pemeriksa?->nama_pemeriksa ?? '________________' }}</div>
-            <p>NIP {{ $penomoran->pemeriksa?->nip_pemeriksa ?? '________________' }}</p>
-        </div>
-    </div>
 </div>
 </body>
 </html>
