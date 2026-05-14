@@ -506,6 +506,20 @@ class PenomoranFormController extends Controller
         return view('penomoran-form.print-sppb', ['penomoran' => $penomoran]);
     }
 
+    public function printLhpIp($id)
+    {
+        $penomoran = Penomoran::with([
+            'penerima',
+            'uraianBarangs',
+            'pemeriksaan',
+            'pemeriksa',
+            'pfpd',
+            'pib'
+        ])->findOrFail($id);
+
+        return view('penomoran-form.print-lhp-ip', ['penomoran' => $penomoran]);
+    }
+
     // Delete
     public function destroy($id)
     {

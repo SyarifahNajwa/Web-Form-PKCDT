@@ -233,6 +233,10 @@
                             class="inline-flex items-center px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white text-sm font-medium rounded-md transition">
                             ⎙ Cetak SPPB
                         </a>
+                        <a href="{{ route('penomoran-form.printLhpIp', $penomoran->id) }}" target="_blank"
+                            class="inline-flex items-center px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white text-sm font-medium rounded-md transition">
+                            ⎙ Cetak LHP IP
+                        </a>
                     </div>
                     <x-primary-button class="bg-green-600 hover:bg-green-700 focus:bg-green-700 active:bg-green-900 focus:ring-green-500">
                         ✓ {{ __('Simpan Data') }}
