@@ -72,6 +72,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // Print
         Route::get('/{id}/print', [PenomoranFormController::class, 'print'])->name('print');
         Route::get('/{id}/print-ip', [PenomoranFormController::class, 'printIp'])->name('printIp');
+        Route::get('/{id}/print-sppb', [PenomoranFormController::class, 'printSppb'])->name('printSppb');
         
         // Delete
         Route::delete('/{id}', [PenomoranFormController::class, 'destroy'])->name('destroy');

@@ -229,6 +229,10 @@
                             class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-md transition">
                             ⎙ Cetak Surat IP
                         </a>
+                        <a href="{{ route('penomoran-form.printSppb', $penomoran->id) }}" target="_blank"
+                            class="inline-flex items-center px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white text-sm font-medium rounded-md transition">
+                            ⎙ Cetak SPPB
+                        </a>
                     </div>
                     <x-primary-button class="bg-green-600 hover:bg-green-700 focus:bg-green-700 active:bg-green-900 focus:ring-green-500">
                         ✓ {{ __('Simpan Data') }}

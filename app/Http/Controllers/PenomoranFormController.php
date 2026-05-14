@@ -487,6 +487,25 @@ class PenomoranFormController extends Controller
         return view('penomoran-form.print-ip', ['penomoran' => $penomoran]);
     }
 
+    public function printSppb($id)
+    {
+        $penomoran = Penomoran::with([
+            'pengirim',
+            'penerima',
+            'pemberitahu',
+            'suratIzin',
+            'pengangkutan',
+            'pib',
+            'uraianBarangs',
+            'pfpd',
+            'pemeriksa',
+            'jaminan',
+            'pemeriksaan'
+        ])->findOrFail($id);
+
+        return view('penomoran-form.print-sppb', ['penomoran' => $penomoran]);
+    }
+
     // Delete
     public function destroy($id)
     {
