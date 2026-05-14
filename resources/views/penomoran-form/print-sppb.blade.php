@@ -111,8 +111,8 @@
 
         /* Lebar kolom label, titik dua, nilai */
         .col-label { width: 38%; }
-        .col-titik  { width: 3%; text-align: left; }
-        .col-value  { width: 59%; }
+        .col-titik  { width: 1%; text-align: left; }
+        .col-value  { width: 65%; }
 
         /* ── Section title ── */
         .section-title {
@@ -156,8 +156,22 @@
         }
 
         /* ── Bagian tanda tangan kanan pakai tabel inline ── */
+        .ttd-left-table {
+            width: 80%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .ttd-left-table td {
+            padding: 2px 0;
+            font-size: 10pt;
+            vertical-align: top;
+        }
+        .ttd-left-table .col-l { width: 40%; }
+        .ttd-left-table .col-t { width: 2%; text-align: left; }
+        .ttd-left-table .col-v { width: 58%; }
+        
         .ttd-right-table {
-            width: 100%;
+            width: 80%;
             border-collapse: collapse;
             text-align: left;
         }
@@ -389,7 +403,7 @@
                 Pejabat Pemeriksa Barang
             </div>
 
-            <table class="ttd-right-table">
+            <table class="ttd-left-table">
                 <tr style="text-align: left;">
                     <td class="col-l">Tanda tangan</td>
                     <td class="col-t">:</td>
