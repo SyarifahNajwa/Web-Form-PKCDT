@@ -87,7 +87,6 @@
             text-align: center;
             font-weight: bold;
             font-size: 13pt;
-            text-decoration: underline;
             margin: 10px 0 2px 0;
         }
 
@@ -120,7 +119,7 @@
             font-weight: bold;
             font-size: 10pt;
             margin: 10px 0 3px 0;
-            text-decoration: underline;
+            /* text-decoration: underline; */
         }
 
         /* ── Tanda tangan dua kolom ── */
@@ -182,7 +181,7 @@
     ══════════════════════════════════════════ --}}
     <div class="kop">
         <p>KEMENTERIAN KEUANGAN REPUBLIK INDONESIA</p>
-        <p class="bold">DIREKTORAT JENDERAL BEA DAN CUKAI</p>
+        <p>DIREKTORAT JENDERAL BEA DAN CUKAI</p>
         <p>KANTOR WILAYAH DJBC ACEH</p>
         <p>KANTOR PENGAWASAN DAN PELAYANAN BEA DAN CUKAI TIPE MADYA PABEAN C BANDA ACEH</p>
     </div>
@@ -381,41 +380,61 @@
 
         {{-- Kolom kiri: Pejabat Pemeriksa Barang --}}
         <div class="ttd-col">
-            <div class="ttd-kota">
+            <div class="ttd-kota" style="text-align: left;">
                 {{-- index 40 → uraian_barang.kota_pibk, index 6 → penomoran.tanggal_pibk --}}
                 {{ $penomoran->uraianBarang?->kota_pibk ?? 'Banda Aceh' }},
                 {{ $penomoran->tanggal_pibk ? \Carbon\Carbon::parse($penomoran->tanggal_pibk)->translatedFormat('d F Y') : '-' }}
             </div>
-            <div class="ttd-jabatan">Pejabat Pemeriksa Barang</div>
-            {{-- index 56 → pemeriksa.nama_pemeriksa --}}
-            <div class="ttd-nama">{{ $penomoran->pemeriksa?->nama_pemeriksa ?? '' }}</div>
-            {{-- index 57 → pemeriksa.nip_pemeriksa --}}
-            <div class="ttd-nip">NIP {{ $penomoran->pemeriksa?->nip_pemeriksa ?? '' }}</div>
-        </div>
-
-        {{-- Kolom kanan: Pejabat Pemeriksa Dokumen --}}
-        <div class="ttd-col">
-            <div class="ttd-kota">
-                {{-- index 40 → uraian_barang.kota_pibk, index 6 → penomoran.tanggal_pibk --}}
-                {{ $penomoran->uraianBarang?->kota_pibk ?? 'Banda Aceh' }},
-                {{ $penomoran->tanggal_pibk ? \Carbon\Carbon::parse($penomoran->tanggal_pibk)->translatedFormat('d F Y') : '-' }}
+            <div class="ttd-jabatan" style="text-align: left;">
+                Pejabat Pemeriksa Barang
             </div>
-            <div class="ttd-jabatan">Pejabat Pemeriksa Dokumen</div>
 
-            {{-- Tanda tangan + Nama + NIP dalam format field --}}
             <table class="ttd-right-table">
-                <tr>
+                <tr style="text-align: left;">
                     <td class="col-l">Tanda tangan</td>
                     <td class="col-t">:</td>
                     <td class="col-v"></td>
                 </tr>
-                <tr>
+                <tr style="text-align: left;">
+                    <td class="col-l">Nama</td>
+                    <td class="col-t">:</td>
+                    {{-- index 54 → pfpd.nama_pemeriksa --}}
+                    <td class="col-v">{{ $penomoran->pemeriksa?->nama_pemeriksa ?? '' }}</td>
+                </tr>
+                <tr style="text-align: left;">
+                    <td class="col-l">NIP</td>
+                    <td class="col-t">:</td>
+                    {{-- index 55 → pfpd.nip_pemeriksa --}}
+                    <td class="col-v">{{ $penomoran->pemeriksa?->nip_pemeriksa ?? '' }}</td>
+                </tr>
+            </table>
+        </div>
+
+        {{-- Kolom kanan: Pejabat Pemeriksa Dokumen --}}
+        <div class="ttd-col">
+            <div class="ttd-kota" style="text-align: left;">
+                {{-- index 40 → uraian_barang.kota_pibk, index 6 → penomoran.tanggal_pibk --}}
+                {{ $penomoran->uraianBarang?->kota_pibk ?? 'Banda Aceh' }},
+                {{ $penomoran->tanggal_pibk ? \Carbon\Carbon::parse($penomoran->tanggal_pibk)->translatedFormat('d F Y') : '-' }}
+            </div>
+            <div class="ttd-jabatan" style="text-align: left;">
+                Pejabat Pemeriksa Dokumen
+            </div>
+
+            {{-- Tanda tangan + Nama + NIP dalam format field --}}
+            <table class="ttd-right-table">
+                <tr style="text-align: left;">
+                    <td class="col-l">Tanda tangan</td>
+                    <td class="col-t">:</td>
+                    <td class="col-v"></td>
+                </tr>
+                <tr style="text-align: left;">
                     <td class="col-l">Nama</td>
                     <td class="col-t">:</td>
                     {{-- index 54 → pfpd.nama_pfpd --}}
                     <td class="col-v">{{ $penomoran->pfpd?->nama_pfpd ?? '-' }}</td>
                 </tr>
-                <tr>
+                <tr style="text-align: left;">
                     <td class="col-l">NIP</td>
                     <td class="col-t">:</td>
                     {{-- index 55 → pfpd.nip_pfpd --}}
