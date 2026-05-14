@@ -22,7 +22,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Times New Roman', Times, serif;
+            font-family: Arial, sans-serif;
             font-size: 11pt;
             color: #000;
             background: #fff;
