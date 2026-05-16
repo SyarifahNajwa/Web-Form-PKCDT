@@ -121,6 +121,13 @@
                         </div>
 
                         <div class="mb-4">
+                            <x-input-label for="hasil_uraian_barang" :value="__('Uraian Barang')" />
+                            <textarea id="hasil_uraian_barang" name="hasil_uraian_barang" rows="3"
+                                class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" placeholder="Deskripsikan uraian barangnya bagaimana">{{ old('hasil_uraian_barang', $pemeriksaan->hasil_uraian_barang ?? '') }}</textarea>
+                            @error('hasil_uraian_barang')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                        </div>
+
+                        <div class="mb-4">
                             <x-input-label for="spesifikasi" :value="__('Spesifikasi')" />
                             <textarea id="spesifikasi" name="spesifikasi" rows="3"
                                 class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">{{ old('spesifikasi', $pemeriksaan->spesifikasi ?? '') }}</textarea>

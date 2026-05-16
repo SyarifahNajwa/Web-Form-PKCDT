@@ -314,7 +314,7 @@
                         E23: statis di Excel (keterangan X-Ray), tapi bisa diisi dari
                         uraian_barang.uraian_barang jika data dinamis
                     --}}
-                    {{ $penomoran->uraianBarang?->uraian_barang ?? '-' }}
+                    {{ $penomoran->pemeriksaan?->hasil_uraian_barang ?? '-' }}
                 </td>
                 <td style="text-align: center; vertical-align: middle;">
                     {{-- G23: index 69 → pemeriksaan.jumlah_satuan_barang --}}

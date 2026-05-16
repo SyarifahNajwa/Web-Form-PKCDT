@@ -28,6 +28,7 @@ class Pemeriksaan extends Model
         'satuan_barang',
         'jenis_kemasan',
         'ukuran_kemasan',
+        'hasil_uraian_barang',
         'spesifikasi',
         'keterangan',
     ];

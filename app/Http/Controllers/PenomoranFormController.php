@@ -370,6 +370,7 @@ class PenomoranFormController extends Controller
             'satuan_barang' => 'nullable|string|max:50',
             'jenis_kemasan' => 'nullable|string',
             'ukuran_kemasan' => 'nullable|string',
+            'hasil_uraian_barang' => 'nullable|string',
             'spesifikasi' => 'nullable|string',
             'keterangan' => 'nullable|string',
         ]);
